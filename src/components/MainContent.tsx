@@ -74,7 +74,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Conducted design-for-manufacturability reviews and trained production teams to ensure scalability of operations",
         "Established cleanroom protocols and optimized PFMEAs"
       ],
-      image: "/lovable-uploads/1760b273-6392-4d1e-a03d-f3e7ae10769b.png"
+      image: "/lovable-uploads/5372094b-03e0-4eef-9adb-1de3d82fa3b4.png"
     },
     {
       title: "Senior Manufacturing Engineer - Robotics",
@@ -303,7 +303,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className="w-full h-48 object-contain rounded bg-muted/20"
+                  className="w-full h-48 object-contain rounded bg-black"
                 />
               </div>
             </div>
