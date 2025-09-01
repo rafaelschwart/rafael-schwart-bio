@@ -340,7 +340,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
     <div className="space-y-8">
       <h2 className="text-3xl font-bold text-foreground mb-6">Skills</h2>
       
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-3 gap-8">
         {Object.entries(skills).map(([category, skillList], index) => (
           <Card key={index} className="p-6 bg-card border-border">
             <h3 className="text-lg font-semibold text-foreground mb-4">{category}</h3>
@@ -365,7 +365,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
     <div className="space-y-8">
       <h2 className="text-3xl font-bold text-foreground mb-6">Certifications</h2>
       
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid lg:grid-cols-2 gap-6">
         {certifications.map((cert, index) => (
           <Card key={index} className="p-6 bg-card border-border">
             <h3 className="text-lg font-semibold text-foreground mb-2">{cert.name}</h3>
