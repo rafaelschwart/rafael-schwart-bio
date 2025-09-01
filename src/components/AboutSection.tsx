@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, Target, Lightbulb, TrendingUp } from "lucide-react"
+import pmpCertificate from "@/assets/pmp-certificate.png"
 
 export const AboutSection = () => {
   const values = [
@@ -83,14 +84,9 @@ export const AboutSection = () => {
               <div className="flex justify-center">
                 <div className="bg-gradient-card border border-border/50 rounded-lg p-6 shadow-soft hover:shadow-medium transition-smooth">
                   <img 
-                    src="/lovable-uploads/c29ee425-44ff-49bd-a42d-111580b53e35.png" 
+                    src={pmpCertificate} 
                     alt="PMP Project Management Professional Certification - Rafael Schwart" 
                     className="w-80 h-auto mx-auto mb-4 rounded-lg shadow-medium"
-                    onError={(e) => {
-                      console.error('Image failed to load:', e.currentTarget.src);
-                      e.currentTarget.style.border = '2px solid red';
-                    }}
-                    onLoad={() => console.log('Image loaded successfully')}
                   />
                   <h4 className="text-lg font-semibold text-foreground mb-2">Project Management Professional (PMP)</h4>
                   <p className="text-sm text-muted-foreground">Project Management Institute (PMI)</p>
