@@ -6,7 +6,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('about')
 
   return (
-    <div className="min-h-screen bg-background font-mono">
+    <div className="min-h-screen bg-background text-foreground font-mono">
       <Sidebar 
         activeSection={activeSection} 
         onSectionChange={setActiveSection} 
