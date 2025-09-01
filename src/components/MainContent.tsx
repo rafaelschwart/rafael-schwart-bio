@@ -87,7 +87,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Closed NC/CAPA issues and supported critical debug/rebuild operations for high-precision surgical robotics",
         "Improved robotic assembly through MAPs and SolidWorks-based process redesign"
       ],
-      image: "/lovable-uploads/7ee9bfc4-586e-4549-83a7-2a05dcb0d511.png"
+      image: "/lovable-uploads/0a363ebc-0800-41cb-bc82-0aaeeb4084c3.png"
     },
     {
       title: "Mechanical Engineer - Test Engineering & Automation",
@@ -303,7 +303,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className={`w-full h-48 object-contain rounded bg-muted/20 ${experience.company === 'Magic Leap' ? 'border border-white/30' : ''}`}
+                  className={`w-full h-48 object-contain rounded bg-muted/20 ${experience.company === 'Magic Leap' || experience.company === 'Stryker' ? 'border border-white/30' : ''}`}
                 />
               </div>
             </div>
