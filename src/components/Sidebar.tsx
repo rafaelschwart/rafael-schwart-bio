@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { User, Briefcase, Code, Trophy, Mail, FileText } from "lucide-react"
+import rafaelHeadshot from "@/assets/rafael-headshot.png"
 
 interface SidebarProps {
   activeSection: string
@@ -18,8 +19,24 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
   return (
     <aside className="fixed left-0 top-0 h-screen w-80 bg-sidebar border-r border-sidebar-border overflow-y-auto">
       <div className="p-8">
+        {/* Profile Photo */}
+        <div className="mb-8 flex justify-center">
+          <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-sidebar-border">
+            <img 
+              src="/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png"
+              alt="Rafael Schwart Professional Headshot"
+              className="w-full h-full object-cover grayscale"
+              onError={(e) => {
+                // Fallback to generated headshot if upload fails
+                e.currentTarget.src = rafaelHeadshot;
+                e.currentTarget.classList.remove('grayscale');
+              }}
+            />
+          </div>
+        </div>
+
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">Rafael Schwart</h1>
           <p className="text-sidebar-foreground/80 text-sm mb-1">PMP</p>
           <p className="text-sidebar-foreground/80 text-sm mb-1">Senior Operations Program Manager</p>
