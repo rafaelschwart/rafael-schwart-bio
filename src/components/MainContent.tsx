@@ -11,15 +11,15 @@ import manufacturingImg from "@/assets/manufacturing-environment.jpg"
 import engineeringImg from "@/assets/engineering-workspace.jpg"
 import projectMgmtImg from "@/assets/project-management.jpg"
 import rafaelHeadshot from "@/assets/rafael-headshot.png"
-import motorolaImg from "@/assets/motorola-clean.png"
+import motorolaImg from "@/assets/motorola-radio-complete.png"
 import magicLeapImg from "@/assets/magic-leap-clean.png"
-import strykerImg from "@/assets/stryker-clean.png"
-import gablesImg from "@/assets/gables-clean.png"
-import robotrayImg from "@/assets/robotray-clean.png"
-import terrasmartImg from "@/assets/terrasmart-clean.png"
-import piecemakersImg from "@/assets/piece-makers-clean.png"
-import promptAeroImg from "@/assets/prompt-aero-clean.png"
-import generalMROImg from "@/assets/general-mro-clean.png"
+import strykerImg from "@/assets/stryker-robotics-diagram.png"
+import gablesImg from "@/assets/gables-automation-diagram.png"
+import robotrayImg from "@/assets/robotray-automation-diagram.png"
+import terrasmartImg from "@/assets/terrasmart-solar-diagram.png"
+import piecemakersImg from "@/assets/piece-makers-aerospace-diagram.png"
+import promptAeroImg from "@/assets/prompt-aero-diagram.png"
+import generalMroImg from "@/assets/general-mro-diagram.png"
 
 interface MainContentProps {
   activeSection: string
@@ -61,7 +61,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Apply Six Sigma and 8D methodologies to drive yield improvements and reduce defect rates",
         "Coordinate contract manufacturers (Sanmina Penang, BCM) through pilot builds, ramp-ups, fixture validations, and supply chain escalations"
       ],
-      image: "/lovable-uploads/f6352e07-f34e-466d-9aa4-7236cd2f8256.png"
+      image: motorolaImg
     },
     {
       title: "Senior Manufacturing Engineer - NPI",
@@ -165,7 +165,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Improved NDT and plating processes through engineering-led optimizations",
         "Contributed to aerospace maintenance, repair, and overhaul operations"
       ],
-      image: generalMROImg
+      image: generalMroImg
     }
   ]
 
