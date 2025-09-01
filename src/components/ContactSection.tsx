@@ -17,10 +17,18 @@ export const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
+    
+    // Create mailto URL with form data
+    const subject = encodeURIComponent(`Contact from ${formData.name}`)
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)
+    const mailtoUrl = `mailto:rrgschwart@hotmail.com?subject=${subject}&body=${body}`
+    
+    // Open email client
+    window.location.href = mailtoUrl
+    
     toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      title: "Opening email client...",
+      description: "Your default email client will open with the message ready to send.",
     })
     setFormData({ name: '', email: '', message: '' })
   }
@@ -48,7 +56,7 @@ export const ContactSection = () => {
     {
       name: "Email",
       icon: Mail,
-      href: "mailto:contact@rafaelschwart.com",
+      href: "mailto:rrgschwart@hotmail.com",
       description: "Send me an email directly"
     }
   ]

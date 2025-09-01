@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, Target, Lightbulb, TrendingUp } from "lucide-react"
+import pmpCertification from "@/assets/pmp-certification.png"
 
 export const AboutSection = () => {
   const values = [
@@ -73,6 +74,23 @@ export const AboutSection = () => {
                     {skill}
                   </Badge>
                 ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mb-16">
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold text-foreground mb-8">Professional Certifications</h3>
+              <div className="flex justify-center">
+                <div className="bg-gradient-card border border-border/50 rounded-lg p-6 shadow-soft hover:shadow-medium transition-smooth">
+                  <img 
+                    src={pmpCertification} 
+                    alt="PMP Project Management Professional Certification" 
+                    className="w-32 h-32 mx-auto mb-4"
+                  />
+                  <h4 className="text-lg font-semibold text-foreground mb-2">Project Management Professional (PMP)</h4>
+                  <p className="text-sm text-muted-foreground">Project Management Institute (PMI)</p>
+                </div>
               </div>
             </div>
           </div>
