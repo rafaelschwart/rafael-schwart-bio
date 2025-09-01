@@ -86,6 +86,11 @@ export const AboutSection = () => {
                     src="/lovable-uploads/c29ee425-44ff-49bd-a42d-111580b53e35.png" 
                     alt="PMP Project Management Professional Certification - Rafael Schwart" 
                     className="w-80 h-auto mx-auto mb-4 rounded-lg shadow-medium"
+                    onError={(e) => {
+                      console.error('Image failed to load:', e.currentTarget.src);
+                      e.currentTarget.style.border = '2px solid red';
+                    }}
+                    onLoad={() => console.log('Image loaded successfully')}
                   />
                   <h4 className="text-lg font-semibold text-foreground mb-2">Project Management Professional (PMP)</h4>
                   <p className="text-sm text-muted-foreground">Project Management Institute (PMI)</p>
