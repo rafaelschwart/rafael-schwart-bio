@@ -342,9 +342,29 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
           <Card key={index} className="p-6 bg-card border-border">
             <h3 className="text-lg font-semibold text-foreground mb-2">{cert.name}</h3>
             <p className="text-muted-foreground mb-2">{cert.issuer}</p>
-            <Badge variant={cert.status === 'Certified' ? 'default' : 'secondary'}>
-              {cert.status}
-            </Badge>
+            <div className="flex items-center justify-between">
+              <Badge variant={cert.status === 'Certified' ? 'default' : 'secondary'}>
+                {cert.status}
+              </Badge>
+              {cert.name === "Project Management Professional (PMP)" && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  asChild
+                  className="hover:bg-accent hover:text-accent-foreground"
+                >
+                  <a 
+                    href="https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    View Certification
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </Button>
+              )}
+            </div>
           </Card>
         ))}
       </div>
