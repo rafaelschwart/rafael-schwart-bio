@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'mono': ['IBM Plex Mono', 'Verdana', 'monospace'],
+				'sans': ['IBM Plex Mono', 'Verdana', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
