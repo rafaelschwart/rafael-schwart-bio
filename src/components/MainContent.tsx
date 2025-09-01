@@ -87,7 +87,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Closed NC/CAPA issues and supported critical debug/rebuild operations for high-precision surgical robotics",
         "Improved robotic assembly through MAPs and SolidWorks-based process redesign"
       ],
-      image: "/lovable-uploads/09ec1d20-f26f-472f-bcd0-a4d29f316c1b.png"
+      image: "/lovable-uploads/7ee9bfc4-586e-4549-83a7-2a05dcb0d511.png"
     },
     {
       title: "Mechanical Engineer - Test Engineering & Automation",
@@ -303,7 +303,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className="w-full h-48 object-cover rounded"
+                  className="w-full h-48 object-contain rounded bg-muted/20"
                 />
               </div>
             </div>
