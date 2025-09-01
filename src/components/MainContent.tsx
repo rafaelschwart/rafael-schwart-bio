@@ -49,6 +49,18 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
     }))
   }
 
+  const companyLinks: Record<string, string> = {
+    "Motorola Solutions": "https://www.motorolasolutions.com",
+    "Magic Leap": "https://www.magicleap.com",
+    "Stryker": "https://www.stryker.com",  
+    "Gables Engineering": "https://www.gableseng.com",
+    "Robotray": "https://robotray.com",
+    "TerraSmart": "https://www.terrasmart.com",
+    "Piece-makers LLC": "https://piece-makers.com/",
+    "Prompt Aero Services": "https://www.promptaero.com/",
+    "General MRO Aerospace Inc.": "https://www.generalmroaerospace.com/"
+  }
+
   const experiences = [
     {
       title: "Senior Operations Program Manager - NPI",
@@ -275,7 +287,18 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
                   <div className="flex items-center">
                     <Building className="h-4 w-4 mr-2" />
-                    <span>{experience.company}</span>
+                    {companyLinks[experience.company] ? (
+                      <a 
+                        href={companyLinks[experience.company]} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        {experience.company}
+                      </a>
+                    ) : (
+                      <span>{experience.company}</span>
+                    )}
                   </div>
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2" />
@@ -567,7 +590,20 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
                   <div>
                     <h3 className="font-semibold text-foreground text-sm">{experience.title}</h3>
-                    <p className="text-muted-foreground text-xs">{experience.company} • {experience.location}</p>
+                    <p className="text-muted-foreground text-xs">
+                      {companyLinks[experience.company] ? (
+                        <a 
+                          href={companyLinks[experience.company]} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          {experience.company}
+                        </a>
+                      ) : (
+                        experience.company
+                      )} • {experience.location}
+                    </p>
                     <p className="text-muted-foreground text-xs mb-2">{experience.period}</p>
                   </div>
                   <p className="text-muted-foreground text-xs leading-relaxed">
