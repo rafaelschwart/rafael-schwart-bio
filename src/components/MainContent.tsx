@@ -298,7 +298,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className="w-full h-48 object-cover rounded border border-border"
+                  className="w-full h-48 object-cover rounded"
                 />
               </div>
             </div>
