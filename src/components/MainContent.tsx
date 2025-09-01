@@ -303,7 +303,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className={`w-full h-48 object-contain rounded bg-muted/20 ${experience.company === 'Magic Leap' || experience.company === 'Stryker' ? 'border border-white/30' : ''}`}
+                  className={`w-full h-48 object-contain rounded bg-muted/20 ${experience.company === 'Magic Leap' ? 'border border-white/30' : ''}`}
                 />
               </div>
             </div>
