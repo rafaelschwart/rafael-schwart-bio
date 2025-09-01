@@ -52,7 +52,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   const experiences = [
     {
       title: "Senior Operations Program Manager - NPI",
-      company: "Motorola Solutions",
+      company: "Motorola Solutions", 
       location: "Miami, FL",
       period: "05/2024 to Present",
       description: "Lead cross-functional alignment across R&D, Manufacturing, Logistics, and Quality to meet launch milestones for mission-critical communications systems.",
@@ -74,7 +74,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Conducted design-for-manufacturability reviews and trained production teams to ensure scalability of operations",
         "Established cleanroom protocols and optimized PFMEAs"
       ],
-      image: magicLeapImg
+      image: "/lovable-uploads/e3de2c5b-6b9d-4e12-95b0-bd1ae86535b5.png"
     },
     {
       title: "Senior Manufacturing Engineer - Robotics",
