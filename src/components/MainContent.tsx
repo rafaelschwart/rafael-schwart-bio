@@ -87,7 +87,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Closed NC/CAPA issues and supported critical debug/rebuild operations for high-precision surgical robotics",
         "Improved robotic assembly through MAPs and SolidWorks-based process redesign"
       ],
-      image: "/lovable-uploads/0a363ebc-0800-41cb-bc82-0aaeeb4084c3.png"
+      image: "/lovable-uploads/d58a2f00-ad39-43b1-a39a-2a2363dd77fe.png"
     },
     {
       title: "Mechanical Engineer - Test Engineering & Automation",
