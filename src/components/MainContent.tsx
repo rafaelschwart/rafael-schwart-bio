@@ -11,6 +11,15 @@ import manufacturingImg from "@/assets/manufacturing-environment.jpg"
 import engineeringImg from "@/assets/engineering-workspace.jpg"
 import projectMgmtImg from "@/assets/project-management.jpg"
 import rafaelHeadshot from "@/assets/rafael-headshot.png"
+import motorolaImg from "@/assets/motorola-office.jpg"
+import magicLeapImg from "@/assets/magic-leap-office.jpg"
+import strykerImg from "@/assets/stryker-robotics.jpg"
+import gablesImg from "@/assets/gables-engineering.jpg"
+import robotrayImg from "@/assets/robotray-automation.jpg"
+import terrasmartImg from "@/assets/terrasmart-solar.jpg"
+import piecemakersImg from "@/assets/piece-makers-aerospace.jpg"
+import promptAeroImg from "@/assets/prompt-aero.jpg"
+import generalMROImg from "@/assets/general-mro-aerospace.jpg"
 
 interface MainContentProps {
   activeSection: string
@@ -44,39 +53,119 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
     {
       title: "Senior Operations Program Manager - NPI",
       company: "Motorola Solutions",
-      location: "Remote",
+      location: "Miami, FL",
       period: "05/2024 to Present",
-      description: "Delivered exceptional alignment across R&D, Manufacturing, Logistics, and Quality to meet launch milestones.",
+      description: "Lead cross-functional alignment across R&D, Manufacturing, Logistics, and Quality to meet launch milestones for mission-critical communications systems.",
       achievements: [
-        "Managed CAPEX/OPEX budgets, led PFMEA and control plans, and executed MES/MOS integrations",
-        "Applied Six Sigma and 8D methods to drive yield improvement and reduce defect rates"
+        "Manage CAPEX/OPEX budgets, implement PFMEA and Process Control Plans (PCP), and integrate MES/MQS solutions into global supply chain operations",
+        "Apply Six Sigma and 8D methodologies to drive yield improvements and reduce defect rates",
+        "Coordinate contract manufacturers (Sanmina Penang, BCM) through pilot builds, ramp-ups, fixture validations, and supply chain escalations"
       ],
-      image: manufacturingImg
+      image: motorolaImg
     },
     {
       title: "Senior Manufacturing Engineer - NPI",
       company: "Magic Leap",
-      location: "Remote",
+      location: "Plantation, FL",
       period: "01/2023 to 05/2024",
-      description: "Boosted production efficiency by 15% using MES analytics and Gauss R&R studies.",
+      description: "Boosted production efficiency by 15% through MES analytics, Gauge R&R studies, and cleanroom optimization.",
       achievements: [
-        "Established cleanroom protocols and improved manufacturing stability via optimized PFMEAs",
-        "Trained production teams, supporting knowledge transfer and scalable operations",
-        "Supported NCC/CAPA closures and managed critical debug/rebuild tasks"
+        "Developed PFMEA libraries and implemented manufacturing stability protocols for AR devices",
+        "Conducted design-for-manufacturability reviews and trained production teams to ensure scalability of operations",
+        "Established cleanroom protocols and optimized PFMEAs"
       ],
-      image: engineeringImg
+      image: magicLeapImg
     },
     {
       title: "Senior Manufacturing Engineer - Robotics",
       company: "Stryker",
-      location: "Remote",
+      location: "Fort Lauderdale, FL",
       period: "01/2020 to 01/2023",
-      description: "Improved robotic assembly through MAPs and SolidWorks-based process redesign.",
+      description: "Enhanced robotic assembly processes through MAPs redesign and SolidWorks simulation.",
       achievements: [
-        "Led Kaizen/5S initiatives and supplier quality compliance (PPAP, SICR)",
-        "Supported NCC/CAPA closures and managed critical debug/rebuild tasks"
+        "Led Kaizen/6S initiatives, ensuring compliance with PPAP and supplier quality standards (SICR)",
+        "Closed NC/CAPA issues and supported critical debug/rebuild operations for high-precision surgical robotics",
+        "Improved robotic assembly through MAPs and SolidWorks-based process redesign"
       ],
-      image: projectMgmtImg
+      image: strykerImg
+    },
+    {
+      title: "Mechanical Engineer - Test Engineering & Automation",
+      company: "Gables Engineering",
+      location: "Coral Gables, FL",
+      period: "07/2018 to 08/2019",
+      description: "Designed automated fixtures reducing test cycle times by over 50% for Boeing avionics.",
+      achievements: [
+        "Deployed a PDM system improving ECN/ECO workflows and reducing design cycle times",
+        "Implemented automation solutions for aerospace test equipment",
+        "Streamlined manufacturing processes through innovative fixture design"
+      ],
+      image: gablesImg
+    },
+    {
+      title: "Mechanical Design Engineer",
+      company: "Robotray",
+      location: "Miami, FL",
+      period: "11/2017 to 07/2018",
+      description: "Designed automation systems and CNC programs for high-speed bakery and packaging equipment.",
+      achievements: [
+        "Optimized material usage through FEA analysis",
+        "Introduced SolidWorks PDM for design version control",
+        "Developed high-performance automation solutions for food processing industry"
+      ],
+      image: robotrayImg
+    },
+    {
+      title: "Mechanical Engineer - Solar Tracker Systems",
+      company: "TerraSmart",
+      location: "Naples, FL",
+      period: "03/2017 to 10/2017",
+      description: "Modeled solar tracking structures, providing casting/welding process improvements for utility-scale deployments.",
+      achievements: [
+        "Designed and optimized solar tracking systems for large-scale installations",
+        "Improved manufacturing processes for renewable energy infrastructure",
+        "Contributed to utility-scale solar energy projects"
+      ],
+      image: terrasmartImg
+    },
+    {
+      title: "Mechanical Design Engineer",
+      company: "Piece-makers LLC",
+      location: "Miami, FL",
+      period: "12/2016 to 03/2017",
+      description: "Designed aerospace test fixtures, performed R&D prototyping, and supported CAM programming for manufacturing bids.",
+      achievements: [
+        "Developed precision test fixtures for aerospace applications",
+        "Supported R&D initiatives and prototyping processes",
+        "Contributed to manufacturing bid processes through CAM programming expertise"
+      ],
+      image: piecemakersImg
+    },
+    {
+      title: "Mechanical Design Engineer",
+      company: "Prompt Aero Services",
+      location: "Miami, FL",
+      period: "01/2016 to 11/2016",
+      description: "Developed FAA-compliant aerospace fixtures and validated designs using FEA and CFD.",
+      achievements: [
+        "Created FAA-compliant design solutions for aerospace applications",
+        "Performed advanced FEA and CFD analysis for design validation",
+        "Ensured regulatory compliance in aerospace manufacturing processes"
+      ],
+      image: promptAeroImg
+    },
+    {
+      title: "Mechanical Design Engineer",
+      company: "General MRO Aerospace Inc.",
+      location: "Miami, FL",
+      period: "05/2014 to 12/2015",
+      description: "Designed and built large-scale structural load fixtures for aerospace clients.",
+      achievements: [
+        "Developed structural load testing fixtures for aircraft components",
+        "Improved NDT and plating processes through engineering-led optimizations",
+        "Contributed to aerospace maintenance, repair, and overhaul operations"
+      ],
+      image: generalMROImg
     }
   ]
 
@@ -280,10 +369,10 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             <Button
               variant="outline"
               className="w-full justify-start h-12"
-              onClick={() => window.open('mailto:rafael@example.com', '_blank')}
+              onClick={() => window.open('mailto:rrgschwart@hotmail.com', '_blank')}
             >
               <Mail className="h-4 w-4 mr-3" />
-              rafael@example.com
+              rrgschwart@hotmail.com
             </Button>
             
             <Button
@@ -369,8 +458,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
     <>
       {/* Desktop Version */}
       <main className="hidden md:block ml-80 min-h-screen bg-background">
-        <div className="p-12">
-          <div className="max-w-4xl">
+        <div className="p-12 flex justify-center">
+          <div className="max-w-5xl w-full">
             {renderContent()}
           </div>
         </div>
@@ -411,15 +500,20 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
           {/* Mobile Experience Section */}
           <Card className="p-6 bg-card border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">Current Role</h2>
-            <div className="space-y-3">
-              <div>
-                <h3 className="font-semibold text-foreground text-sm">Senior Operations Program Manager</h3>
-                <p className="text-muted-foreground text-xs">Motorola Solutions • 2024 - Present</p>
-              </div>
-              <p className="text-muted-foreground text-sm">
-                Delivering cross-functional alignment across R&D, Manufacturing, Logistics, and Quality. Managing CAPEX/OPEX budgets and applying Six Sigma methodologies.
-              </p>
+            <h2 className="text-lg font-bold text-foreground mb-3">Professional Experience</h2>
+            <div className="space-y-4">
+              {experiences.map((experience, index) => (
+                <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
+                  <div>
+                    <h3 className="font-semibold text-foreground text-sm">{experience.title}</h3>
+                    <p className="text-muted-foreground text-xs">{experience.company} • {experience.location}</p>
+                    <p className="text-muted-foreground text-xs mb-2">{experience.period}</p>
+                  </div>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
+                    {experience.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </Card>
 
@@ -460,10 +554,10 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               <Button
                 variant="outline"
                 className="w-full justify-start h-10 text-sm"
-                onClick={() => window.open('mailto:rafael@example.com', '_blank')}
+                onClick={() => window.open('mailto:rrgschwart@hotmail.com', '_blank')}
               >
                 <Mail className="h-4 w-4 mr-2" />
-                rafael@example.com
+                rrgschwart@hotmail.com
               </Button>
               
               <Button
