@@ -211,6 +211,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
       name: "Agile Foundations",
       issuer: "Professional Development",
       status: "Certified"
+    },
+    {
+      name: "B.S. Mechanical Engineering",
+      issuer: "University of Miami",
+      status: "Graduated 2014"
     }
   ]
 
@@ -360,6 +365,24 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                     className="inline-flex items-center gap-2"
                   >
                     View Certification
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </Button>
+              )}
+              {cert.name === "B.S. Mechanical Engineering" && (
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  asChild
+                  className="hover:bg-accent hover:text-accent-foreground"
+                >
+                  <a 
+                    href="https://drive.google.com/file/d/1JKohOdgfwKokcy-hL8WHf0pze3dp6vX-/view?usp=sharing" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    View Diploma
                     <ExternalLink className="h-3 w-3" />
                   </a>
                 </Button>
