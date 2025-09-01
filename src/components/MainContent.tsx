@@ -61,7 +61,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Apply Six Sigma and 8D methodologies to drive yield improvements and reduce defect rates",
         "Coordinate contract manufacturers (Sanmina Penang, BCM) through pilot builds, ramp-ups, fixture validations, and supply chain escalations"
       ],
-      image: "/lovable-uploads/df83528f-3407-4872-877f-137eadf9f596.png"
+      image: "/lovable-uploads/0c33187d-3ade-4b59-a0ac-1fdf4c85ed2f.png"
     },
     {
       title: "Senior Manufacturing Engineer - NPI",
