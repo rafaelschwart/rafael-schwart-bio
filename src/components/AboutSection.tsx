@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Users, Target, Lightbulb, TrendingUp } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Users, Target, Lightbulb, TrendingUp, ExternalLink } from "lucide-react"
 import pmpCertificate from "@/assets/pmp-certificate.png"
 
 export const AboutSection = () => {
@@ -89,7 +90,23 @@ export const AboutSection = () => {
                     className="w-80 h-auto mx-auto mb-4 rounded-lg shadow-medium"
                   />
                   <h4 className="text-lg font-semibold text-foreground mb-2">Project Management Professional (PMP)</h4>
-                  <p className="text-sm text-muted-foreground">Project Management Institute (PMI)</p>
+                  <p className="text-sm text-muted-foreground mb-3">Project Management Institute (PMI)</p>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    asChild
+                    className="hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <a 
+                      href="https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      View Certification
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>
