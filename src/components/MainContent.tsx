@@ -74,7 +74,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Conducted design-for-manufacturability reviews and trained production teams to ensure scalability of operations",
         "Established cleanroom protocols and optimized PFMEAs"
       ],
-      image: "/lovable-uploads/5372094b-03e0-4eef-9adb-1de3d82fa3b4.png"
+      image: "/lovable-uploads/98d03468-0305-444c-91d4-075dd436b3c7.png"
     },
     {
       title: "Senior Manufacturing Engineer - Robotics",
