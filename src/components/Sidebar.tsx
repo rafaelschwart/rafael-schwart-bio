@@ -17,7 +17,7 @@ const navigationItems = [
 
 export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
   return (
-    <aside className="fixed left-0 top-0 h-screen w-80 bg-sidebar border-r border-sidebar-border overflow-y-auto">
+    <aside className="hidden md:block fixed left-0 top-0 h-screen w-80 bg-sidebar border-r border-sidebar-border overflow-y-auto">
       <div className="p-8">
         {/* Profile Photo */}
         <div className="mb-8 flex justify-center">
@@ -45,10 +45,12 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
 
         {/* Personal Info */}
         <div className="mb-12 text-sidebar-foreground/70 text-sm space-y-2">
-          <p>Born in 1985 in Miami, FL.</p>
-          <p>I believe engineering can be more innovative and impactful.</p>
-          <p>With a mission to present the possibilities of technical excellence,</p>
-          <p>I am pursuing operational excellence through continuous improvement.</p>
+          <p>Born in Caracas, Venezuela, January 1993.</p>
+          <p>Based in Miami, Florida.</p>
+          <p>Passionate about leveraging technical expertise to develop</p>
+          <p>cutting-edge technologies and continuously optimize processes.</p>
+          <p>Driving innovation and operational excellence through</p>
+          <p>continuous improvement methodologies.</p>
         </div>
 
         {/* Navigation */}

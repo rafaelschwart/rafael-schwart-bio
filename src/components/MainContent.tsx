@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast"
 import manufacturingImg from "@/assets/manufacturing-environment.jpg"
 import engineeringImg from "@/assets/engineering-workspace.jpg"
 import projectMgmtImg from "@/assets/project-management.jpg"
+import rafaelHeadshot from "@/assets/rafael-headshot.png"
 
 interface MainContentProps {
   activeSection: string
@@ -109,17 +110,17 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   const certifications = [
     {
       name: "Project Management Professional (PMP)",
-      issuer: "Project Management Institute",
+      issuer: "Project Management Institute (PMI)",
       status: "Certified"
     },
     {
-      name: "Six Sigma Black Belt",
+      name: "Six Sigma Green Belt",
       issuer: "ASQ",
-      status: "In Progress"
+      status: "Certified"
     },
     {
-      name: "Lean Manufacturing Certification",
-      issuer: "SME",
+      name: "Agile Foundations",
+      issuer: "Professional Development",
       status: "Certified"
     }
   ]
@@ -365,12 +366,128 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   }
 
   return (
-    <main className="ml-80 min-h-screen bg-background">
-      <div className="p-12">
-        <div className="max-w-4xl">
-          {renderContent()}
+    <>
+      {/* Desktop Version */}
+      <main className="hidden md:block ml-80 min-h-screen bg-background">
+        <div className="p-12">
+          <div className="max-w-4xl">
+            {renderContent()}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+      {/* Mobile Version - Single Scrollable Page */}
+      <main className="md:hidden min-h-screen bg-background">
+        <div className="p-6 space-y-8">
+          {/* Mobile Header */}
+          <div className="text-center py-6">
+            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-border mx-auto mb-4">
+              <img 
+                src="/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png"
+                alt="Rafael Schwart Professional Headshot"
+                className="w-full h-full object-cover grayscale"
+                onError={(e) => {
+                  e.currentTarget.src = rafaelHeadshot;
+                  e.currentTarget.classList.remove('grayscale');
+                }}
+              />
+            </div>
+            <h1 className="text-xl font-bold text-foreground mb-1">Rafael Schwart</h1>
+            <p className="text-muted-foreground text-sm mb-1">PMP-Certified</p>
+            <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
+            <p className="text-muted-foreground text-xs mt-2">Born in Caracas, Venezuela • Based in Miami, FL</p>
+          </div>
+
+          {/* Mobile About Section */}
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-lg font-bold text-foreground mb-3">About</h2>
+            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+              Technical Project Manager & Process Engineer with 10+ years of experience across Consumer Electronics, AR, Medical Devices, Robotics, Aerospace, and Solar Energy industries.
+            </p>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              Expert in CAD, CAE, FEA, FMEA, GD&T, and project management tools. Passionate about leveraging technical expertise to develop cutting-edge technologies.
+            </p>
+          </Card>
+
+          {/* Mobile Experience Section */}
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-lg font-bold text-foreground mb-3">Current Role</h2>
+            <div className="space-y-3">
+              <div>
+                <h3 className="font-semibold text-foreground text-sm">Senior Operations Program Manager</h3>
+                <p className="text-muted-foreground text-xs">Motorola Solutions • 2024 - Present</p>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Delivering cross-functional alignment across R&D, Manufacturing, Logistics, and Quality. Managing CAPEX/OPEX budgets and applying Six Sigma methodologies.
+              </p>
+            </div>
+          </Card>
+
+          {/* Mobile Skills Section */}
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-lg font-bold text-foreground mb-3">Core Skills</h2>
+            <div className="grid grid-cols-2 gap-2">
+              {["CAD/CAE/FEA", "Project Management", "Six Sigma", "Lean Manufacturing", "FMEA/GD&T", "ERP/PDM/PLM"].map((skill, index) => (
+                <Badge key={index} variant="secondary" className="text-xs justify-center">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </Card>
+
+          {/* Mobile Certifications Section */}
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-lg font-bold text-foreground mb-3">Certifications</h2>
+            <div className="space-y-2">
+              {certifications.map((cert, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{cert.name}</p>
+                    <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                  </div>
+                  <Badge variant="default" className="text-xs">
+                    {cert.status}
+                  </Badge>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* Mobile Contact Section */}
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-lg font-bold text-foreground mb-3">Contact</h2>
+            <div className="space-y-3">
+              <Button
+                variant="outline"
+                className="w-full justify-start h-10 text-sm"
+                onClick={() => window.open('mailto:rafael@example.com', '_blank')}
+              >
+                <Mail className="h-4 w-4 mr-2" />
+                rafael@example.com
+              </Button>
+              
+              <Button
+                variant="outline"
+                className="w-full justify-start h-10 text-sm"
+                onClick={() => window.open('https://www.linkedin.com/in/rafaelschwart/', '_blank')}
+              >
+                <Linkedin className="h-4 w-4 mr-2" />
+                LinkedIn Profile
+                <ExternalLink className="h-4 w-4 ml-auto" />
+              </Button>
+            </div>
+          </Card>
+
+          {/* Mobile Education */}
+          <Card className="p-6 bg-card border-border">
+            <h2 className="text-lg font-bold text-foreground mb-3">Education</h2>
+            <div>
+              <p className="text-sm font-medium text-foreground">B.S. Mechanical Engineering</p>
+              <p className="text-xs text-muted-foreground">University of Miami • 2014</p>
+            </div>
+          </Card>
+        </div>
+      </main>
+    </>
   )
 }
