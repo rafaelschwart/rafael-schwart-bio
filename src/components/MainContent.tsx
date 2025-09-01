@@ -352,22 +352,40 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 {cert.status}
               </Badge>
               {cert.name === "Project Management Professional (PMP)" && (
-                <Button 
-                  variant="outline" 
-                  size="sm"
-                  asChild
-                  className="hover:bg-accent hover:text-accent-foreground"
-                >
-                  <a 
-                    href="https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2"
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    asChild
+                    className="hover:bg-accent hover:text-accent-foreground"
                   >
-                    View Certification
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                </Button>
+                    <a 
+                      href="https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      View Certification
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    asChild
+                    className="hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <a 
+                      href="https://drive.google.com/file/d/1JKohOdgfwKokcy-hL8WHf0pze3dp6vX-/view?usp=sharing" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
+                    >
+                      View Diploma
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </Button>
+                </div>
               )}
               {cert.name === "B.S. Mechanical Engineering" && (
                 <Button 
@@ -377,7 +395,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   className="hover:bg-accent hover:text-accent-foreground"
                 >
                   <a 
-                    href="https://drive.google.com/file/d/1JKohOdgfwKokcy-hL8WHf0pze3dp6vX-/view?usp=sharing" 
+                    href="https://drive.google.com/file/d/1NAQa9Kw5Zhb1YZoNg6kXXUB-_FbAMNKl/view?usp=sharing" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2"
