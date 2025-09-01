@@ -303,7 +303,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className="w-full h-48 object-contain rounded bg-black"
+                  className="w-full h-72 object-contain rounded bg-black"
                 />
               </div>
             </div>
