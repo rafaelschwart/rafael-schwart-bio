@@ -466,6 +466,142 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
     </div>
   )
 
+  const renderProjects = () => (
+    <div className="space-y-8">
+      <h2 className="text-3xl font-bold text-foreground mb-6">Side Projects</h2>
+      
+      <div className="grid gap-8">
+        {/* Earth Robotics */}
+        <Card className="p-6 bg-card border-border">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-foreground mb-2">Mechanical Engineer</h3>
+              <div className="flex items-center gap-2 mb-2">
+                <Badge variant="outline" className="text-sm">Earth Robotics</Badge>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="hover:bg-accent hover:text-accent-foreground"
+                >
+                  <a 
+                    href="https://www.earthrobotics.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    Visit Website
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              Contributing mechanical engineering expertise to Earth Robotics, focusing on sustainable robotics solutions for environmental applications.
+            </p>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-foreground">Key Responsibilities:</h4>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li>Design and develop robotic systems for environmental monitoring and sustainability</li>
+                <li>Perform structural analysis and optimization using CAD/FEA tools</li>
+                <li>Collaborate on mechatronic integration and sensor deployment</li>
+                <li>Support field testing and validation of robotic platforms</li>
+              </ul>
+            </div>
+          </div>
+        </Card>
+
+        {/* Tiento Labs */}
+        <Card className="p-6 bg-card border-border">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-foreground mb-2">Chief Technology Officer</h3>
+              <div className="flex items-center gap-2 mb-2">
+                <Badge variant="outline" className="text-sm">Tiento Labs</Badge>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="hover:bg-accent hover:text-accent-foreground"
+                >
+                  <a 
+                    href="https://www.tientolabs.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    Visit Website
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              Leading technical development at Tiento Labs, a revolutionary blockchain platform that tokenizes football player formation rights and provides verified scouting data.
+            </p>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-foreground">Key Responsibilities:</h4>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li>Architect blockchain infrastructure for tokenizing player formation rights</li>
+                <li>Develop secure platforms for fan investment in professional football players</li>
+                <li>Build verification systems for player stats and scouting data using blockchain technology</li>
+                <li>Lead technical team in creating scalable solutions connecting fans with football talent</li>
+                <li>Implement smart contracts and decentralized systems for sports investment</li>
+              </ul>
+            </div>
+          </div>
+        </Card>
+
+        {/* Recovrz */}
+        <Card className="p-6 bg-card border-border">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-foreground mb-2">Co-Founder</h3>
+              <div className="flex items-center gap-2 mb-2">
+                <Badge variant="outline" className="text-sm">Recovrz</Badge>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  asChild
+                  className="hover:bg-accent hover:text-accent-foreground"
+                >
+                  <a 
+                    href="https://www.recovrz.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    Visit Website
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              Co-founded Recovrz, an innovative athletic recovery company focused on providing next-generation solutions to help athletes recover better and reach new performance heights.
+            </p>
+            <div className="space-y-2">
+              <h4 className="font-semibold text-foreground">Company Focus:</h4>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li>Develop and market advanced recovery products for athletes</li>
+                <li>Feature products including nose strips for improved breathing during recovery</li>
+                <li>Create comprehensive recovery bundles for optimal performance enhancement</li>
+                <li>Build brand focused on consistency and performance optimization</li>
+                <li>Target both professional and amateur athletes seeking recovery solutions</li>
+              </ul>
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  )
+
   const renderContact = () => (
     <div className="space-y-8">
       <h2 className="text-3xl font-bold text-foreground mb-6">Contact</h2>
@@ -562,6 +698,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         return renderSkills()
       case 'certifications':
         return renderCertifications()
+      case 'projects':
+        return renderProjects()
       case 'contact':
         return renderContact()
       default:
@@ -699,6 +837,75 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                     )}
                   </div>
                 ))}
+              </div>
+            </Card>
+
+            {/* Side Projects Section */}
+            <Card className="p-6 bg-card border-border">
+              <h2 className="text-lg font-bold text-foreground mb-3">Side Projects</h2>
+              <div className="space-y-4">
+                {/* Earth Robotics */}
+                <div className="pb-4 border-b border-border">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-semibold text-foreground text-sm">Mechanical Engineer</h3>
+                      <a 
+                        href="https://www.earthrobotics.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline text-xs"
+                      >
+                        Earth Robotics
+                      </a>
+                    </div>
+                    <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                  </div>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
+                    Contributing mechanical engineering expertise to sustainable robotics solutions for environmental applications.
+                  </p>
+                </div>
+
+                {/* Tiento Labs */}
+                <div className="pb-4 border-b border-border">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-semibold text-foreground text-sm">Chief Technology Officer</h3>
+                      <a 
+                        href="https://www.tientolabs.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline text-xs"
+                      >
+                        Tiento Labs
+                      </a>
+                    </div>
+                    <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                  </div>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
+                    Leading technical development of blockchain platform for tokenizing football player formation rights and providing verified scouting data.
+                  </p>
+                </div>
+
+                {/* Recovrz */}
+                <div className="pb-0">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-semibold text-foreground text-sm">Co-Founder</h3>
+                      <a 
+                        href="https://www.recovrz.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline text-xs"
+                      >
+                        Recovrz
+                      </a>
+                    </div>
+                    <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                  </div>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
+                    Co-founded innovative athletic recovery company focused on next-generation solutions to help athletes recover better and reach new performance heights.
+                  </p>
+                </div>
               </div>
             </Card>
 
