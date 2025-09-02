@@ -35,9 +35,29 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    const subject = encodeURIComponent(`Contact from ${formData.name}`)
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)
+    const mailtoUrl = `mailto:rrgschwart@hotmail.com?subject=${subject}&body=${body}`
+
+    // Open using a temporary anchor (more reliable on mobile and inside iframes)
+    const a = document.createElement('a')
+    a.href = mailtoUrl
+    a.style.display = 'none'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+
+    // Fallback in case navigation was blocked
+    setTimeout(() => {
+      if (document.visibilityState === 'visible') {
+        window.location.href = mailtoUrl
+      }
+    }, 150)
+
     toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      title: "Opening email client...",
+      description: "If nothing happens, email me at rrgschwart@hotmail.com.",
     })
     setFormData({ name: '', email: '', message: '' })
   }
