@@ -132,7 +132,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Implemented automation solutions for aerospace test equipment",
         "Streamlined manufacturing processes through innovative fixture design"
       ],
-      image: "/lovable-uploads/fc35aa94-e5ac-465a-a924-11296cdd22d3.png"
+      image: "/lovable-uploads/d9821a84-b324-402d-bba8-f821576ae930.png"
     },
     {
       title: "Mechanical Design Engineer",
