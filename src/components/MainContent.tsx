@@ -197,7 +197,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Improved NDT and plating processes through engineering-led optimizations",
         "Contributed to aerospace maintenance, repair, and overhaul operations"
       ],
-      image: "/lovable-uploads/4f0de8dc-2b05-4f35-8b7a-637dfb7dbba3.png"
+      image: "/lovable-uploads/79ee2f7c-721b-44a7-b6a5-5e898dd42f64.png"
     }
   ]
 
