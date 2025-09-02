@@ -171,7 +171,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Supported R&D initiatives and prototyping processes",
         "Contributed to manufacturing bid processes through CAM programming expertise"
       ],
-      image: "/lovable-uploads/62e4d240-8391-4fb0-9e1f-edcc0b4f980a.png"
+      image: "/lovable-uploads/ae4ea81f-5936-4f0a-ac7f-a5d00cea159e.png"
     },
     {
       title: "Mechanical Design Engineer",
