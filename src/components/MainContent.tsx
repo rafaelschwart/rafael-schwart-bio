@@ -710,7 +710,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   <Mail className="h-4 w-4 mr-2" />
                   rrgschwart@hotmail.com
                 </a>
-                <a href="https://www.linkedin.com/in/rafael-schwart/" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                <a href="https://www.linkedin.com/in/rafaelschwart/" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-primary">
                   <Linkedin className="h-4 w-4 mr-2" />
                   LinkedIn Profile
                 </a>
