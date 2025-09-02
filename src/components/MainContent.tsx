@@ -262,6 +262,17 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         </p>
       </div>
 
+      {/* Professional Image */}
+      <div className="flex justify-center">
+        <div className="relative">
+          <img 
+            src="/lovable-uploads/49d50d9a-eb05-4f07-a5f6-cb056f47877b.png"
+            alt="Rafael Schwart in professional robotics environment"
+            className="w-full max-w-2xl rounded-lg shadow-lg object-cover"
+          />
+        </div>
+      </div>
+
       <div className="grid md:grid-cols-2 gap-8">
         <div>
           <h3 className="text-xl font-semibold text-foreground mb-4">Expertise</h3>
