@@ -184,7 +184,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Performed advanced FEA and CFD analysis for design validation",
         "Ensured regulatory compliance in aerospace manufacturing processes"
       ],
-      image: "/lovable-uploads/c53428ad-d2e8-4984-8c9d-6ccf12346e17.png"
+      image: "/lovable-uploads/11111415-3153-43c6-85cd-be1c092e7990.png"
     },
     {
       title: "Mechanical Design Engineer",
