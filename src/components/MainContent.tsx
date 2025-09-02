@@ -485,7 +485,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   className="hover:bg-accent hover:text-accent-foreground"
                 >
                   <a 
-                    href="https://www.earthrobotics.com" 
+                    href="https://www.earthrobotics.co/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2"
@@ -865,7 +865,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                     <div>
                       <h3 className="font-semibold text-foreground text-sm">Mechanical Engineer</h3>
                       <a 
-                        href="https://www.earthrobotics.com" 
+                        href="https://www.earthrobotics.co/" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-primary hover:underline text-xs"
