@@ -310,7 +310,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
       
       <div className="space-y-8">
         {experiences.map((experience, index) => (
-          <Card key={index} className="p-8 bg-card border-border">
+          <Card key={index} className="p-8 bg-black border-gray-800">
             <div className="grid lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2">
                 <h3 className="text-xl font-bold text-foreground mb-2">{experience.title}</h3>
