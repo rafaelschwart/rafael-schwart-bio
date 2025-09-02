@@ -695,9 +695,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             <Card className="p-6 bg-card border-border mb-8">
               <h2 className="text-lg font-bold text-foreground mb-3">Contact</h2>
               <div className="space-y-3">
-                <a href="mailto:rafaelschwart@gmail.com" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                <a href="mailto:rrgschwart@hotmail.com" className="flex items-center text-sm text-muted-foreground hover:text-primary">
                   <Mail className="h-4 w-4 mr-2" />
-                  rafaelschwart@gmail.com
+                  rrgschwart@hotmail.com
                 </a>
                 <a href="https://www.linkedin.com/in/rafael-schwart/" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-primary">
                   <Linkedin className="h-4 w-4 mr-2" />
