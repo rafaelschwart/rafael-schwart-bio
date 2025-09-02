@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Calendar, MapPin, Building, Mail, Linkedin, Send, ExternalLink } from "lucide-react"
+import { Calendar, MapPin, Building, Mail, Linkedin, Send, ExternalLink, Phone } from "lucide-react"
 import { useState } from "react"
 import { useToast } from "@/hooks/use-toast"
 import manufacturingImg from "@/assets/manufacturing-environment.jpg"
@@ -551,132 +551,123 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
       {/* Mobile Version - Single Scrollable Page */}
       <main className="md:hidden min-h-screen bg-background">
-        <div className="p-6 space-y-8">
-          {/* Mobile Header */}
-          <div className="text-center py-6">
-            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-border mx-auto mb-4">
-              <img 
-                src="/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png"
-                alt="Rafael Schwart Professional Headshot"
-                className="w-full h-full object-cover grayscale"
-                onError={(e) => {
-                  e.currentTarget.src = rafaelHeadshot;
-                  e.currentTarget.classList.remove('grayscale');
-                }}
-              />
+        <div className="max-h-screen overflow-y-auto">
+          <div className="p-6 space-y-6">
+            {/* Mobile Header */}
+            <div className="text-center py-4">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-border mx-auto mb-4">
+                <img 
+                  src="/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png"
+                  alt="Rafael Schwart Professional Headshot"
+                  className="w-full h-full object-cover grayscale"
+                  onError={(e) => {
+                    e.currentTarget.src = rafaelHeadshot;
+                    e.currentTarget.classList.remove('grayscale');
+                  }}
+                />
+              </div>
+              <h1 className="text-xl font-bold text-foreground mb-1">Rafael Schwart</h1>
+              <p className="text-muted-foreground text-sm mb-1">PMP-Certified</p>
+              <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
+              <p className="text-muted-foreground text-xs mt-2">Born in Caracas, Venezuela • Based in Miami, FL</p>
             </div>
-            <h1 className="text-xl font-bold text-foreground mb-1">Rafael Schwart</h1>
-            <p className="text-muted-foreground text-sm mb-1">PMP-Certified</p>
-            <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
-            <p className="text-muted-foreground text-xs mt-2">Born in Caracas, Venezuela • Based in Miami, FL</p>
-          </div>
 
-          {/* Mobile About Section */}
-          <Card className="p-6 bg-card border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">About</h2>
-            <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-              Technical Project Manager & Process Engineer with 10+ years of experience across Consumer Electronics, AR, Medical Devices, Robotics, Aerospace, and Solar Energy industries.
-            </p>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              Expert in CAD, CAE, FEA, FMEA, GD&T, and project management tools. Passionate about leveraging technical expertise to develop cutting-edge technologies.
-            </p>
-          </Card>
-
-          {/* Mobile Experience Section */}
-          <Card className="p-6 bg-card border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">Professional Experience</h2>
-            <div className="space-y-4">
-              {experiences.map((experience, index) => (
-                <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
-                  <div>
-                    <h3 className="font-semibold text-foreground text-sm">{experience.title}</h3>
-                    <p className="text-muted-foreground text-xs">
-                      {companyLinks[experience.company] ? (
-                        <a 
-                          href={companyLinks[experience.company]} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline"
-                        >
-                          {experience.company}
-                        </a>
-                      ) : (
-                        experience.company
-                      )} • {experience.location}
-                    </p>
-                    <p className="text-muted-foreground text-xs mb-2">{experience.period}</p>
-                  </div>
-                  <p className="text-muted-foreground text-xs leading-relaxed">
-                    {experience.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          {/* Mobile Skills Section */}
-          <Card className="p-6 bg-card border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">Core Skills</h2>
-            <div className="grid grid-cols-2 gap-2">
-              {["CAD/CAE/FEA", "Project Management", "Six Sigma", "Lean Manufacturing", "FMEA/GD&T", "ERP/PDM/PLM"].map((skill, index) => (
-                <Badge key={index} variant="secondary" className="text-xs justify-center">
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </Card>
-
-          {/* Mobile Certifications Section */}
-          <Card className="p-6 bg-card border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">Certifications</h2>
-            <div className="space-y-2">
-              {certifications.map((cert, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{cert.name}</p>
-                    <p className="text-xs text-muted-foreground">{cert.issuer}</p>
-                  </div>
-                  <Badge variant="default" className="text-xs">
-                    {cert.status}
-                  </Badge>
-                </div>
-              ))}
-            </div>
-          </Card>
-
-          {/* Mobile Contact Section */}
-          <Card className="p-6 bg-card border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">Contact</h2>
+            {/* About Section */}
             <div className="space-y-3">
-              <Button
-                variant="outline"
-                className="w-full justify-start h-10 text-sm"
-                onClick={() => window.open('mailto:rrgschwart@hotmail.com', '_blank')}
-              >
-                <Mail className="h-4 w-4 mr-2" />
-                rrgschwart@hotmail.com
-              </Button>
-              
-              <Button
-                variant="outline"
-                className="w-full justify-start h-10 text-sm"
-                onClick={() => window.open('https://www.linkedin.com/in/rafaelschwart/', '_blank')}
-              >
-                <Linkedin className="h-4 w-4 mr-2" />
-                LinkedIn Profile
-                <ExternalLink className="h-4 w-4 ml-auto" />
-              </Button>
+              <h2 className="text-lg font-bold text-foreground">About</h2>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Technical Project Manager & Process Engineer with 10+ years of experience across Consumer Electronics, AR, Medical Devices, Robotics, Aerospace, and Solar Energy industries.
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Expert in CAD, CAE, FEA, FMEA, GD&T, and project management tools. Passionate about leveraging technical expertise to develop cutting-edge technologies.
+              </p>
             </div>
-          </Card>
 
-          {/* Mobile Education */}
-          <Card className="p-6 bg-card border-border">
-            <h2 className="text-lg font-bold text-foreground mb-3">Education</h2>
-            <div>
-              <p className="text-sm font-medium text-foreground">B.S. Mechanical Engineering</p>
-              <p className="text-xs text-muted-foreground">University of Miami • 2014</p>
+            {/* Professional Experience Section */}
+            <div className="space-y-3">
+              <h2 className="text-lg font-bold text-foreground">Professional Experience</h2>
+              <div className="space-y-4">
+                {experiences.map((experience, index) => (
+                  <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
+                    <div>
+                      <h3 className="font-semibold text-foreground text-sm">{experience.title}</h3>
+                      <p className="text-muted-foreground text-xs">
+                        {companyLinks[experience.company] ? (
+                          <a 
+                            href={companyLinks[experience.company]} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            {experience.company}
+                          </a>
+                        ) : (
+                          experience.company
+                        )} • {experience.location}
+                      </p>
+                      <p className="text-muted-foreground text-xs mb-2">{experience.period}</p>
+                    </div>
+                    <p className="text-muted-foreground text-xs leading-relaxed">
+                      {experience.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </Card>
+
+            {/* Core Skills Section */}
+            <div className="space-y-3">
+              <h2 className="text-lg font-bold text-foreground">Core Skills</h2>
+              <div className="grid grid-cols-2 gap-2">
+                {["CAD/CAE/FEA", "Project Management", "Six Sigma", "Lean Manufacturing", "FMEA/GD&T", "ERP/PDM/PLM"].map((skill, index) => (
+                  <Badge key={index} variant="secondary" className="text-xs justify-center">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications Section */}
+            <div className="space-y-3">
+              <h2 className="text-lg font-bold text-foreground">Certifications</h2>
+              <div className="space-y-2">
+                {certifications.map((cert, index) => (
+                  <div key={index} className="flex justify-between items-center">
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{cert.name}</p>
+                      <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                    </div>
+                    <Badge variant="default" className="text-xs">
+                      {cert.status}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact Section */}
+            <div className="space-y-3 pb-8">
+              <h2 className="text-lg font-bold text-foreground">Contact</h2>
+              <div className="space-y-3">
+                <a href="mailto:rafaelschwart@gmail.com" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                  <Mail className="h-4 w-4 mr-2" />
+                  rafaelschwart@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/rafael-schwart/" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                  <Linkedin className="h-4 w-4 mr-2" />
+                  LinkedIn Profile
+                </a>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  Miami, Florida
+                </div>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <Phone className="h-4 w-4 mr-2" />
+                  Available upon request
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </>
