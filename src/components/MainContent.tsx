@@ -496,6 +496,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 </Button>
               </div>
             </div>
+            <img 
+              src="/lovable-uploads/beac616e-8f24-4d61-81af-8d6fc99b2216.png" 
+              alt="Earth Robotics Logo" 
+              className="w-12 h-12 object-contain"
+            />
           </div>
           <div className="space-y-4">
             <p className="text-muted-foreground">
@@ -538,6 +543,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 </Button>
               </div>
             </div>
+            <img 
+              src="/lovable-uploads/63a9c880-87f2-4ff6-9084-aae2560b0479.png" 
+              alt="Tiento Labs Logo" 
+              className="w-12 h-12 object-contain"
+            />
           </div>
           <div className="space-y-4">
             <p className="text-muted-foreground">
@@ -581,6 +591,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 </Button>
               </div>
             </div>
+            <img 
+              src="/lovable-uploads/3c24dbd3-0cb3-4db6-8d58-85285bb21a89.png" 
+              alt="Recovrz Logo" 
+              className="w-12 h-12 object-contain"
+            />
           </div>
           <div className="space-y-4">
             <p className="text-muted-foreground">
