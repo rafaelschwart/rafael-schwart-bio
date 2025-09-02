@@ -78,7 +78,7 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
         {/* Footer */}
         <div className="absolute bottom-8 left-8 right-8">
           <p className="text-xs text-sidebar-foreground/40">
-            © 2024 Rafael Schwart. All rights reserved.
+            © 2025 Rafael Schwart. All rights reserved.
           </p>
         </div>
       </div>
