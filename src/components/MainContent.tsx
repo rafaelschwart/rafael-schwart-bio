@@ -145,7 +145,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Introduced SolidWorks PDM for design version control",
         "Developed high-performance automation solutions for food processing industry"
       ],
-      image: "/lovable-uploads/46c00a06-6ab1-4cc8-8068-57082d3935e0.png"
+      image: "/lovable-uploads/1e4e8c1f-28e6-489b-91f4-aaffeb275a19.png"
     },
     {
       title: "Mechanical Engineer - Solar Tracker Systems",
