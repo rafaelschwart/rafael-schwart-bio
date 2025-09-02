@@ -640,24 +640,24 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                     {cert.name === "Project Management Professional (PMP)" ? (
                       <Button variant="outline" size="sm" className="text-xs">
                         <a 
-                          href="https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a" 
+                          href="https://drive.google.com/file/d/1JKohOdgfwKokcy-hL8WHf0pze3dp6vX-/view?usp=drive_link" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1"
                         >
-                          View Certificate
+                          Look Diploma
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       </Button>
                     ) : cert.name === "B.S. Mechanical Engineering" ? (
                       <Button variant="outline" size="sm" className="text-xs">
                         <a 
-                          href="/lovable-uploads/7ee9bfc4-586e-4549-83a7-2a05dcb0d511.png" 
+                          href="https://drive.google.com/file/d/1NAQa9Kw5Zhb1YZoNg6kXXUB-_FbAMNKl/view?usp=drive_link" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1"
                         >
-                          View Degree
+                          Look Diploma
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       </Button>
