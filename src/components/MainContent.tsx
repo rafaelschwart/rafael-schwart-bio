@@ -158,7 +158,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         "Improved manufacturing processes for renewable energy infrastructure",
         "Contributed to utility-scale solar energy projects"
       ],
-      image: "/lovable-uploads/03cd8345-8028-4f19-ac73-690d56c0b4d6.png"
+      image: terrasmartImg
     },
     {
       title: "Mechanical Design Engineer",
