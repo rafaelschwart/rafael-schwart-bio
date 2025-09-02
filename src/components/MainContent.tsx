@@ -573,19 +573,19 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             </div>
 
             {/* About Section */}
-            <div className="space-y-3">
-              <h2 className="text-lg font-bold text-foreground">About</h2>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+            <Card className="p-6 bg-card border-border">
+              <h2 className="text-lg font-bold text-foreground mb-3">About</h2>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                 Technical Project Manager & Process Engineer with 10+ years of experience across Consumer Electronics, AR, Medical Devices, Robotics, Aerospace, and Solar Energy industries.
               </p>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 Expert in CAD, CAE, FEA, FMEA, GD&T, and project management tools. Passionate about leveraging technical expertise to develop cutting-edge technologies.
               </p>
-            </div>
+            </Card>
 
             {/* Professional Experience Section */}
-            <div className="space-y-3">
-              <h2 className="text-lg font-bold text-foreground">Professional Experience</h2>
+            <Card className="p-6 bg-card border-border">
+              <h2 className="text-lg font-bold text-foreground mb-3">Professional Experience</h2>
               <div className="space-y-4">
                 {experiences.map((experience, index) => (
                   <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
@@ -613,11 +613,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   </div>
                 ))}
               </div>
-            </div>
+            </Card>
 
             {/* Core Skills Section */}
-            <div className="space-y-3">
-              <h2 className="text-lg font-bold text-foreground">Core Skills</h2>
+            <Card className="p-6 bg-card border-border">
+              <h2 className="text-lg font-bold text-foreground mb-3">Core Skills</h2>
               <div className="grid grid-cols-2 gap-2">
                 {["CAD/CAE/FEA", "Project Management", "Six Sigma", "Lean Manufacturing", "FMEA/GD&T", "ERP/PDM/PLM"].map((skill, index) => (
                   <Badge key={index} variant="secondary" className="text-xs justify-center">
@@ -625,11 +625,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   </Badge>
                 ))}
               </div>
-            </div>
+            </Card>
 
             {/* Certifications Section */}
-            <div className="space-y-3">
-              <h2 className="text-lg font-bold text-foreground">Certifications</h2>
+            <Card className="p-6 bg-card border-border">
+              <h2 className="text-lg font-bold text-foreground mb-3">Certifications</h2>
               <div className="space-y-2">
                 {certifications.map((cert, index) => (
                   <div key={index} className="flex justify-between items-center">
@@ -637,17 +637,43 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                       <p className="text-sm font-medium text-foreground">{cert.name}</p>
                       <p className="text-xs text-muted-foreground">{cert.issuer}</p>
                     </div>
-                    <Badge variant="default" className="text-xs">
-                      {cert.status}
-                    </Badge>
+                    {cert.name === "Project Management Professional (PMP)" ? (
+                      <Button variant="outline" size="sm" className="text-xs">
+                        <a 
+                          href="https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1"
+                        >
+                          View Certificate
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      </Button>
+                    ) : cert.name === "B.S. Mechanical Engineering" ? (
+                      <Button variant="outline" size="sm" className="text-xs">
+                        <a 
+                          href="/lovable-uploads/7ee9bfc4-586e-4549-83a7-2a05dcb0d511.png" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1"
+                        >
+                          View Degree
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      </Button>
+                    ) : (
+                      <Badge variant="default" className="text-xs">
+                        {cert.status}
+                      </Badge>
+                    )}
                   </div>
                 ))}
               </div>
-            </div>
+            </Card>
 
             {/* Contact Section */}
-            <div className="space-y-3 pb-8">
-              <h2 className="text-lg font-bold text-foreground">Contact</h2>
+            <Card className="p-6 bg-card border-border mb-8">
+              <h2 className="text-lg font-bold text-foreground mb-3">Contact</h2>
               <div className="space-y-3">
                 <a href="mailto:rafaelschwart@gmail.com" className="flex items-center text-sm text-muted-foreground hover:text-primary">
                   <Mail className="h-4 w-4 mr-2" />
@@ -666,7 +692,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   Available upon request
                 </div>
               </div>
-            </div>
+            </Card>
           </div>
         </div>
       </main>
