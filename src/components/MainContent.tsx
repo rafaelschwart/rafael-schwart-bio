@@ -725,7 +725,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   return (
     <>
       {/* Desktop Version */}
-      <main className="hidden md:block ml-80 min-h-screen bg-background">
+      <main className="hidden md:block ml-80 min-h-screen bg-background schematic-background relative">
         <div className="p-12 flex justify-center">
           <div className="max-w-5xl w-full">
             {renderContent()}
@@ -734,7 +734,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
       </main>
 
       {/* Mobile Version - Single Scrollable Page */}
-      <main className="md:hidden min-h-screen bg-background">
+      <main className="md:hidden min-h-screen bg-background schematic-background relative">
         <div className="max-h-screen overflow-y-auto">
           <div className="p-6 space-y-6">
             {/* Mobile Header */}

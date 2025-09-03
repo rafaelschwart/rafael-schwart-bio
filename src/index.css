@@ -50,6 +50,10 @@ All colors MUST be HSL.
     /* Animation variables */
     --transition-smooth: all 0.2s ease-out;
 
+    /* Engineering schematic background */
+    --schematic-line: 0 0% 25%;
+    --schematic-accent: 0 0% 30%;
+
     --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 0 0% 95%;
     --sidebar-primary: 0 0% 95%;
@@ -68,5 +72,47 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Engineering schematic background pattern */
+  .schematic-background {
+    background-image: 
+      /* Main grid lines */
+      linear-gradient(hsl(var(--schematic-line) / 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--schematic-line) / 0.15) 1px, transparent 1px),
+      /* Accent grid lines every 5th line */
+      linear-gradient(hsl(var(--schematic-accent) / 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--schematic-accent) / 0.25) 1px, transparent 1px),
+      /* Blueprint dots at intersections */
+      radial-gradient(circle at 50px 50px, hsl(var(--schematic-line) / 0.2) 1px, transparent 1px);
+    background-size: 
+      20px 20px,
+      20px 20px,
+      100px 100px,
+      100px 100px,
+      100px 100px;
+    background-position: 
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+
+  /* Subtle animated circuit pattern overlay */
+  .schematic-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      /* Diagonal technical lines */
+      linear-gradient(45deg, transparent 48%, hsl(var(--schematic-line) / 0.08) 49%, hsl(var(--schematic-line) / 0.08) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, hsl(var(--schematic-line) / 0.08) 49%, hsl(var(--schematic-line) / 0.08) 51%, transparent 52%);
+    background-size: 200px 200px, 200px 200px;
+    pointer-events: none;
+    opacity: 0.6;
   }
 }
