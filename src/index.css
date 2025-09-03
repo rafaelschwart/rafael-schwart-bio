@@ -78,13 +78,13 @@ All colors MUST be HSL.
   .schematic-background {
     background-image: 
       /* Main grid lines */
-      linear-gradient(hsl(var(--schematic-line) / 0.15) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--schematic-line) / 0.15) 1px, transparent 1px),
+      linear-gradient(hsl(var(--schematic-line) / 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--schematic-line) / 0.25) 1px, transparent 1px),
       /* Accent grid lines every 5th line */
-      linear-gradient(hsl(var(--schematic-accent) / 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--schematic-accent) / 0.25) 1px, transparent 1px),
+      linear-gradient(hsl(var(--schematic-accent) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--schematic-accent) / 0.4) 1px, transparent 1px),
       /* Blueprint dots at intersections */
-      radial-gradient(circle at 50px 50px, hsl(var(--schematic-line) / 0.2) 1px, transparent 1px);
+      radial-gradient(circle at 50px 50px, hsl(var(--schematic-line) / 0.35) 1.5px, transparent 1.5px);
     background-size: 
       20px 20px,
       20px 20px,
@@ -109,10 +109,12 @@ All colors MUST be HSL.
     bottom: 0;
     background-image: 
       /* Diagonal technical lines */
-      linear-gradient(45deg, transparent 48%, hsl(var(--schematic-line) / 0.08) 49%, hsl(var(--schematic-line) / 0.08) 51%, transparent 52%),
-      linear-gradient(-45deg, transparent 48%, hsl(var(--schematic-line) / 0.08) 49%, hsl(var(--schematic-line) / 0.08) 51%, transparent 52%);
-    background-size: 200px 200px, 200px 200px;
+      linear-gradient(45deg, transparent 47%, hsl(var(--schematic-line) / 0.15) 48%, hsl(var(--schematic-line) / 0.15) 52%, transparent 53%),
+      linear-gradient(-45deg, transparent 47%, hsl(var(--schematic-line) / 0.15) 48%, hsl(var(--schematic-line) / 0.15) 52%, transparent 53%),
+      /* Additional circuit-like patterns */
+      linear-gradient(0deg, transparent 48%, hsl(var(--schematic-accent) / 0.12) 49%, hsl(var(--schematic-accent) / 0.12) 51%, transparent 52%);
+    background-size: 150px 150px, 150px 150px, 300px 300px;
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.8;
   }
 }
