@@ -252,8 +252,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   ]
 
   const renderAbout = () => (
-    <div className="space-y-8">
-      <div>
+    <div className="space-y-8 fade-in-up">
+      <div className="scan-line">
         <h2 className="text-3xl font-bold text-foreground mb-6">Professional Summary</h2>
         <p className="text-muted-foreground leading-relaxed text-lg">
           Dynamic and results-driven Technical Project Manager and Process Engineer with over 10 years 
@@ -263,7 +263,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
-        <div>
+        <div className="fade-in-up stagger-animation" style={{"--stagger-delay": "1"} as React.CSSProperties}>
           <h3 className="text-xl font-semibold text-foreground mb-4">Expertise</h3>
           <p className="text-muted-foreground leading-relaxed">
             Expert in CAD, CAE, FEA, FMEA, GD&T, and project management tools (ERP, PDM, PLM). 
@@ -272,7 +272,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
           </p>
         </div>
         
-        <div>
+        <div className="fade-in-up stagger-animation" style={{"--stagger-delay": "2"} as React.CSSProperties}>
           <h3 className="text-xl font-semibold text-foreground mb-4">Mission</h3>
           <p className="text-muted-foreground leading-relaxed">
             Passionate about leveraging technical expertise to develop cutting-edge technologies 
@@ -282,9 +282,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         </div>
       </div>
 
-      <div>
+      <div className="fade-in-up stagger-animation" style={{"--stagger-delay": "3"} as React.CSSProperties}>
         <h3 className="text-xl font-semibold text-foreground mb-4">Education</h3>
-        <Card className="p-6 bg-card border-border">
+        <Card className="p-6 bg-card border-border engineering-hover">
           <h4 className="text-lg font-semibold text-foreground">Bachelor of Science (B.S.) in Mechanical Engineering</h4>
           <p className="text-muted-foreground">University of Miami | 2010 - 2014</p>
           <p className="text-muted-foreground mt-2">Comprehensive education in Mechanical Engineering, covering CAD, FEA, and manufacturing processes.</p>
@@ -292,8 +292,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
       </div>
 
       {/* Professional Image at Bottom */}
-      <div className="flex justify-center">
-        <div className="relative">
+      <div className="flex justify-center fade-in-up stagger-animation" style={{"--stagger-delay": "4"} as React.CSSProperties}>
+        <div className="relative engineering-hover">
           <img 
             src="/lovable-uploads/49d50d9a-eb05-4f07-a5f6-cb056f47877b.png"
             alt="Rafael Schwart in professional robotics environment"
@@ -305,12 +305,14 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   )
 
   const renderExperience = () => (
-    <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-foreground mb-6">Experience</h2>
+    <div className="space-y-8 fade-in-up">
+      <div className="scan-line">
+        <h2 className="text-3xl font-bold text-foreground mb-6">Experience</h2>
+      </div>
       
       <div className="space-y-8">
         {experiences.map((experience, index) => (
-          <Card key={index} className="p-8 bg-card border-border">
+          <Card key={index} className="p-8 bg-card border-border engineering-hover fade-in-up stagger-animation" style={{"--stagger-delay": index} as React.CSSProperties}>
             <div className="grid lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2">
                 <h3 className="text-xl font-bold text-foreground mb-2">{experience.title}</h3>
@@ -323,7 +325,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                         href={companyLinks[experience.company]} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-primary hover:underline"
+                        className="text-primary hover:underline transition-colors duration-200"
                       >
                         {experience.company}
                       </a>
@@ -345,7 +347,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
                 <ul className="space-y-2">
                   {experience.achievements.map((achievement, achievementIndex) => (
-                    <li key={achievementIndex} className="flex items-start">
+                    <li key={achievementIndex} className="flex items-start pulse-dot">
                       <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
                       <span className="text-muted-foreground text-sm">{achievement}</span>
                     </li>
@@ -357,7 +359,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className="w-full h-72 object-contain rounded bg-black"
+                  className="w-full h-72 object-contain rounded bg-black transition-transform duration-300 hover:scale-105"
                 />
               </div>
             </div>
@@ -368,19 +370,21 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   )
 
   const renderSkills = () => (
-    <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-foreground mb-6">Skills</h2>
+    <div className="space-y-8 fade-in-up">
+      <div className="scan-line">
+        <h2 className="text-3xl font-bold text-foreground mb-6">Skills</h2>
+      </div>
       
       <div className="grid lg:grid-cols-3 gap-8">
         {Object.entries(skills).map(([category, skillList], index) => (
-          <Card key={index} className="p-6 bg-card border-border">
+          <Card key={index} className="p-6 bg-card border-border engineering-hover fade-in-up stagger-animation" style={{"--stagger-delay": index} as React.CSSProperties}>
             <h3 className="text-lg font-semibold text-foreground mb-4">{category}</h3>
             <div className="space-y-2">
               {skillList.map((skill, skillIndex) => (
                 <Badge 
                   key={skillIndex} 
                   variant="secondary" 
-                  className="block w-fit text-xs"
+                  className="block w-fit text-xs tech-badge-hover"
                 >
                   {skill}
                 </Badge>
@@ -393,12 +397,14 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   )
 
   const renderCertifications = () => (
-    <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-foreground mb-6">Certifications</h2>
+    <div className="space-y-8 fade-in-up">
+      <div className="scan-line">
+        <h2 className="text-3xl font-bold text-foreground mb-6">Certifications</h2>
+      </div>
       
       <div className="grid lg:grid-cols-2 gap-6">
         {certifications.map((cert, index) => (
-          <Card key={index} className="p-6 bg-card border-border">
+          <Card key={index} className="p-6 bg-card border-border engineering-hover fade-in-up stagger-animation" style={{"--stagger-delay": index} as React.CSSProperties}>
             <h3 className="text-lg font-semibold text-foreground mb-2">{cert.name}</h3>
             <p className="text-muted-foreground mb-2">{cert.issuer}</p>
             <div className="flex items-center justify-between">
@@ -411,7 +417,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                     variant="outline" 
                     size="sm"
                     asChild
-                    className="hover:bg-accent hover:text-accent-foreground"
+                    className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                   >
                     <a 
                       href="https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a" 
@@ -427,7 +433,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                     variant="outline" 
                     size="sm"
                     asChild
-                    className="hover:bg-accent hover:text-accent-foreground"
+                    className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                   >
                     <a 
                       href="https://drive.google.com/file/d/1JKohOdgfwKokcy-hL8WHf0pze3dp6vX-/view?usp=sharing" 
@@ -446,7 +452,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   variant="outline" 
                   size="sm"
                   asChild
-                  className="hover:bg-accent hover:text-accent-foreground"
+                  className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                 >
                   <a 
                     href="https://drive.google.com/file/d/1NAQa9Kw5Zhb1YZoNg6kXXUB-_FbAMNKl/view?usp=sharing" 
@@ -467,22 +473,24 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
   )
 
   const renderProjects = () => (
-    <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-foreground mb-6">Side Projects</h2>
+    <div className="space-y-8 fade-in-up">
+      <div className="scan-line">
+        <h2 className="text-3xl font-bold text-foreground mb-6">Side Projects</h2>
+      </div>
       
       <div className="grid gap-8">
         {/* Earth Robotics */}
-        <Card className="p-6 bg-card border-border">
+        <Card className="p-6 bg-card border-border engineering-hover fade-in-up stagger-animation" style={{"--stagger-delay": "0"} as React.CSSProperties}>
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <h3 className="text-xl font-semibold text-foreground mb-2">Mechanical Engineer</h3>
               <div className="flex items-center gap-2 mb-2">
-                <Badge variant="outline" className="text-sm">Earth Robotics</Badge>
+                <Badge variant="outline" className="text-sm tech-badge-hover">Earth Robotics</Badge>
                 <Button
                   variant="outline"
                   size="sm"
                   asChild
-                  className="hover:bg-accent hover:text-accent-foreground"
+                  className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
                 >
                   <a 
                     href="https://www.earthrobotics.co/" 
@@ -499,7 +507,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             <img 
               src="/lovable-uploads/beac616e-8f24-4d61-81af-8d6fc99b2216.png" 
               alt="Earth Robotics Logo" 
-              className="w-12 h-12 object-contain"
+              className="w-12 h-12 object-contain transition-transform duration-300 hover:scale-110"
             />
           </div>
           <div className="space-y-4">
@@ -509,10 +517,10 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             <div className="space-y-2">
               <h4 className="font-semibold text-foreground">Key Responsibilities:</h4>
               <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                <li>Design and develop robotic systems for environmental monitoring and sustainability</li>
-                <li>Perform structural analysis and optimization using CAD/FEA tools</li>
-                <li>Collaborate on mechatronic integration and sensor deployment</li>
-                <li>Support field testing and validation of robotic platforms</li>
+                <li className="pulse-dot">Design and develop robotic systems for environmental monitoring and sustainability</li>
+                <li className="pulse-dot">Perform structural analysis and optimization using CAD/FEA tools</li>
+                <li className="pulse-dot">Collaborate on mechatronic integration and sensor deployment</li>
+                <li className="pulse-dot">Support field testing and validation of robotic platforms</li>
               </ul>
             </div>
           </div>

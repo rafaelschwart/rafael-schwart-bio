@@ -49,6 +49,7 @@ All colors MUST be HSL.
 
     /* Animation variables */
     --transition-smooth: all 0.2s ease-out;
+    --transition-hover: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Engineering schematic background */
     --schematic-line: 0 0% 25%;
@@ -116,5 +117,99 @@ All colors MUST be HSL.
     background-size: 150px 150px, 150px 150px, 300px 300px;
     pointer-events: none;
     opacity: 0.8;
+  }
+
+  /* Engineering Animation Utilities */
+  .engineering-hover {
+    transition: var(--transition-hover);
+    position: relative;
+  }
+
+  .engineering-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+  }
+
+  .engineering-hover:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid hsl(var(--schematic-accent) / 0.3);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .tech-badge-hover {
+    transition: var(--transition-hover);
+    cursor: pointer;
+  }
+
+  .tech-badge-hover:hover {
+    transform: scale(1.05);
+    background: hsl(var(--schematic-accent) / 0.2);
+    border-color: hsl(var(--schematic-accent) / 0.4);
+  }
+
+  .scan-line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scan-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--schematic-accent)), transparent);
+    animation: scan 3s infinite;
+  }
+
+  @keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  .pulse-dot {
+    position: relative;
+  }
+
+  .pulse-dot::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    width: 4px;
+    height: 4px;
+    background: hsl(var(--schematic-accent));
+    border-radius: 50%;
+    transform: translateY(-50%);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: translateY(-50%) scale(1); }
+    50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stagger-animation {
+    animation-delay: calc(var(--stagger-delay, 0) * 0.1s);
   }
 }
