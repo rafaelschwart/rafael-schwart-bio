@@ -503,15 +503,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               }}
             />
           </div>  
-          <div className="certification-badge animate-fade-in hover-scale relative overflow-hidden rounded-full bg-transparent">
+          <div className="certification-badge animate-fade-in hover-scale">
             <img 
-              src="/lovable-uploads/fedecbe0-8171-482a-99a7-d16b7ca6b149.png?v=3" 
+              src="/lovable-uploads/4977df65-2cac-489d-8b37-6a178df59ff0.png" 
               alt="ASQ Six Sigma Green Belt Certification Badge"
-              className="w-56 h-56 md:w-64 md:h-64 object-cover filter drop-shadow-lg hover:drop-shadow-xl transition-smooth engineering-hover scale-110"
-              style={{ 
-                objectPosition: 'center center',
-                transform: 'scale(1.1)'
-              }}
+              className="w-56 h-56 md:w-64 md:h-64 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth engineering-hover"
               onError={(e) => {
                 console.error('Failed to load Six Sigma badge image');
                 e.currentTarget.style.display = 'none';
