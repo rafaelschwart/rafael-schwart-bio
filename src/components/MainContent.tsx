@@ -505,8 +505,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
           </div>  
           <div className="certification-badge animate-fade-in hover-scale relative overflow-hidden rounded-full bg-transparent">
             <img 
-              src="/lovable-uploads/4fda119c-14c1-4759-96e9-1c9ba554ea5b.png" 
-              alt="ASQ Six Sigma Green Belt Certification Badge" 
+              src="/lovable-uploads/fedecbe0-8171-482a-99a7-d16b7ca6b149.png" 
+              alt="ASQ Six Sigma Green Belt Certification Badge"
               className="w-56 h-56 md:w-64 md:h-64 object-cover filter drop-shadow-lg hover:drop-shadow-xl transition-smooth engineering-hover scale-110"
               style={{ 
                 objectPosition: 'center center',
