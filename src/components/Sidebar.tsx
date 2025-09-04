@@ -40,7 +40,7 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">Rafael Schwart</h1>
-            <p className="text-sidebar-foreground/80 text-sm mb-1">PMP</p>
+            <p className="text-sidebar-foreground/80 text-sm mb-1">PMP | Six Sigma Green Belt</p>
             <p className="text-sidebar-foreground/80 text-sm mb-1">Senior Operations Program Manager</p>
             <p className="text-sidebar-foreground/60 text-xs">Technical Project Manager & Process Engineer</p>
           </div>

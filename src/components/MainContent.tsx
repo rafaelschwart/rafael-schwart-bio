@@ -811,6 +811,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               </div>
               <h1 className="text-xl font-bold text-foreground mb-1">Rafael Schwart</h1>
               <p className="text-muted-foreground text-sm mb-1">PMP-Certified</p>
+              <p className="text-muted-foreground text-sm mb-1">Green Belt Certified</p>
               <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
               <p className="text-muted-foreground text-xs mt-2">Born in Caracas, Venezuela • Based in Miami, FL</p>
             </div>
@@ -889,6 +890,18 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                           className="inline-flex items-center gap-1"
                         >
                           Look Diploma
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      </Button>
+                    ) : cert.name === "Six Sigma Green Belt" ? (
+                      <Button variant="outline" size="sm" className="text-xs">
+                        <a 
+                          href="https://drive.google.com/file/d/1fIUGdS8duNPwlG2wxCVrj9yv7frJTR7j/view?usp=sharing" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1"
+                        >
+                          View Diploma
                           <ExternalLink className="h-3 w-3" />
                         </a>
                       </Button>
