@@ -109,6 +109,27 @@ export const AboutSection = () => {
                   </Button>
                 </div>
               </div>
+              
+              {/* Certification Badges */}
+              <div className="mt-12">
+                <h4 className="text-xl font-semibold text-foreground mb-6">Professional Badges</h4>
+                <div className="flex justify-center items-center gap-8">
+                  <div className="certification-badge">
+                    <img 
+                      src="/lovable-uploads/0d22b2bb-8de4-4f9a-a091-6e1620ca6d8f.png" 
+                      alt="PMP Professional Certification Badge" 
+                      className="w-32 h-32 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth hover:scale-105"
+                    />
+                  </div>
+                  <div className="certification-badge">
+                    <img 
+                      src="/lovable-uploads/4fda119c-14c1-4759-96e9-1c9ba554ea5b.png" 
+                      alt="ASQ Six Sigma Green Belt Certification Badge" 
+                      className="w-32 h-32 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth hover:scale-105"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
