@@ -113,19 +113,27 @@ export const AboutSection = () => {
               {/* Certification Badges */}
               <div className="mt-12">
                 <h4 className="text-xl font-semibold text-foreground mb-6">Professional Badges</h4>
-                <div className="flex justify-center items-center gap-8">
-                  <div className="certification-badge">
+                <div className="flex justify-center items-center gap-8 flex-wrap">
+                  <div className="certification-badge animate-fade-in">
                     <img 
                       src="/lovable-uploads/0d22b2bb-8de4-4f9a-a091-6e1620ca6d8f.png" 
                       alt="PMP Professional Certification Badge" 
-                      className="w-32 h-32 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth hover:scale-105"
+                      className="w-28 h-28 md:w-32 md:h-32 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth hover:scale-105 hover-scale"
+                      onError={(e) => {
+                        console.error('Failed to load PMP badge image');
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
-                  </div>
-                  <div className="certification-badge">
+                  </div>  
+                  <div className="certification-badge animate-fade-in">
                     <img 
                       src="/lovable-uploads/4fda119c-14c1-4759-96e9-1c9ba554ea5b.png" 
                       alt="ASQ Six Sigma Green Belt Certification Badge" 
-                      className="w-32 h-32 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth hover:scale-105"
+                      className="w-28 h-28 md:w-32 md:h-32 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth hover:scale-105 hover-scale"
+                      onError={(e) => {
+                        console.error('Failed to load Six Sigma badge image');
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   </div>
                 </div>
