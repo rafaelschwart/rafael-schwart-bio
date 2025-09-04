@@ -39,20 +39,20 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
 
           {/* Header */}
           <div className="mb-12 text-center">
-            <h1 className="text-2xl font-bold text-sidebar-foreground mb-2">Rafael Schwart</h1>
-            <p className="text-sidebar-foreground/80 text-sm mb-1">PMP | Six Sigma Green Belt</p>
-            <p className="text-sidebar-foreground/80 text-sm mb-1">Senior Operations Program Manager</p>
-            <p className="text-sidebar-foreground/60 text-xs">Technical Project Manager & Process Engineer</p>
+            <h1 className="text-2xl font-bold text-sidebar-foreground mb-4">Rafael Schwart</h1>
+            <p className="text-sidebar-foreground/80 text-sm mb-3">PMP | Six Sigma Green Belt</p>
+            <p className="text-sidebar-foreground/80 text-sm">Senior Operations Program Manager</p>
           </div>
 
           {/* Personal Info */}
           <div className="mb-12 text-sidebar-foreground/70 text-sm space-y-2">
             <p>Born in Caracas, Venezuela, January 1993.</p>
             <p>Based in Miami, Florida.</p>
-            <p>Passionate about leveraging technical expertise to develop</p>
-            <p>cutting-edge technologies and continuously optimize processes.</p>
-            <p>Driving innovation and operational excellence through</p>
-            <p>continuous improvement methodologies.</p>
+            <ul className="space-y-1 text-xs">
+              <li>• Leveraging technical expertise for cutting-edge solutions</li>
+              <li>• Driving operational excellence through continuous improvement</li>
+              <li>• Passionate about innovation and process optimization</li>
+            </ul>
           </div>
 
           {/* Navigation */}
