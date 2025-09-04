@@ -473,12 +473,12 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
       {/* Certification Badges */}
       <div className="mt-12 text-center fade-in-up">
         <h3 className="text-2xl font-semibold text-foreground mb-8 scan-line">Professional Badges</h3>
-        <div className="flex justify-center items-center gap-8 flex-wrap">
+        <div className="flex justify-center items-center gap-12 flex-wrap">
           <div className="certification-badge animate-fade-in hover-scale">
             <img 
               src="/lovable-uploads/0d22b2bb-8de4-4f9a-a091-6e1620ca6d8f.png" 
               alt="PMP Professional Certification Badge" 
-              className="w-40 h-40 md:w-48 md:h-48 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth engineering-hover"
+              className="w-56 h-56 md:w-64 md:h-64 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth engineering-hover"
               onError={(e) => {
                 console.error('Failed to load PMP badge image');
                 e.currentTarget.style.display = 'none';
@@ -489,8 +489,11 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             <img 
               src="/lovable-uploads/4fda119c-14c1-4759-96e9-1c9ba554ea5b.png" 
               alt="ASQ Six Sigma Green Belt Certification Badge" 
-              className="w-40 h-40 md:w-48 md:h-48 object-contain filter drop-shadow-lg hover:drop-shadow-xl transition-smooth engineering-hover"
-              style={{ mixBlendMode: 'multiply' }}
+              className="w-56 h-56 md:w-64 md:h-64 object-cover filter drop-shadow-lg hover:drop-shadow-xl transition-smooth engineering-hover rounded-full"
+              style={{ 
+                clipPath: 'circle(45% at 50% 50%)',
+                objectPosition: 'center'
+              }}
               onError={(e) => {
                 console.error('Failed to load Six Sigma badge image');
                 e.currentTarget.style.display = 'none';
