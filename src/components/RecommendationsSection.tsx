@@ -21,14 +21,14 @@ const recommenders: Recommender[] = [
   {
     id: "jose-gibaja",
     name: "Jose Gibaja",
-    currentRole: "Sr. Engineering Manager",
-    company: "Motorola Solutions",
-    relationship: "Former Manager during APX N70 XE development program",
-    timeWorked: "~3 years",
-    bio: "Jose is an accomplished senior engineering manager at Motorola Solutions with extensive experience in leading cross-functional teams for mission-critical communication systems. He specializes in NPI operations, manufacturing excellence, and program management. During our collaboration on the APX N70 XE development program, Jose demonstrated exceptional leadership in guiding complex technical projects from conception to production.",
+    currentRole: "Principal Engineer",
+    company: "Stryker",
+    relationship: "Senior Engineer at Stryker",
+    timeWorked: "~2 years",
+    bio: "Jose Gibaja is a highly accomplished Principal Engineer and Technical Lead in Advanced Operations Robotics at Stryker, where he drives innovation in robotic-assisted surgical systems. With deep expertise in process development, manufacturing engineering, and product design transfer, Jose has played a pivotal role in scaling advanced medical robotics technologies for global markets. I had the privilege of working under Jose's leadership during my time at Stryker. Over nearly two years, we collaborated closely on projects within the Process Development Team, focusing on robotic arm modules, PFMEA/PCP deliverables, and fixture validation. His guidance was instrumental in strengthening my technical foundation and ensuring the success of critical milestones. Jose not only provided mentorship but also modeled a balance of technical rigor and strategic thinking that had a lasting impact on my career development.",
     linkedinUrl: "https://www.linkedin.com/in/josegibaja/",
-    profileImage: "/lovable-uploads/c29ee425-44ff-49bd-a42d-111580b53e35.png",
-    fullLetter: "I had the pleasure of working with Rafael Schwart during his tenure as a Senior Operations Program Manager at Motorola Solutions. Rafael consistently demonstrated exceptional project management skills, technical expertise, and leadership capabilities that made him an invaluable member of our team.\n\nRafael's ability to coordinate cross-functional teams across R&D, Manufacturing, Logistics, and Quality was truly outstanding. He successfully managed complex CAPEX/OPEX budgets while implementing robust PFMEA and Process Control Plans that significantly improved our manufacturing processes. His application of Six Sigma and 8D methodologies resulted in measurable yield improvements and defect rate reductions across multiple product lines.\n\nWhat impressed me most about Rafael was his ability to work effectively with our contract manufacturers, including Sanmina Penang and BCM, managing everything from pilot builds to full production ramp-ups. His attention to detail in fixture validations and supply chain escalations ensured our products met the highest quality standards while maintaining aggressive timelines.\n\nRafael is a results-driven professional who combines technical depth with exceptional communication skills. I highly recommend him for any senior engineering or program management role."
+    profileImage: "/lovable-uploads/b7e8e8c6-60fb-4bf4-9c60-47c664784b16.png",
+    fullLetter: ""
   },
   {
     id: "joe-zeichmann",
@@ -165,71 +165,22 @@ export const RecommendationsSection = () => {
                   variant="secondary"
                   size="sm"
                   className="flex-1"
-                  onClick={() => scrollToLetter(recommender.id)}
+                  asChild
                 >
-                  <FileText className="h-3 w-3 mr-2" />
-                  Read Full Recommendation
+                  <a 
+                    href="https://drive.google.com/drive/folders/1iztU_X76k2Xv4cuVmQBywuWWjI4VNNKp" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <FileText className="h-3 w-3 mr-2" />
+                    Read Full Recommendation
+                  </a>
                 </Button>
               </div>
             </CardContent>
           </Card>
         ))}
       </div>
-
-      {/* Full Recommendation Letters Section */}
-      <div className="scan-line">
-        <h3 className="text-2xl font-bold text-foreground mb-6">Full Recommendation Letters</h3>
-      </div>
-
-      <Accordion type="single" collapsible className="space-y-4">
-        {recommenders.map((recommender) => (
-          <AccordionItem 
-            key={recommender.id}
-            value={recommender.id}
-            id={`letter-${recommender.id}`}
-            className="border border-border rounded-lg bg-card"
-          >
-            <AccordionTrigger className="px-6 py-4 hover:no-underline">
-              <div className="flex items-center gap-3 text-left">
-                <FileText className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                <div>
-                  <h4 className="text-lg font-semibold text-foreground">
-                    Recommendation from {recommender.name}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {recommender.currentRole} at {recommender.company}
-                  </p>
-                </div>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-6 pb-6">
-              <div className="bg-muted/30 rounded-lg p-6 border-l-4 border-primary">
-                <div className="whitespace-pre-line text-muted-foreground leading-relaxed">
-                  {recommender.fullLetter}
-                </div>
-                <div className="mt-6 pt-4 border-t border-border">
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-muted-foreground">
-                      <strong>{recommender.name}</strong><br />
-                      {recommender.currentRole}<br />
-                      {recommender.company}
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => window.open(recommender.linkedinUrl, '_blank')}
-                      className="text-primary hover:text-primary/80"
-                    >
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      LinkedIn Profile
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
     </div>
   )
 }
