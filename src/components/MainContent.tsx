@@ -1177,8 +1177,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 {[
                   { name: "Jose Gibaja", role: "Principal Engineer", company: "Stryker", url: "https://drive.google.com/file/d/1gsqFCu4JNY6-6nbR1ym2mCNjVzYt-fWF/view?usp=drive_link" },
                   { name: "Joe Zeichmann", role: "Senior Staff Engineer", company: "Stryker", url: "https://drive.google.com/file/d/12BXRuEfVv9GFW5c1fcSluN-37kefTSYz/view?usp=drive_link" },
-                  { name: "Melody Chan", role: "Senior Project Manager", company: "Stryker Corporation", url: "https://drive.google.com/file/d/1EyDO2Iokxw6xLZIG26hUYYUY6n0iLzWU/view?usp=drive_link" },
-                  { name: "Alan Fitzpatrick", role: "Senior Manager of Manufacturing Engineering", company: "Stryker", url: "https://drive.google.com/file/d/1UhJ70FumtafzIgLPVOQGZjqzQkGQhoNs/view?usp=drive_link" }
+                  { name: "Melody Chan", role: "Project Manager", company: "Stryker Corporation", url: "https://drive.google.com/file/d/1EyDO2Iokxw6xLZIG26hUYYUY6n0iLzWU/view?usp=drive_link" },
+                  { name: "Alan Fitzpatrick", role: "Manufacturing Manager", company: "Stryker", url: "https://drive.google.com/file/d/1UhJ70FumtafzIgLPVOQGZjqzQkGQhoNs/view?usp=drive_link" }
                 ].map((rec, index) => (
                   <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
                     <div className="flex justify-between items-start">

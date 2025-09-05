@@ -48,7 +48,7 @@ const recommenders: Recommender[] = [
   {
     id: "melody-chan",
     name: "Melody Chan",
-    currentRole: "Senior Project Manager",
+    currentRole: "Project Manager",
     company: "Stryker Corporation",
     relationship: "Senior Project Manager at Stryker",
     timeWorked: "~2.5 years",
@@ -61,7 +61,7 @@ const recommenders: Recommender[] = [
   {
     id: "alan-fitzpatrick",
     name: "Alan Fitzpatrick",
-    currentRole: "Senior Manager of Manufacturing Engineering",
+    currentRole: "Manufacturing Manager",
     company: "Stryker",
     relationship: "Manager and Mentor at Stryker",
     timeWorked: "~2.5 years", 
