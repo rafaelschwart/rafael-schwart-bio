@@ -1174,6 +1174,61 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               </div>
             </Card>
 
+            {/* Employment Verification Section for Mobile */}
+            <Card className="p-6 bg-card border-border">
+              <h2 className="text-lg font-bold text-foreground mb-3">Employment Verification</h2>
+              <p className="text-muted-foreground text-xs mb-4">
+                Official employment verification letters from HR departments.
+              </p>
+              <div className="space-y-4">
+                {[
+                  { 
+                    company: "Gables Engineering", 
+                    position: "Mechanical Engineer - Automation & Test Engineering", 
+                    period: "July 24, 2017 - August 14, 2019",
+                    type: "US Citizenship and Immigration Services Verification",
+                    url: "https://drive.google.com/file/d/1xa-fAODnaGyCMsBTxdrShp0ZvehnaXo1/view?usp=drive_link" 
+                  },
+                  { 
+                    company: "Magic Leap, Inc.", 
+                    position: "Senior Manufacturing Engineer - NPI", 
+                    period: "January 3, 2023 - May 24, 2024",
+                    type: "Employment Verification Letter",
+                    url: "https://drive.google.com/file/d/1oY8w8qy4pr_gRZ5gEVyl1lWRRQMqjWaK/view?usp=drive_link" 
+                  },
+                  { 
+                    company: "Stryker Corporation", 
+                    position: "Senior Manufacturing Engineer - Robotics", 
+                    period: "02/17/2020 - 12/28/2022",
+                    type: "myHR Experience Center Verification",
+                    url: "https://drive.google.com/file/d/1G2VtB20hJUGoyxSDWz53OtADO1Pk8x2S/view?usp=drive_link" 
+                  }
+                ].map((emp, index) => (
+                  <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
+                    <div className="flex justify-between items-start mb-2">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-foreground text-sm">{emp.company}</h3>
+                        <p className="text-muted-foreground text-xs">{emp.position}</p>
+                        <p className="text-muted-foreground text-xs">{emp.period}</p>
+                        <p className="text-muted-foreground text-xs italic">{emp.type}</p>
+                      </div>
+                      <Button variant="outline" size="sm" className="text-xs ml-2 flex-shrink-0">
+                        <a 
+                          href={emp.url}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1"
+                        >
+                          View Letter
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
             {/* Side Projects Section */}
             <Card className="p-6 bg-card border-border">
               <h2 className="text-lg font-bold text-foreground mb-3">Side Projects</h2>
