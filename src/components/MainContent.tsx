@@ -926,6 +926,43 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               </div>
             </Card>
 
+            {/* Recommendations Section for Mobile */}
+            <Card className="p-6 bg-card border-border">
+              <h2 className="text-lg font-bold text-foreground mb-3">Recommendations</h2>
+              <p className="text-muted-foreground text-xs mb-4">
+                Professional references from colleagues and leaders I've worked with.
+              </p>
+              <div className="space-y-4">
+                {[
+                  { name: "Jose Gibaja", role: "Principal Engineer", company: "Stryker", url: "https://drive.google.com/file/d/1gsqFCu4JNY6-6nbR1ym2mCNjVzYt-fWF/view?usp=drive_link" },
+                  { name: "Joe Zeichmann", role: "Senior Staff Engineer", company: "Stryker", url: "https://drive.google.com/file/d/12BXRuEfVv9GFW5c1fcSluN-37kefTSYz/view?usp=drive_link" },
+                  { name: "Melody Chan", role: "Senior Project Manager", company: "Stryker Corporation", url: "https://drive.google.com/file/d/1EyDO2Iokxw6xLZIG26hUYYUY6n0iLzWU/view?usp=drive_link" },
+                  { name: "Alan Fitzpatrick", role: "Senior Manager of Manufacturing Engineering", company: "Stryker", url: "https://drive.google.com/file/d/1UhJ70FumtafzIgLPVOQGZjqzQkGQhoNs/view?usp=drive_link" }
+                ].map((rec, index) => (
+                  <div key={index} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-semibold text-foreground text-sm">{rec.name}</h3>
+                        <p className="text-muted-foreground text-xs">{rec.role}</p>
+                        <p className="text-muted-foreground text-xs">{rec.company}</p>
+                      </div>
+                      <Button variant="outline" size="sm" className="text-xs">
+                        <a 
+                          href={rec.url}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1"
+                        >
+                          Read Letter
+                          <ExternalLink className="h-3 w-3" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
             {/* Side Projects Section */}
             <Card className="p-6 bg-card border-border">
               <h2 className="text-lg font-bold text-foreground mb-3">Side Projects</h2>
