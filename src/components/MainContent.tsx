@@ -752,24 +752,15 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
           <div className="flex justify-between items-start mb-6">
             <div>
               <h3 className="text-xl font-bold text-foreground mb-2">Magic Leap, Inc.</h3>
-              <p className="text-muted-foreground">Employment Verification Letter</p>
+              <p className="text-muted-foreground">Official Employment Verification Letter</p>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
-            >
-              <a 
-                href="https://drive.google.com/file/d/1oY8w8qy4pr_gRZ5gEVyl1lWRRQMqjWaK/view?usp=drive_link" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                View Official Letter
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </Button>
+            <div className="w-32 h-32 flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/327066c9-5187-4698-9787-05030841c585.png" 
+                alt="Magic Leap Inc." 
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
           
           <div className="space-y-4">
@@ -800,6 +791,25 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   <span className="text-muted-foreground text-sm">Cross-functional Collaboration: Partnering with Design Engineering, Manufacturing, Quality, and Operations teams</span>
                 </li>
               </ul>
+            </div>
+            
+            <div className="flex justify-end mt-6">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+              >
+                <a 
+                  href="https://drive.google.com/file/d/1oY8w8qy4pr_gRZ5gEVyl1lWRRQMqjWaK/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  View Official Letter
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </Button>
             </div>
           </div>
         </Card>
