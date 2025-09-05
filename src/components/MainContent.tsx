@@ -811,9 +811,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               <h3 className="text-xl font-bold text-foreground mb-2">Stryker Corporation</h3>
               <p className="text-muted-foreground">Employment Verification Request - myHR Experience Center</p>
             </div>
-            <div className="w-24 h-24 flex items-center justify-center">
+            <div className="w-32 h-32 flex items-center justify-center">
               <img 
-                src="/lovable-uploads/d885c777-d091-4b28-a26e-095122d8d7c1.png" 
+                src="/lovable-uploads/0dd39ce5-75d5-48cb-928b-888475470798.png" 
                 alt="Stryker Corporation" 
                 className="w-full h-full object-contain"
               />
