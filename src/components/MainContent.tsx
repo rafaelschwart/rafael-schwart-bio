@@ -673,6 +673,215 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
     </div>
   )
 
+  const renderEmploymentVerification = () => (
+    <div className="space-y-8 fade-in-up">
+      <div className="scan-line">
+        <h2 className="text-3xl font-bold text-foreground mb-6">Employment Verification</h2>
+      </div>
+      
+      <div className="grid gap-8">
+        {/* Gables Engineering Verification */}
+        <Card className="p-8 bg-card border-border engineering-hover fade-in-up stagger-animation" style={{"--stagger-delay": "0"} as React.CSSProperties}>
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Gables Engineering, Inc.</h3>
+              <p className="text-muted-foreground">US Citizenship and Immigration Services Employment Verification</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+            >
+              <a 
+                href="/lovable-uploads/115ef580-cfa8-4b1d-aa4a-f51da1a1c4ed.png" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2"
+              >
+                View Official Letter
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </Button>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Position</h4>
+                <p className="text-muted-foreground">Mechanical Engineer - Automation & Test Engineering</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Employment Period</h4>
+                <p className="text-muted-foreground">July 24, 2017 - August 14, 2019</p>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-foreground mb-2">Key Responsibilities Verified</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start pulse-dot">
+                  <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm">Automated Fixture Design: Designing custom mechanical features for test equipment with over 50% efficiency improvement</span>
+                </li>
+                <li className="flex items-start pulse-dot">
+                  <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm">Engineering Data Management: Implementing PDM systems and streamlining ECN/ECO processes</span>
+                </li>
+                <li className="flex items-start pulse-dot">
+                  <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm">Technical Documentation: Creating quality assurance manuals and operator guides for aerospace systems</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Card>
+
+        {/* Magic Leap Verification */}
+        <Card className="p-8 bg-card border-border engineering-hover fade-in-up stagger-animation" style={{"--stagger-delay": "1"} as React.CSSProperties}>
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Magic Leap, Inc.</h3>
+              <p className="text-muted-foreground">Employment Verification Letter</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+            >
+              <a 
+                href="/lovable-uploads/42451e61-0ad8-4bca-b011-6d8f9983e19a.png" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2"
+              >
+                View Official Letter
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </Button>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Position</h4>
+                <p className="text-muted-foreground">Senior Manufacturing Engineer - NPI</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Employment Period</h4>
+                <p className="text-muted-foreground">January 3, 2023 - May 24, 2024</p>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-foreground mb-2">Key Responsibilities Verified</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start pulse-dot">
+                  <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm">Advanced Manufacturing for AR Devices: Driving manufacturing initiatives for next-generation Augmented Reality optical devices</span>
+                </li>
+                <li className="flex items-start pulse-dot">
+                  <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm">Manufacturing Execution Systems (MES): Using MES platforms for real-time production data analysis and 15% efficiency improvement</span>
+                </li>
+                <li className="flex items-start pulse-dot">
+                  <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                  <span className="text-muted-foreground text-sm">Cross-functional Collaboration: Partnering with Design Engineering, Manufacturing, Quality, and Operations teams</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </Card>
+
+        {/* Stryker Verification */}
+        <Card className="p-8 bg-card border-border engineering-hover fade-in-up stagger-animation" style={{"--stagger-delay": "2"} as React.CSSProperties}>
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Stryker Corporation</h3>
+              <p className="text-muted-foreground">Employment Verification Request - myHR Experience Center</p>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+            >
+              <a 
+                href="/lovable-uploads/92d02a05-30d5-41d3-bbaf-997d70df5c39.png" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2"
+              >
+                View Official Letter
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </Button>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Positions Held</h4>
+                <div className="space-y-1">
+                  <p className="text-muted-foreground text-sm">Senior Engineer - Sustaining</p>
+                  <p className="text-muted-foreground text-sm">Senior Manufacturing Engineer - Robotics</p>
+                </div>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground mb-2">Employment Periods</h4>
+                <div className="space-y-1">
+                  <p className="text-muted-foreground text-sm">02/17/2020 - 01/01/2020</p>
+                  <p className="text-muted-foreground text-sm">05/05/2022 - 12/28/2022</p>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold text-foreground mb-2">Verified Skills & Certifications</h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <ul className="space-y-2">
+                  <li className="flex items-start pulse-dot">
+                    <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">CAD - PTC Creo</span>
+                  </li>
+                  <li className="flex items-start pulse-dot">
+                    <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">Lean Manufacturing and Six Sigma</span>
+                  </li>
+                  <li className="flex items-start pulse-dot">
+                    <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">Project Management, Work Breakdown Structure (WBS), and Risk Mitigation</span>
+                  </li>
+                </ul>
+                <ul className="space-y-2">
+                  <li className="flex items-start pulse-dot">
+                    <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">PFMEA (Process Failure Modes & Effects Analysis)</span>
+                  </li>
+                  <li className="flex items-start pulse-dot">
+                    <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">PCPs (Process Control Plans)</span>
+                  </li>
+                  <li className="flex items-start pulse-dot">
+                    <div className="w-1 h-1 rounded-full bg-accent mt-2 mr-3 flex-shrink-0" />
+                    <span className="text-muted-foreground text-sm">Statistical Analysis, RCA, Pareto, and 8D</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+      
+      <div className="text-center fade-in-up">
+        <p className="text-muted-foreground text-sm">
+          All employment verifications are official documents issued by respective HR departments and can be verified directly with the companies.
+        </p>
+      </div>
+    </div>
+  )
+
   const renderContact = () => (
     <div className="space-y-8">
       <h2 className="text-3xl font-bold text-foreground mb-6">Contact</h2>
@@ -773,6 +982,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         return renderProjects()
       case 'recommendations':
         return <RecommendationsSection />
+      case 'employment-verification':
+        return renderEmploymentVerification()
       case 'contact':
         return renderContact()
       default:

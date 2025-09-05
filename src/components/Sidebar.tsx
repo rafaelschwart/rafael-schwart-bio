@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users } from "lucide-react"
+import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users, Shield } from "lucide-react"
 import rafaelHeadshot from "@/assets/rafael-headshot.png"
 
 interface SidebarProps {
@@ -14,6 +14,7 @@ const navigationItems = [
   { id: 'certifications', label: 'Certifications', icon: Trophy },
   { id: 'projects', label: 'Projects', icon: FolderOpen },
   { id: 'recommendations', label: 'Recommendations', icon: Users },
+  { id: 'employment-verification', label: 'Employment Verification', icon: Shield },
   { id: 'contact', label: 'Contact', icon: Mail },
 ]
 
