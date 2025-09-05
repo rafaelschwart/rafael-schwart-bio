@@ -15,6 +15,7 @@ interface Recommender {
   linkedinUrl: string
   profileImage?: string
   fullLetter: string
+  recommendationUrl?: string
 }
 
 const recommenders: Recommender[] = [
@@ -28,7 +29,8 @@ const recommenders: Recommender[] = [
     bio: "Jose Gibaja is a Principal Engineer and Technical Lead in Advanced Operations Robotics at Stryker, specializing in robotic-assisted surgical systems and process development. During my time at Stryker, I had the privilege of working under Jose's leadership for nearly two years on the Process Development Team.\n\nWe collaborated closely on robotic arm modules, PFMEA/PCP deliverables, and fixture validation projects. Jose's guidance was instrumental in strengthening my technical foundation and ensuring critical milestone success. His mentorship and strategic thinking approach had a lasting impact on my career development.",
     linkedinUrl: "https://www.linkedin.com/in/josegibaja/",
     profileImage: "/lovable-uploads/396f95fa-f518-421e-b070-324f81e60131.png",
-    fullLetter: ""
+    fullLetter: "",
+    recommendationUrl: "https://drive.google.com/file/d/1gsqFCu4JNY6-6nbR1ym2mCNjVzYt-fWF/view?usp=drive_link"
   },
   {
     id: "joe-zeichmann",
@@ -40,7 +42,8 @@ const recommenders: Recommender[] = [
     bio: "Joe is a seasoned manufacturing engineering director with deep expertise in AR/VR technologies and advanced manufacturing processes. At Magic Leap, he led the manufacturing engineering organization responsible for scaling AR device production. His background includes extensive experience in cleanroom operations, precision manufacturing, and technology scaling from prototype to high-volume production.",
     linkedinUrl: "https://www.linkedin.com/in/joseph-zeichman/",
     profileImage: "/lovable-uploads/1c19c458-57ad-4ae9-87ea-abe731dfbe91.png",
-    fullLetter: "Rafael Schwart was an exceptional Senior Manufacturing Engineer on my team at Magic Leap, where he played a crucial role in scaling our AR device manufacturing operations. His technical expertise and problem-solving abilities were instrumental in achieving a 15% improvement in production efficiency.\n\nRafael's proficiency with MES analytics and Gauge R&R studies helped us establish robust manufacturing processes that could scale effectively. His work in cleanroom optimization and PFMEA development created the foundation for our manufacturing stability protocols. What set Rafael apart was his ability to conduct thorough design-for-manufacturability reviews while training production teams to ensure long-term operational success.\n\nRafael consistently demonstrated strong analytical skills and attention to detail, which were essential in our precision manufacturing environment. His contributions to process optimization and team development made a lasting impact on our organization's capabilities.\n\nI would not hesitate to work with Rafael again and strongly recommend him for any manufacturing engineering or operations role requiring technical depth and leadership skills."
+    fullLetter: "Rafael Schwart was an exceptional Senior Manufacturing Engineer on my team at Magic Leap, where he played a crucial role in scaling our AR device manufacturing operations. His technical expertise and problem-solving abilities were instrumental in achieving a 15% improvement in production efficiency.\n\nRafael's proficiency with MES analytics and Gauge R&R studies helped us establish robust manufacturing processes that could scale effectively. His work in cleanroom optimization and PFMEA development created the foundation for our manufacturing stability protocols. What set Rafael apart was his ability to conduct thorough design-for-manufacturability reviews while training production teams to ensure long-term operational success.\n\nRafael consistently demonstrated strong analytical skills and attention to detail, which were essential in our precision manufacturing environment. His contributions to process optimization and team development made a lasting impact on our organization's capabilities.\n\nI would not hesitate to work with Rafael again and strongly recommend him for any manufacturing engineering or operations role requiring technical depth and leadership skills.",
+    recommendationUrl: "https://drive.google.com/drive/folders/1iztU_X76k2Xv4cuVmQBywuWWjI4VNNKp"
   },
   {
     id: "melody-chan",
@@ -52,19 +55,21 @@ const recommenders: Recommender[] = [
     bio: "Melody is a highly experienced senior quality engineer at Stryker Corporation specializing in medical device quality systems and regulatory compliance. She works closely with manufacturing engineering teams to ensure product quality and process validation in the robotics division. Her expertise includes PPAP, SICR compliance, NC/CAPA management, and medical device regulations.",
     linkedinUrl: "https://www.linkedin.com/in/melodychan1/",
     profileImage: "/lovable-uploads/3c24dbd3-0cb3-4db6-8d58-85285bb21a89.png",
-    fullLetter: "I had the opportunity to work closely with Rafael Schwart during his time as a Senior Manufacturing Engineer in Stryker's Robotics division. Rafael's technical competence and collaborative approach made him an excellent partner in ensuring our manufacturing processes met the highest quality standards.\n\nRafael's work on MAPs redesign and SolidWorks simulation significantly enhanced our robotic assembly processes. His leadership in Kaizen/6S initiatives and commitment to PPAP and SICR compliance demonstrated his understanding of quality systems critical to medical device manufacturing. I was particularly impressed by his ability to effectively close NC/CAPA issues and support critical debug/rebuild operations for our high-precision surgical robotics.\n\nRafael consistently showed strong problem-solving skills and attention to detail, which are essential qualities in medical device manufacturing. His ability to work collaboratively across teams while maintaining focus on quality and regulatory requirements made him a valuable team member.\n\nI highly recommend Rafael for any engineering role requiring both technical expertise and quality system knowledge."
+    fullLetter: "I had the opportunity to work closely with Rafael Schwart during his time as a Senior Manufacturing Engineer in Stryker's Robotics division. Rafael's technical competence and collaborative approach made him an excellent partner in ensuring our manufacturing processes met the highest quality standards.\n\nRafael's work on MAPs redesign and SolidWorks simulation significantly enhanced our robotic assembly processes. His leadership in Kaizen/6S initiatives and commitment to PPAP and SICR compliance demonstrated his understanding of quality systems critical to medical device manufacturing. I was particularly impressed by his ability to effectively close NC/CAPA issues and support critical debug/rebuild operations for our high-precision surgical robotics.\n\nRafael consistently showed strong problem-solving skills and attention to detail, which are essential qualities in medical device manufacturing. His ability to work collaboratively across teams while maintaining focus on quality and regulatory requirements made him a valuable team member.\n\nI highly recommend Rafael for any engineering role requiring both technical expertise and quality system knowledge.",
+    recommendationUrl: "https://drive.google.com/drive/folders/1iztU_X76k2Xv4cuVmQBywuWWjI4VNNKp"
   },
   {
     id: "alan-fitzpatrick",
     name: "Alan Fitzpatrick",
-    currentRole: "Engineering Manager",
-    company: "Gables Engineering",
-    relationship: "Engineering Manager during Boeing avionics projects",
-    timeWorked: "~1 year", 
-    bio: "Alan is an experienced engineering manager at Gables Engineering with extensive expertise in aerospace test equipment and automation systems. He leads engineering teams developing sophisticated test solutions for major aerospace clients including Boeing. His technical background includes fixture design, automation engineering, and PDM/PLM system implementation.",
+    currentRole: "Senior Manager of Manufacturing Engineering",
+    company: "Stryker",
+    relationship: "Manager and Mentor at Stryker",
+    timeWorked: "~2.5 years", 
+    bio: "Alan Fitzpatrick is an experienced Senior Manager of Manufacturing Engineering at Stryker, specializing in advanced medical device production and large-scale operations leadership. With a strong background in manufacturing systems, lean practices, and engineering management, he has successfully guided cross-functional teams to deliver innovative surgical and robotic solutions.\n\nDuring my time at Stryker, I had the privilege of working with Alan as both a mentor and manager. Our collaboration centered on process development and new product introduction initiatives, where Alan's leadership ensured technical excellence and operational readiness. His support was critical in sharpening my technical problem-solving skills while reinforcing the importance of discipline and collaboration in a high-stakes manufacturing environment.",
     linkedinUrl: "https://www.linkedin.com/in/alan-fitzpatrick-38679a14/",
-    profileImage: "/lovable-uploads/0c33187d-3ade-4b59-a0ac-1fdf4c85ed2f.png",
-    fullLetter: "Rafael Schwart was an outstanding Mechanical Engineer on my team at Gables Engineering, where he made significant contributions to our aerospace test equipment projects. His innovative approach to fixture design and automation resulted in remarkable improvements to our testing processes.\n\nRafael's design of automated fixtures reduced our test cycle times by over 50% for Boeing avionics projects, which had a major impact on our operational efficiency and client satisfaction. His implementation of a PDM system streamlined our ECN/ECO workflows and significantly reduced design cycle times across multiple projects.\n\nWhat impressed me most about Rafael was his combination of technical creativity and practical engineering sense. He could develop innovative solutions while maintaining focus on manufacturability and cost-effectiveness. His automation expertise and systematic approach to process improvement made him a valuable asset to our aerospace projects.\n\nRafael is a talented engineer who brings both technical depth and process improvement mindset to any organization. I strongly recommend him for engineering or program management roles."
+    profileImage: "/lovable-uploads/0e9931aa-8f5e-40d2-8650-d2a15dc6640a.png",
+    fullLetter: "",
+    recommendationUrl: "https://drive.google.com/file/d/1UhJ70FumtafzIgLPVOQGZjqzQkGQhoNs/view?usp=drive_link"
   }
 ]
 
@@ -168,7 +173,7 @@ export const RecommendationsSection = () => {
                   asChild
                 >
                   <a 
-                    href="https://drive.google.com/file/d/1gsqFCu4JNY6-6nbR1ym2mCNjVzYt-fWF/view?usp=drive_link" 
+                    href={recommender.recommendationUrl || "https://drive.google.com/drive/folders/1iztU_X76k2Xv4cuVmQBywuWWjI4VNNKp"} 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
