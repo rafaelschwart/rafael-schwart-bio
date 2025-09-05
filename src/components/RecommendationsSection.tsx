@@ -48,15 +48,15 @@ const recommenders: Recommender[] = [
   {
     id: "melody-chan",
     name: "Melody Chan",
-    currentRole: "Senior Quality Engineer",
+    currentRole: "Senior Project Manager",
     company: "Stryker Corporation",
-    relationship: "Quality Engineering Peer in Robotics Division",
+    relationship: "Senior Project Manager at Stryker",
     timeWorked: "~2.5 years",
-    bio: "Melody is a highly experienced senior quality engineer at Stryker Corporation specializing in medical device quality systems and regulatory compliance. She works closely with manufacturing engineering teams to ensure product quality and process validation in the robotics division. Her expertise includes PPAP, SICR compliance, NC/CAPA management, and medical device regulations.",
+    bio: "Melody Chan is a highly skilled Senior Project Manager at Stryker, specializing in Connected Joint Technologies and advanced medical device development. With expertise in managing cross-functional projects, driving innovation, and leading complex engineering initiatives, she has a proven track record of delivering successful outcomes in regulated industries.\n\nI had the privilege of working with Melody for more than two and a half years at Stryker, where I supported her team on projects involving retrofit upgrades of prototype robotic systems. Melody highlighted my initiative, problem-solving skills, and ability to thrive under tight deadlines when tackling challenging robotics upgrades. She also recognized my natural project management abilities and encouraged my growth into leadership roles. Melody's mentorship and trust helped shape my engineering career, providing me with both confidence and guidance to take on high-impact projects.",
     linkedinUrl: "https://www.linkedin.com/in/melodychan1/",
     profileImage: "/lovable-uploads/3c24dbd3-0cb3-4db6-8d58-85285bb21a89.png",
     fullLetter: "I had the opportunity to work closely with Rafael Schwart during his time as a Senior Manufacturing Engineer in Stryker's Robotics division. Rafael's technical competence and collaborative approach made him an excellent partner in ensuring our manufacturing processes met the highest quality standards.\n\nRafael's work on MAPs redesign and SolidWorks simulation significantly enhanced our robotic assembly processes. His leadership in Kaizen/6S initiatives and commitment to PPAP and SICR compliance demonstrated his understanding of quality systems critical to medical device manufacturing. I was particularly impressed by his ability to effectively close NC/CAPA issues and support critical debug/rebuild operations for our high-precision surgical robotics.\n\nRafael consistently showed strong problem-solving skills and attention to detail, which are essential qualities in medical device manufacturing. His ability to work collaboratively across teams while maintaining focus on quality and regulatory requirements made him a valuable team member.\n\nI highly recommend Rafael for any engineering role requiring both technical expertise and quality system knowledge.",
-    recommendationUrl: "https://drive.google.com/drive/folders/1iztU_X76k2Xv4cuVmQBywuWWjI4VNNKp"
+    recommendationUrl: "https://drive.google.com/file/d/1EyDO2Iokxw6xLZIG26hUYYUY6n0iLzWU/view?usp=drive_link"
   },
   {
     id: "alan-fitzpatrick",
