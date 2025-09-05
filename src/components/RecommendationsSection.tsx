@@ -91,17 +91,17 @@ export const RecommendationsSection = () => {
       </div>
 
       {/* Recommender Cards Grid */}
-      <div className="grid lg:grid-cols-2 gap-6 mb-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-12">
         {recommenders.map((recommender, index) => (
           <Card 
             key={recommender.id} 
-            className="p-6 bg-card border-border engineering-hover fade-in-up stagger-animation"
+            className="p-4 lg:p-6 bg-card border-border engineering-hover fade-in-up stagger-animation"
             style={{"--stagger-delay": index} as React.CSSProperties}
           >
-            <CardHeader className="pb-4">
-              <div className="flex items-start gap-4">
+            <CardHeader className="pb-3 lg:pb-4">
+              <div className="flex items-start gap-3 lg:gap-4">
                 {/* Profile Image */}
-                <div className="w-16 h-16 rounded-full overflow-hidden bg-muted flex-shrink-0">
+                <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-full overflow-hidden bg-muted flex-shrink-0">
                   {recommender.profileImage ? (
                     <img 
                       src={recommender.profileImage}
@@ -117,50 +117,52 @@ export const RecommendationsSection = () => {
                     />
                   ) : null}
                   <div className="fallback w-full h-full bg-muted flex items-center justify-center">
-                    <User className="h-8 w-8 text-muted-foreground" />
+                    <User className="h-6 w-6 lg:h-8 lg:w-8 text-muted-foreground" />
                   </div>
                 </div>
 
-                <div className="flex-1">
-                  <CardTitle className="text-lg text-foreground mb-1">
+                <div className="flex-1 min-w-0">
+                  <CardTitle className="text-base lg:text-lg text-foreground mb-1">
                     {recommender.name}
                   </CardTitle>
-                  <CardDescription className="text-sm text-muted-foreground mb-2">
+                  <CardDescription className="text-xs lg:text-sm text-muted-foreground mb-2">
                     <div className="flex items-center gap-1">
-                      <Building className="h-3 w-3" />
-                      {recommender.currentRole} at {recommender.company}
+                      <Building className="h-3 w-3 flex-shrink-0" />
+                      <span className="truncate">{recommender.currentRole} at {recommender.company}</span>
                     </div>
                   </CardDescription>
                 </div>
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 lg:space-y-4">
               {/* Relationship & Time */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <User className="h-3 w-3" />
-                  <span className="font-medium">Relationship:</span>
-                  <span>{recommender.relationship}</span>
+              <div className="space-y-1 lg:space-y-2">
+                <div className="flex items-start gap-2 text-xs lg:text-sm text-muted-foreground">
+                  <User className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                  <div className="min-w-0">
+                    <span className="font-medium">Relationship:</span>
+                    <span className="ml-1">{recommender.relationship}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Calendar className="h-3 w-3" />
+                <div className="flex items-center gap-2 text-xs lg:text-sm text-muted-foreground">
+                  <Calendar className="h-3 w-3 flex-shrink-0" />
                   <span className="font-medium">Duration:</span>
                   <span>{recommender.timeWorked}</span>
                 </div>
               </div>
 
               {/* Bio */}
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-xs lg:text-sm leading-relaxed">
                 {recommender.bio}
               </p>
 
               {/* Action Buttons */}
-              <div className="flex gap-3 pt-2">
+              <div className="flex flex-col sm:flex-row gap-2 lg:gap-3 pt-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="flex-1"
+                  className="flex-1 text-xs lg:text-sm"
                   onClick={() => window.open(recommender.linkedinUrl, '_blank')}
                 >
                   <ExternalLink className="h-3 w-3 mr-2" />
@@ -169,7 +171,7 @@ export const RecommendationsSection = () => {
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="flex-1"
+                  className="flex-1 text-xs lg:text-sm"
                   asChild
                 >
                   <a 
