@@ -27,7 +27,7 @@ const recommenders: Recommender[] = [
     timeWorked: "~2 years",
     bio: "Jose Gibaja is a highly accomplished Principal Engineer and Technical Lead in Advanced Operations Robotics at Stryker, where he drives innovation in robotic-assisted surgical systems. With deep expertise in process development, manufacturing engineering, and product design transfer, Jose has played a pivotal role in scaling advanced medical robotics technologies for global markets. I had the privilege of working under Jose's leadership during my time at Stryker. Over nearly two years, we collaborated closely on projects within the Process Development Team, focusing on robotic arm modules, PFMEA/PCP deliverables, and fixture validation. His guidance was instrumental in strengthening my technical foundation and ensuring the success of critical milestones. Jose not only provided mentorship but also modeled a balance of technical rigor and strategic thinking that had a lasting impact on my career development.",
     linkedinUrl: "https://www.linkedin.com/in/josegibaja/",
-    profileImage: "/lovable-uploads/b7e8e8c6-60fb-4bf4-9c60-47c664784b16.png",
+    profileImage: "/lovable-uploads/396f95fa-f518-421e-b070-324f81e60131.png",
     fullLetter: ""
   },
   {
