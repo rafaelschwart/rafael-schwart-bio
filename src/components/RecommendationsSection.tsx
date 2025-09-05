@@ -35,15 +35,15 @@ const recommenders: Recommender[] = [
   {
     id: "joe-zeichmann",
     name: "Joe Zeichmann", 
-    currentRole: "Manufacturing Engineering Director",
-    company: "Magic Leap",
-    relationship: "Engineering Director during AR device development",
-    timeWorked: "~1.5 years",
-    bio: "Joe is a seasoned manufacturing engineering director with deep expertise in AR/VR technologies and advanced manufacturing processes. At Magic Leap, he led the manufacturing engineering organization responsible for scaling AR device production. His background includes extensive experience in cleanroom operations, precision manufacturing, and technology scaling from prototype to high-volume production.",
+    currentRole: "Senior Staff Engineer",
+    company: "Stryker",
+    relationship: "Senior Staff Engineer at Stryker",
+    timeWorked: "~2 years",
+    bio: "Joe Zeichmann is an accomplished Senior Staff Engineer at Stryker, where he has extensive experience in robotics process development, design transfer, and advanced manufacturing engineering. His work has focused on guiding complex build and testing activities for robotic surgical systems, including actuator design, sensor calibration, and manufacturability reviews.\n\nI had the privilege of working with Joe for nearly two years as part of the Process Development Team at Stryker. Joe highlighted my contributions to PFMEA/PCP creation, fixture design, and robot arm upgrades, as well as my ability to take ownership of challenging build and testing activities. In his recommendation, he emphasized my passion, enthusiasm, and technical versatility—particularly in areas such as actuator assembly, force torque sensor swaps, and MAP template guidance for Stryker's Mako robotic systems. Joe's mentorship and collaborative leadership were instrumental in shaping my development as an engineer.",
     linkedinUrl: "https://www.linkedin.com/in/joseph-zeichman/",
-    profileImage: "/lovable-uploads/1c19c458-57ad-4ae9-87ea-abe731dfbe91.png",
+    profileImage: "/lovable-uploads/eac60b64-93bb-46c5-876f-f74cc89c612d.png",
     fullLetter: "Rafael Schwart was an exceptional Senior Manufacturing Engineer on my team at Magic Leap, where he played a crucial role in scaling our AR device manufacturing operations. His technical expertise and problem-solving abilities were instrumental in achieving a 15% improvement in production efficiency.\n\nRafael's proficiency with MES analytics and Gauge R&R studies helped us establish robust manufacturing processes that could scale effectively. His work in cleanroom optimization and PFMEA development created the foundation for our manufacturing stability protocols. What set Rafael apart was his ability to conduct thorough design-for-manufacturability reviews while training production teams to ensure long-term operational success.\n\nRafael consistently demonstrated strong analytical skills and attention to detail, which were essential in our precision manufacturing environment. His contributions to process optimization and team development made a lasting impact on our organization's capabilities.\n\nI would not hesitate to work with Rafael again and strongly recommend him for any manufacturing engineering or operations role requiring technical depth and leadership skills.",
-    recommendationUrl: "https://drive.google.com/drive/folders/1iztU_X76k2Xv4cuVmQBywuWWjI4VNNKp"
+    recommendationUrl: "https://drive.google.com/file/d/12BXRuEfVv9GFW5c1fcSluN-37kefTSYz/view?usp=drive_link"
   },
   {
     id: "melody-chan",
