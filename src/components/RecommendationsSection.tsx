@@ -25,7 +25,7 @@ const recommenders: Recommender[] = [
     company: "Stryker",
     relationship: "Senior Engineer at Stryker",
     timeWorked: "~2 years",
-    bio: "Jose Gibaja is a highly accomplished Principal Engineer and Technical Lead in Advanced Operations Robotics at Stryker, where he drives innovation in robotic-assisted surgical systems. With deep expertise in process development, manufacturing engineering, and product design transfer, Jose has played a pivotal role in scaling advanced medical robotics technologies for global markets. I had the privilege of working under Jose's leadership during my time at Stryker. Over nearly two years, we collaborated closely on projects within the Process Development Team, focusing on robotic arm modules, PFMEA/PCP deliverables, and fixture validation. His guidance was instrumental in strengthening my technical foundation and ensuring the success of critical milestones. Jose not only provided mentorship but also modeled a balance of technical rigor and strategic thinking that had a lasting impact on my career development.",
+    bio: "• Principal Engineer and Technical Lead in Advanced Operations Robotics at Stryker\n• Drives innovation in robotic-assisted surgical systems with deep expertise in process development, manufacturing engineering, and product design transfer\n• Played pivotal role in scaling advanced medical robotics technologies for global markets\n• Provided mentorship and leadership during our collaboration on Process Development Team projects\n• Focused on robotic arm modules, PFMEA/PCP deliverables, and fixture validation\n• Demonstrated exceptional balance of technical rigor and strategic thinking",
     linkedinUrl: "https://www.linkedin.com/in/josegibaja/",
     profileImage: "/lovable-uploads/396f95fa-f518-421e-b070-324f81e60131.png",
     fullLetter: ""
@@ -168,7 +168,7 @@ export const RecommendationsSection = () => {
                   asChild
                 >
                   <a 
-                    href="https://drive.google.com/drive/folders/1iztU_X76k2Xv4cuVmQBywuWWjI4VNNKp" 
+                    href="https://drive.google.com/file/d/1gsqFCu4JNY6-6nbR1ym2mCNjVzYt-fWF/view?usp=drive_link" 
                     target="_blank" 
                     rel="noopener noreferrer"
                   >
