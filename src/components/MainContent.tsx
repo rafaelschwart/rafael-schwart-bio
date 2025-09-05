@@ -687,22 +687,13 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               <h3 className="text-xl font-bold text-foreground mb-2">Gables Engineering, Inc.</h3>
               <p className="text-muted-foreground">US Citizenship and Immigration Services Employment Verification</p>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
-            >
-              <a 
-                href="https://drive.google.com/file/d/1xa-fAODnaGyCMsBTxdrShp0ZvehnaXo1/view?usp=drive_link" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                View Official Letter
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </Button>
+            <div className="w-24 h-24 flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/a8c3d462-eec5-4f1c-a381-8b52a43769a7.png" 
+                alt="Gables Engineering Inc." 
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
           
           <div className="space-y-4">
@@ -733,6 +724,25 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   <span className="text-muted-foreground text-sm">Technical Documentation: Creating quality assurance manuals and operator guides for aerospace systems</span>
                 </li>
               </ul>
+            </div>
+            
+            <div className="flex justify-end mt-6">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+              >
+                <a 
+                  href="https://drive.google.com/file/d/1xa-fAODnaGyCMsBTxdrShp0ZvehnaXo1/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  View Official Letter
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </Button>
             </div>
           </div>
         </Card>
