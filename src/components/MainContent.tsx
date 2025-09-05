@@ -801,22 +801,13 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               <h3 className="text-xl font-bold text-foreground mb-2">Stryker Corporation</h3>
               <p className="text-muted-foreground">Employment Verification Request - myHR Experience Center</p>
             </div>
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
-            >
-              <a 
-                href="https://drive.google.com/file/d/1G2VtB20hJUGoyxSDWz53OtADO1Pk8x2S/view?usp=drive_link" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                View Official Letter
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </Button>
+            <div className="w-16 h-16 flex items-center justify-center">
+              <img 
+                src={strykerImg} 
+                alt="Stryker Corporation" 
+                className="w-full h-full object-contain rounded-md border border-border"
+              />
+            </div>
           </div>
           
           <div className="space-y-4">
@@ -869,6 +860,25 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   </li>
                 </ul>
               </div>
+            </div>
+            
+            <div className="flex justify-end mt-6">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
+              >
+                <a 
+                  href="https://drive.google.com/file/d/1G2VtB20hJUGoyxSDWz53OtADO1Pk8x2S/view?usp=drive_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  View Official Letter
+                  <ExternalLink className="h-3 w-3" />
+                </a>
+              </Button>
             </div>
           </div>
         </Card>
