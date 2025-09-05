@@ -648,7 +648,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               </div>
             </div>
             <img 
-              src="/lovable-uploads/3c24dbd3-0cb3-4db6-8d58-85285bb21a89.png" 
+              src="/lovable-uploads/48a9c42c-77c8-4353-a5d3-0a0f9417e5e8.png" 
               alt="Recovrz Logo" 
               className="w-12 h-12 object-contain"
             />
