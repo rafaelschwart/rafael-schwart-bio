@@ -803,9 +803,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             </div>
             <div className="w-16 h-16 flex items-center justify-center">
               <img 
-                src={strykerImg} 
+                src="/lovable-uploads/d885c777-d091-4b28-a26e-095122d8d7c1.png" 
                 alt="Stryker Corporation" 
-                className="w-full h-full object-contain rounded-md border border-border"
+                className="w-full h-full object-contain rounded-md"
               />
             </div>
           </div>
