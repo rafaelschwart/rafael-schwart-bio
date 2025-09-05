@@ -687,7 +687,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               <h3 className="text-xl font-bold text-foreground mb-2">Gables Engineering, Inc.</h3>
               <p className="text-muted-foreground">Official Employment Verification Letter</p>
             </div>
-            <div className="w-24 h-24 flex items-center justify-center">
+            <div className="w-32 h-32 flex items-center justify-center">
               <img 
                 src="/lovable-uploads/a8c3d462-eec5-4f1c-a381-8b52a43769a7.png" 
                 alt="Gables Engineering Inc." 
