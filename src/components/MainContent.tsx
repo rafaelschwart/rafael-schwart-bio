@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Calendar, MapPin, Building, Mail, Linkedin, Send, ExternalLink, Phone } from "lucide-react"
 import { useState } from "react"
 import { useToast } from "@/hooks/use-toast"
+import { RecommendationsSection } from "./RecommendationsSection"
 import manufacturingImg from "@/assets/manufacturing-environment.jpg"
 import engineeringImg from "@/assets/engineering-workspace.jpg"
 import projectMgmtImg from "@/assets/project-management.jpg"
@@ -770,6 +771,8 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
         return renderCertifications()
       case 'projects':
         return renderProjects()
+      case 'recommendations':
+        return <RecommendationsSection />
       case 'contact':
         return renderContact()
       default:
