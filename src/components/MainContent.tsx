@@ -694,7 +694,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
             >
               <a 
-                href="/lovable-uploads/115ef580-cfa8-4b1d-aa4a-f51da1a1c4ed.png" 
+                href="https://drive.google.com/file/d/1xa-fAODnaGyCMsBTxdrShp0ZvehnaXo1/view?usp=drive_link" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2"
@@ -751,7 +751,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
             >
               <a 
-                href="/lovable-uploads/42451e61-0ad8-4bca-b011-6d8f9983e19a.png" 
+                href="https://drive.google.com/file/d/1oY8w8qy4pr_gRZ5gEVyl1lWRRQMqjWaK/view?usp=drive_link" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2"
@@ -808,7 +808,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               className="hover:bg-accent hover:text-accent-foreground transition-colors duration-200"
             >
               <a 
-                href="/lovable-uploads/92d02a05-30d5-41d3-bbaf-997d70df5c39.png" 
+                href="https://drive.google.com/file/d/1G2VtB20hJUGoyxSDWz53OtADO1Pk8x2S/view?usp=drive_link" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2"
