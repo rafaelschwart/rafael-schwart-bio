@@ -49,7 +49,7 @@ const recommenders: Recommender[] = [
     id: "melody-chan",
     name: "Melody Chan",
     currentRole: "Project Manager",
-    company: "Stryker Corporation",
+    company: "Stryker",
     relationship: "Senior Project Manager at Stryker",
     timeWorked: "~2.5 years",
     bio: "Melody Chan is a highly skilled Senior Project Manager at Stryker, specializing in Connected Joint Technologies and advanced medical device development. With expertise in managing cross-functional projects, driving innovation, and leading complex engineering initiatives, she has a proven track record of delivering successful outcomes in regulated industries.\n\nI had the privilege of working with Melody for more than two and a half years at Stryker, where I supported her team on projects involving retrofit upgrades of prototype robotic systems. Melody highlighted my initiative, problem-solving skills, and ability to thrive under tight deadlines when tackling challenging robotics upgrades. She also recognized my natural project management abilities and encouraged my growth into leadership roles. Melody's mentorship and trust helped shape my engineering career, providing me with both confidence and guidance to take on high-impact projects.",
