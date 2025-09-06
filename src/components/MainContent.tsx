@@ -1057,7 +1057,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               
               {/* Resume Download Button */}
               <Button
-                onClick={() => window.open('https://drive.google.com/drive/folders/1jC0Tfqd8kqipYmXyZ2Xjp9oMCJwonp2N?usp=sharing', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link', '_blank')}
                 className="w-full max-w-xs bg-primary text-primary-foreground hover:bg-primary/90 h-10"
               >
                 <ExternalLink className="h-4 w-4 mr-2" />
