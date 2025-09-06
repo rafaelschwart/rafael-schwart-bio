@@ -1053,7 +1053,16 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               <p className="text-muted-foreground text-sm mb-1">PMP-Certified</p>
               <p className="text-muted-foreground text-sm mb-1">Green Belt Certified</p>
               <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
-              <p className="text-muted-foreground text-xs mt-2">Born in Caracas, Venezuela • Based in Miami, FL</p>
+              <p className="text-muted-foreground text-xs mt-2 mb-4">Born in Caracas, Venezuela • Based in Miami, FL</p>
+              
+              {/* Resume Download Button */}
+              <Button
+                onClick={() => window.open('https://drive.google.com/drive/folders/1jC0Tfqd8kqipYmXyZ2Xjp9oMCJwonp2N?usp=sharing', '_blank')}
+                className="w-full max-w-xs bg-primary text-primary-foreground hover:bg-primary/90 h-10"
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Download Resume
+              </Button>
             </div>
 
             {/* About Section */}
