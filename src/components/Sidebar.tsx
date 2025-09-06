@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users, Shield } from "lucide-react"
+import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users, Shield, Download } from "lucide-react"
 import rafaelHeadshot from "@/assets/rafael-headshot.png"
 
 interface SidebarProps {
@@ -40,10 +40,21 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
           </div>
 
           {/* Header */}
-          <div className="mb-12 text-center">
+          <div className="mb-8 text-center">
             <h1 className="text-2xl font-bold text-sidebar-foreground mb-4">Rafael Schwart</h1>
             <p className="text-sidebar-foreground/80 text-sm mb-3">PMP | Six Sigma Green Belt</p>
             <p className="text-sidebar-foreground/80 text-sm">Senior Operations Program Manager</p>
+          </div>
+
+          {/* Resume Download Button */}
+          <div className="mb-12 text-center">
+            <Button
+              onClick={() => window.open('https://drive.google.com/drive/folders/1jC0Tfqd8kqipYmXyZ2Xjp9oMCJwonp2N?usp=sharing', '_blank')}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Download Resume
+            </Button>
           </div>
 
           {/* Personal Info */}
