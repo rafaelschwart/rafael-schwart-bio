@@ -1049,17 +1049,16 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   }}
                 />
               </div>
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <h1 className="text-xl font-bold text-foreground">Rafael Schwart</h1>
-                <Button
-                  onClick={() => window.open('https://www.linkedin.com/in/rafael-schwart/', '_blank')}
-                  size="icon"
-                  variant="ghost"
-                  className="h-7 w-7 text-muted-foreground hover:text-foreground"
-                >
-                  <Linkedin className="h-4 w-4" />
-                </Button>
-              </div>
+              <h1 className="text-lg font-bold text-foreground mb-2">Rafael Schwart</h1>
+              <Button
+                onClick={() => window.open('https://www.linkedin.com/in/rafael-schwart/', '_blank')}
+                variant="outline"
+                size="sm"
+                className="mb-3 bg-[#0077B5] hover:bg-[#005885] text-white border-[#0077B5] hover:border-[#005885]"
+              >
+                <Linkedin className="h-4 w-4 mr-2" />
+                Connect on LinkedIn
+              </Button>
               <p className="text-muted-foreground text-sm mb-1">PMP-Certified</p>
               <p className="text-muted-foreground text-sm mb-1">Green Belt Certified</p>
               <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
