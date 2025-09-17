@@ -43,7 +43,7 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
           <div className="mb-8 text-center">
             <h1 className="text-xl font-bold text-sidebar-foreground mb-3">Rafael Schwart</h1>
             <Button
-              onClick={() => window.open('https://www.linkedin.com/in/rafael-schwart/', '_blank')}
+              onClick={() => window.open('https://www.linkedin.com/in/rafaelschwart/', '_blank')}
               variant="outline"
               size="sm"
               className="mb-4 bg-[#0077B5] hover:bg-[#005885] text-white border-[#0077B5] hover:border-[#005885]"

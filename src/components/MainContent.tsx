@@ -1051,7 +1051,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               </div>
               <h1 className="text-lg font-bold text-foreground mb-2">Rafael Schwart</h1>
               <Button
-                onClick={() => window.open('https://www.linkedin.com/in/rafael-schwart/', '_blank')}
+                onClick={() => window.open('https://www.linkedin.com/in/rafaelschwart/', '_blank')}
                 variant="outline"
                 size="sm"
                 className="mb-3 bg-[#0077B5] hover:bg-[#005885] text-white border-[#0077B5] hover:border-[#005885]"
