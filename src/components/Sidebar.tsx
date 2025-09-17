@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users, Shield, Download } from "lucide-react"
+import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users, Shield, Download, Linkedin } from "lucide-react"
 import rafaelHeadshot from "@/assets/rafael-headshot.png"
 
 interface SidebarProps {
@@ -41,7 +41,17 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
 
           {/* Header */}
           <div className="mb-8 text-center">
-            <h1 className="text-2xl font-bold text-sidebar-foreground mb-4">Rafael Schwart</h1>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <h1 className="text-2xl font-bold text-sidebar-foreground">Rafael Schwart</h1>
+              <Button
+                onClick={() => window.open('https://www.linkedin.com/in/rafael-schwart/', '_blank')}
+                size="icon"
+                variant="ghost"
+                className="h-8 w-8 text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+              >
+                <Linkedin className="h-4 w-4" />
+              </Button>
+            </div>
             <p className="text-sidebar-foreground/80 text-sm mb-3">PMP | Six Sigma Green Belt</p>
             <p className="text-sidebar-foreground/80 text-sm">Senior Operations Program Manager</p>
           </div>

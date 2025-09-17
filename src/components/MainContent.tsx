@@ -1049,7 +1049,17 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   }}
                 />
               </div>
-              <h1 className="text-xl font-bold text-foreground mb-1">Rafael Schwart</h1>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <h1 className="text-xl font-bold text-foreground">Rafael Schwart</h1>
+                <Button
+                  onClick={() => window.open('https://www.linkedin.com/in/rafael-schwart/', '_blank')}
+                  size="icon"
+                  variant="ghost"
+                  className="h-7 w-7 text-muted-foreground hover:text-foreground"
+                >
+                  <Linkedin className="h-4 w-4" />
+                </Button>
+              </div>
               <p className="text-muted-foreground text-sm mb-1">PMP-Certified</p>
               <p className="text-muted-foreground text-sm mb-1">Green Belt Certified</p>
               <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
