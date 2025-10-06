@@ -1080,7 +1080,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                   className="w-full h-10"
                 >
                   <FileDown className="h-4 w-4 mr-2" />
-                  Download Full Portfolio PDF
+                  Download Portfolio
                 </Button>
               </div>
             </div>

@@ -71,7 +71,7 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
               className="w-full h-10"
             >
               <FileDown className="h-4 w-4 mr-2" />
-              Download Full Portfolio PDF
+              Download Portfolio
             </Button>
           </div>
 
