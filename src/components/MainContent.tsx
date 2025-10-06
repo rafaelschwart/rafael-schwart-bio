@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Calendar, MapPin, Building, Mail, Linkedin, Send, ExternalLink, Phone } from "lucide-react"
+import { Calendar, MapPin, Building, Mail, Linkedin, Send, ExternalLink, Phone, FileDown } from "lucide-react"
 import { useState } from "react"
 import { useToast } from "@/hooks/use-toast"
 import { RecommendationsSection } from "./RecommendationsSection"
+import { generatePortfolioPDF } from "@/utils/pdfGenerator"
 import manufacturingImg from "@/assets/manufacturing-environment.jpg"
 import engineeringImg from "@/assets/engineering-workspace.jpg"
 import projectMgmtImg from "@/assets/project-management.jpg"
@@ -1064,14 +1065,24 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
               <p className="text-muted-foreground text-sm">Senior Operations Program Manager</p>
               <p className="text-muted-foreground text-xs mt-2 mb-4">Born in Caracas, Venezuela • Based in Miami, FL</p>
               
-              {/* Resume Download Button */}
-              <Button
-                onClick={() => window.open('https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link', '_blank')}
-                className="w-full max-w-xs bg-primary text-primary-foreground hover:bg-primary/90 h-10"
-              >
-                <ExternalLink className="h-4 w-4 mr-2" />
-                Download Resume
-              </Button>
+              {/* Resume Download Buttons */}
+              <div className="space-y-2 w-full max-w-xs mx-auto">
+                <Button
+                  onClick={() => window.open('https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link', '_blank')}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10"
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Download Resume
+                </Button>
+                <Button
+                  onClick={generatePortfolioPDF}
+                  variant="outline"
+                  className="w-full h-10"
+                >
+                  <FileDown className="h-4 w-4 mr-2" />
+                  Download Full Portfolio PDF
+                </Button>
+              </div>
             </div>
 
             {/* About Section */}

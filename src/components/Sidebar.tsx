@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
-import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users, Shield, Download, Linkedin } from "lucide-react"
+import { User, Briefcase, Code, Trophy, Mail, FileText, FolderOpen, Users, Shield, Download, Linkedin, FileDown } from "lucide-react"
 import rafaelHeadshot from "@/assets/rafael-headshot.png"
+import { generatePortfolioPDF } from "@/utils/pdfGenerator"
 
 interface SidebarProps {
   activeSection: string
@@ -55,14 +56,22 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
             <p className="text-sidebar-foreground/80 text-sm">Senior Operations Program Manager</p>
           </div>
 
-          {/* Resume Download Button */}
-          <div className="mb-12 text-center">
+          {/* Resume Download Buttons */}
+          <div className="mb-12 text-center space-y-3">
             <Button
               onClick={() => window.open('https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link', '_blank')}
               className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10"
             >
               <Download className="h-4 w-4 mr-2" />
               Download Resume
+            </Button>
+            <Button
+              onClick={generatePortfolioPDF}
+              variant="outline"
+              className="w-full h-10"
+            >
+              <FileDown className="h-4 w-4 mr-2" />
+              Download Full Portfolio PDF
             </Button>
           </div>
 
