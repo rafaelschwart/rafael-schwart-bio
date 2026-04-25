@@ -1,0 +1,189 @@
+# Rafael Schwart
+
+> PMP-certified Technical Project Manager and Process Engineer with 10+ years of experience across Consumer Electronics, Augmented Reality, Medical Devices, Robotics, Aerospace, and Solar Energy industries. Currently Senior Operations Program Manager (NPI) at Motorola Solutions in Miami, FL. Born in Caracas, Venezuela (January 1993).
+
+This file is a structured summary of Rafael Schwart's professional portfolio for AI agents and automated tools. The full interactive site is at https://rafaelschwart.com.
+
+## Contact
+
+- Website: https://rafaelschwart.com
+- Email (preferred): rrgschwart@hotmail.com
+- LinkedIn: https://www.linkedin.com/in/rafaelschwart/
+- Location: Miami, Florida (born Caracas, Venezuela)
+- Phone: Available upon request
+
+## Section URLs
+
+- About: https://rafaelschwart.com/about
+- Experience: https://rafaelschwart.com/experience
+- Skills: https://rafaelschwart.com/skills
+- Certifications: https://rafaelschwart.com/certifications
+- Projects: https://rafaelschwart.com/projects
+- Recommendations: https://rafaelschwart.com/recommendations
+- Employment Verification: https://rafaelschwart.com/employment-verification
+- Contact: https://rafaelschwart.com/contact
+
+## Professional Summary
+
+Dynamic and results-driven Technical Project Manager and Process Engineer with over 10 years of experience across Consumer Electronics, Augmented Reality, Medical Devices, Robotics, Aerospace, and Solar Energy industries. Expert in CAD, CAE, FEA, FMEA, GD&T, and project management tools (ERP, PDM, PLM). Adept at Lean Manufacturing, Six Sigma methodologies, and driving cross-functional teams to deliver high-performance products under tight deadlines. Currently leading NPI operations across multiple product lines at Motorola Solutions.
+
+## Education
+
+- **Bachelor of Science (B.S.) in Mechanical Engineering** — University of Miami, 2010–2014. Comprehensive education in Mechanical Engineering, covering CAD, FEA, and manufacturing processes.
+  - Diploma: https://drive.google.com/file/d/1NAQa9Kw5Zhb1YZoNg6kXXUB-_FbAMNKl/view?usp=sharing
+
+## Experience
+
+### Senior Operations Program Manager — NPI
+- **Company:** Motorola Solutions — https://www.motorolasolutions.com
+- **Location:** Miami, FL
+- **Period:** 05/2024 – Present
+- **Summary:** Lead cross-functional alignment across R&D, Manufacturing, Logistics, and Quality to meet launch milestones for mission-critical communications systems.
+- **Key responsibilities:**
+  - Manage CAPEX/OPEX budgets, implement PFMEA and Process Control Plans (PCP), and integrate MES/MQS solutions into global supply chain operations.
+  - Apply Six Sigma and 8D methodologies to drive yield improvements and reduce defect rates.
+  - Coordinate contract manufacturers (Sanmina Penang, BCM) through pilot builds, ramp-ups, fixture validations, and supply chain escalations.
+
+### Senior Manufacturing Engineer — NPI
+- **Company:** Magic Leap — https://www.magicleap.com
+- **Location:** Plantation, FL
+- **Period:** 01/2023 – 05/2024
+- **Summary:** Boosted production efficiency by 15% through MES analytics, Gauge R&R studies, and cleanroom optimization.
+- **Key responsibilities:**
+  - Developed PFMEA libraries and implemented manufacturing stability protocols for AR devices.
+  - Conducted design-for-manufacturability reviews and trained production teams to ensure scalability of operations.
+  - Established cleanroom protocols and optimized PFMEAs.
+
+### Senior Manufacturing Engineer — Robotics
+- **Company:** Stryker — https://www.stryker.com
+- **Location:** Fort Lauderdale, FL
+- **Period:** 01/2020 – 01/2023
+- **Summary:** Enhanced robotic assembly processes through MAPs redesign and SolidWorks simulation.
+- **Key responsibilities:**
+  - Led Kaizen/6S initiatives, ensuring compliance with PPAP and supplier quality standards (SICR).
+  - Closed NC/CAPA issues and supported critical debug/rebuild operations for high-precision surgical robotics.
+  - Improved robotic assembly through MAPs and SolidWorks-based process redesign.
+
+### Mechanical Engineer — Test Engineering & Automation
+- **Company:** Gables Engineering — https://www.gableseng.com
+- **Location:** Coral Gables, FL
+- **Period:** 07/2018 – 08/2019
+- **Summary:** Designed automated fixtures reducing test cycle times by over 50% for Boeing avionics.
+- **Key responsibilities:**
+  - Deployed a PDM system improving ECN/ECO workflows and reducing design cycle times.
+  - Implemented automation solutions for aerospace test equipment.
+  - Streamlined manufacturing processes through innovative fixture design.
+
+### Mechanical Design Engineer
+- **Company:** Robotray — https://robotray.com
+- **Location:** Miami, FL
+- **Period:** 11/2017 – 07/2018
+- **Summary:** Designed automation systems and CNC programs for high-speed bakery and packaging equipment.
+- **Key responsibilities:**
+  - Optimized material usage through FEA analysis.
+  - Introduced SolidWorks PDM for design version control.
+  - Developed high-performance automation solutions for the food processing industry.
+
+### Mechanical Engineer — Solar Tracker Systems
+- **Company:** TerraSmart — https://www.terrasmart.com
+- **Location:** Naples, FL
+- **Period:** 03/2017 – 10/2017
+- **Summary:** Modeled solar tracking structures, providing casting/welding process improvements for utility-scale deployments.
+- **Key responsibilities:**
+  - Designed and optimized solar tracking systems for large-scale installations.
+  - Improved manufacturing processes for renewable energy infrastructure.
+  - Contributed to utility-scale solar energy projects.
+
+### Mechanical Design Engineer
+- **Company:** Piece-makers LLC — https://piece-makers.com/
+- **Location:** Miami, FL
+- **Period:** 12/2016 – 03/2017
+- **Summary:** Designed aerospace test fixtures, performed R&D prototyping, and supported CAM programming for manufacturing bids.
+
+### Mechanical Design Engineer
+- **Company:** Prompt Aero Services — https://www.promptaero.com/
+- **Location:** Miami, FL
+- **Period:** 01/2016 – 11/2016
+- **Summary:** Developed FAA-compliant aerospace fixtures and validated designs using FEA and CFD.
+
+### Mechanical Design Engineer
+- **Company:** General MRO Aerospace Inc. — https://www.generalmroaerospace.com/
+- **Location:** Miami, FL
+- **Period:** 05/2014 – 12/2015
+- **Summary:** Designed and built large-scale structural load fixtures for aerospace clients. Improved NDT and plating processes through engineering-led optimizations.
+
+## Skills
+
+### Technical
+- CAD, CAE, FEA, FMEA, GD&T
+- ERP, PDM, PLM
+- Lean Manufacturing
+- Six Sigma
+- SolidWorks, Autodesk Inventor, PTC Creo, Mastercam
+- MES Analytics
+
+### Management
+- Project Management
+- Process Engineering
+- Cross-functional Teams
+- NPI Operations
+- CAPEX/OPEX Management
+- Quality Control
+- Work Breakdown Structure (WBS), Risk Mitigation
+- 8D, RCA, Pareto, Statistical Analysis
+
+### Industries
+- Consumer Electronics
+- Augmented Reality
+- Medical Devices
+- Robotics
+- Aerospace
+- Solar Energy
+
+## Certifications
+
+- **Project Management Professional (PMP)** — Project Management Institute (PMI). Status: Certified.
+  - Credly badge: https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a
+  - Diploma: https://drive.google.com/file/d/1JKohOdgfwKokcy-hL8WHf0pze3dp6vX-/view?usp=sharing
+- **Six Sigma Green Belt** — ASQ. Status: Certified.
+  - Diploma: https://drive.google.com/file/d/1fIUGdS8duNPwlG2wxCVrj9yv7frJTR7j/view?usp=sharing
+- **Agile Foundations** — Professional Development. Status: Certified.
+
+## Side Projects
+
+### Earth Robotics — Mechanical Engineer
+- Website: https://www.earthrobotics.co/
+- Contributing mechanical engineering expertise to Earth Robotics, focusing on sustainable robotics solutions for environmental applications.
+- Responsibilities: design and develop robotic systems for environmental monitoring; perform structural analysis and optimization using CAD/FEA tools; collaborate on mechatronic integration and sensor deployment; support field testing and validation of robotic platforms.
+
+### Tiento Labs — Chief Technology Officer
+- Website: https://www.tientolabs.com
+- Leading technical development at Tiento Labs, a blockchain platform that tokenizes football player formation rights and provides verified scouting data.
+- Responsibilities: architect blockchain infrastructure for tokenizing player formation rights; develop secure platforms for fan investment in professional football players; build verification systems for player stats and scouting data using blockchain; lead technical team in creating scalable solutions; implement smart contracts and decentralized systems for sports investment.
+
+### Recovrz — Co-Founder
+- Website: https://www.recovrz.com
+- Co-founded Recovrz, an athletic recovery company providing next-generation solutions for athletes.
+- Focus: develop and market advanced recovery products including nose strips for improved breathing during recovery; create comprehensive recovery bundles; serve professional and amateur athletes.
+
+## Employment Verification (official letters)
+
+- **Gables Engineering, Inc.** — Mechanical Engineer, Automation & Test Engineering. 07/24/2017 – 08/14/2019.
+  - Letter: https://drive.google.com/file/d/1xa-fAODnaGyCMsBTxdrShp0ZvehnaXo1/view?usp=drive_link
+- **Magic Leap, Inc.** — Senior Manufacturing Engineer (NPI). 01/03/2023 – 05/24/2024.
+  - Letter: https://drive.google.com/file/d/1oY8w8qy4pr_gRZ5gEVyl1lWRRQMqjWaK/view?usp=drive_link
+- **Stryker Corporation** — Senior Engineer (Sustaining); Senior Manufacturing Engineer (Robotics). 02/17/2020 – 12/28/2022.
+  - Letter: https://drive.google.com/file/d/1G2VtB20hJUGoyxSDWz53OtADO1Pk8x2S/view?usp=drive_link
+
+## Recommendations
+
+Professional references from colleagues and leaders Rafael has worked with at Stryker:
+
+- **Jose Gibaja** — Principal Engineer, Stryker. Letter: https://drive.google.com/file/d/1gsqFCu4JNY6-6nbR1ym2mCNjVzYt-fWF/view?usp=drive_link
+- **Joe Zeichmann** — Senior Staff Engineer, Stryker. Letter: https://drive.google.com/file/d/12BXRuEfVv9GFW5c1fcSluN-37kefTSYz/view?usp=drive_link
+- **Melody Chan** — Project Manager, Stryker. Letter: https://drive.google.com/file/d/1EyDO2Iokxw6xLZIG26hUYYUY6n0iLzWU/view?usp=drive_link
+- **Alan Fitzpatrick** — Manufacturing Manager, Stryker. Letter: https://drive.google.com/file/d/1UhJ70FumtafzIgLPVOQGZjqzQkGQhoNs/view?usp=drive_link
+
+## Resume
+
+- Resume PDF: https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link
