@@ -31,7 +31,7 @@ export function Hero() {
                 See my work
               </Btn>
               <Btn href={RESUME_URL} target="_blank" rel="noopener" variant="ghost">
-                Download résumé
+                Download resume
               </Btn>
               <Btn href={LINKEDIN_URL} target="_blank" rel="noopener" variant="ghost">
                 LinkedIn

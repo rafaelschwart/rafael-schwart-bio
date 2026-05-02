@@ -36,7 +36,7 @@ Confident, declarative, technical. Sentence fragments allowed in headlines ("Eng
 
 ## Key facts (don't drift)
 
-- Public contact email: `rrgschwart@hotmail.com` (the workspace `Hi@rafaelschwart.com` is intentionally not surfaced).
+- Public contact email: `hi@rafaelschwart.com` (Google Workspace). Changed 2026-05-02 — was previously `rrgschwart@hotmail.com`. Do not restore the old address.
 - Headshot: `/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png`.
 - LinkedIn: `https://www.linkedin.com/in/rafaelschwart/`.
 - Resume: `https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link`.

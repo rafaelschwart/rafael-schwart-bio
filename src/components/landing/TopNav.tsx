@@ -63,7 +63,7 @@ export function TopNav() {
             size="sm"
             className="hidden sm:inline-flex"
           >
-            Résumé
+            Resume
           </Btn>
           <Btn
             href="#contact"
@@ -105,7 +105,7 @@ export function TopNav() {
           ))}
           <div className="flex gap-2 pt-3">
             <Btn href={RESUME_URL} target="_blank" rel="noopener" variant="ghost" size="sm">
-              Résumé
+              Resume
             </Btn>
             <Btn
               href="#contact"

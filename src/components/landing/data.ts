@@ -16,7 +16,7 @@ export const RESUME_URL =
   "https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link"
 
 export const LINKEDIN_URL = "https://www.linkedin.com/in/rafaelschwart/"
-export const EMAIL = "rrgschwart@hotmail.com"
+export const EMAIL = "hi@rafaelschwart.com"
 export const HEADSHOT_SRC = "/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png"
 
 export type Experience = {

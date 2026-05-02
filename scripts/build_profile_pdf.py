@@ -154,7 +154,7 @@ HTML = r"""<!DOCTYPE html>
   <div class="subtitle">Senior Operations Program Manager (NPI)<br/>Motorola Solutions · Miami, FL</div>
   <div class="contact">
     rafaelschwart.com<br/>
-    rrgschwart@hotmail.com<br/>
+    hi@rafaelschwart.com<br/>
     linkedin.com/in/rafaelschwart<br/>
     Born Caracas, Venezuela · January 1993 · Bilingual EN/ES
   </div>
@@ -195,7 +195,7 @@ HTML = r"""<!DOCTYPE html>
   <div class="card">
     <h4>Public-facing</h4>
     <ul>
-      <li><strong>Email:</strong> rrgschwart@hotmail.com</li>
+      <li><strong>Email:</strong> hi@rafaelschwart.com</li>
       <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/rafaelschwart/">linkedin.com/in/rafaelschwart</a></li>
       <li><strong>Website:</strong> <a href="https://rafaelschwart.com">rafaelschwart.com</a></li>
       <li><strong>Location:</strong> Miami, Florida</li>

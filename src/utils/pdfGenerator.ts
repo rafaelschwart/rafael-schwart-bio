@@ -23,7 +23,7 @@ export const generatePortfolioPDF = () => {
   doc.textWithLink('linkedin.com/in/rafaelschwart', margin, yPosition, { url: 'https://www.linkedin.com/in/rafaelschwart/' });
   doc.setTextColor(0, 0, 0);
   yPosition += 6;
-  doc.text('rrgschwart@hotmail.com', margin, yPosition);
+  doc.text('hi@rafaelschwart.com', margin, yPosition);
   yPosition += 15;
 
   // Professional Summary
@@ -386,7 +386,7 @@ export const generatePortfolioPDF = () => {
   yPosition += 6;
   doc.setFontSize(10);
   doc.setFont('helvetica', 'normal');
-  doc.text('Email: rrgschwart@hotmail.com', margin, yPosition);
+  doc.text('Email: hi@rafaelschwart.com', margin, yPosition);
   yPosition += 6;
   doc.text('Location: Miami, FL', margin, yPosition);
   yPosition += 10;

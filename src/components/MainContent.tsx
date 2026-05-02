@@ -40,7 +40,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
     const subject = encodeURIComponent(`Contact from ${formData.name}`)
     const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)
-    const mailtoUrl = `mailto:rrgschwart@hotmail.com?subject=${subject}&body=${body}`
+    const mailtoUrl = `mailto:hi@rafaelschwart.com?subject=${subject}&body=${body}`
 
     // Open using a temporary anchor (more reliable on mobile and inside iframes)
     const a = document.createElement('a')
@@ -59,7 +59,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
     toast({
       title: "Opening email client...",
-      description: "If nothing happens, email me at rrgschwart@hotmail.com.",
+      description: "If nothing happens, email me at hi@rafaelschwart.com.",
     })
     setFormData({ name: '', email: '', message: '' })
   }
@@ -940,10 +940,10 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             <Button
               variant="outline"
               className="w-full justify-start h-12"
-              onClick={() => window.open('mailto:rrgschwart@hotmail.com', '_blank')}
+              onClick={() => window.open('mailto:hi@rafaelschwart.com', '_blank')}
             >
               <Mail className="h-4 w-4 mr-3" />
-              rrgschwart@hotmail.com
+              hi@rafaelschwart.com
             </Button>
             
             <Button
@@ -1354,9 +1354,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
             <Card className="p-6 bg-card border-border mb-8">
               <h2 className="text-lg font-bold text-foreground mb-3">Contact</h2>
               <div className="space-y-3">
-                <a href="mailto:rrgschwart@hotmail.com" className="flex items-center text-sm text-muted-foreground hover:text-primary">
+                <a href="mailto:hi@rafaelschwart.com" className="flex items-center text-sm text-muted-foreground hover:text-primary">
                   <Mail className="h-4 w-4 mr-2" />
-                  rrgschwart@hotmail.com
+                  hi@rafaelschwart.com
                 </a>
                 <a href="https://www.linkedin.com/in/rafaelschwart/" target="_blank" rel="noopener noreferrer" className="flex items-center text-sm text-muted-foreground hover:text-primary">
                   <Linkedin className="h-4 w-4 mr-2" />

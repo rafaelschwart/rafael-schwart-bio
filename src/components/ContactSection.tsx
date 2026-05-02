@@ -20,7 +20,7 @@ export const ContactSection = () => {
 
     const subject = encodeURIComponent(`Contact from ${formData.name}`)
     const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)
-    const mailtoUrl = `mailto:rrgschwart@hotmail.com?subject=${subject}&body=${body}`
+    const mailtoUrl = `mailto:hi@rafaelschwart.com?subject=${subject}&body=${body}`
 
     // Try to open via a temporary anchor (more reliable on mobile and inside iframes)
     const a = document.createElement('a')
@@ -39,7 +39,7 @@ export const ContactSection = () => {
 
     toast({
       title: "Opening email client...",
-      description: "If nothing happens, email me at rrgschwart@hotmail.com.",
+      description: "If nothing happens, email me at hi@rafaelschwart.com.",
     })
     setFormData({ name: '', email: '', message: '' })
   }
@@ -67,7 +67,7 @@ export const ContactSection = () => {
     {
       name: "Email",
       icon: Mail,
-      href: "mailto:rrgschwart@hotmail.com",
+      href: "mailto:hi@rafaelschwart.com",
       description: "Send me an email directly"
     }
   ]

@@ -25,7 +25,7 @@ export function Footer() {
             rel="noopener"
             className="text-sm text-charcoal underline decoration-[hsl(var(--foreground)/0.3)] underline-offset-[3px] hover:opacity-70"
           >
-            Résumé
+            Resume
           </a>
         </nav>
       </div>
