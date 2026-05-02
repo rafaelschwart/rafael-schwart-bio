@@ -23,95 +23,106 @@ export const Sidebar = ({ activeSection, onSectionChange }: SidebarProps) => {
   return (
     <aside className="hidden md:block fixed left-0 top-0 h-screen w-80 bg-sidebar border-r border-sidebar-border overflow-y-auto">
       <div className="flex flex-col h-full">
-        <div className="flex-1 p-8 pb-20">
-          {/* Profile Photo */}
-          <div className="mb-8 flex justify-center">
-            <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-sidebar-border">
-              <img 
+        <div className="flex-1 px-8 pt-10 pb-20">
+          {/* Wordmark — microhub-style monoline brand lockup */}
+          <div className="mb-10">
+            <div className="flex items-baseline gap-2">
+              <span className="text-base font-medium tracking-tight text-sidebar-foreground">Rafael Schwart</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
+            </div>
+            <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground mt-2">
+              Operations · NPI · Process
+            </p>
+          </div>
+
+          {/* Profile Photo — full color, soft rounded rectangle (microhub uses big editorial photography) */}
+          <div className="mb-8">
+            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-sidebar-border">
+              <img
                 src="/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png"
                 alt="Rafael Schwart Professional Headshot"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover"
                 onError={(e) => {
-                  // Fallback to generated headshot if upload fails
                   e.currentTarget.src = rafaelHeadshot;
-                  e.currentTarget.classList.remove('grayscale');
                 }}
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
             </div>
           </div>
 
-          {/* Header */}
-          <div className="mb-8 text-center">
-            <h1 className="text-xl font-bold text-sidebar-foreground mb-3">Rafael Schwart</h1>
+          {/* Hero copy — light-weight headline with the microhub period */}
+          <div className="mb-8">
+            <h1 className="display-headline text-3xl text-sidebar-foreground leading-[1.05] mb-3">
+              Senior Operations <br />Program Manager.
+            </h1>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              PMP-certified Process Engineer building products in Miami, FL —
+              from AR optics to mission-critical communications.
+            </p>
+          </div>
+
+          {/* Primary CTAs — pill-shaped, monochrome */}
+          <div className="mb-10 space-y-2.5">
             <Button
               onClick={() => window.open('https://www.linkedin.com/in/rafaelschwart/', '_blank')}
-              variant="outline"
-              size="sm"
-              className="mb-4 bg-[#0077B5] hover:bg-[#005885] text-white border-[#0077B5] hover:border-[#005885]"
+              className="w-full justify-center h-11"
             >
               <Linkedin className="h-4 w-4 mr-2" />
               Connect on LinkedIn
             </Button>
-            <p className="text-sidebar-foreground/80 text-sm mb-3">PMP | Six Sigma Green Belt</p>
-            <p className="text-sidebar-foreground/80 text-sm">Senior Operations Program Manager</p>
-          </div>
-
-          {/* Resume Download Buttons */}
-          <div className="mb-12 text-center space-y-3">
             <Button
               onClick={() => window.open('https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link', '_blank')}
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-10"
+              variant="outline"
+              className="w-full justify-center h-11"
             >
               <Download className="h-4 w-4 mr-2" />
               Download Resume
             </Button>
             <Button
               onClick={generatePortfolioPDF}
-              variant="outline"
-              className="w-full h-10"
+              variant="ghost"
+              className="w-full justify-center h-11 text-muted-foreground hover:text-foreground"
             >
               <FileDown className="h-4 w-4 mr-2" />
               Download Portfolio
             </Button>
           </div>
 
-          {/* Personal Info */}
-          <div className="mb-12 text-sidebar-foreground/70 text-sm space-y-2">
-            <p>Born in Caracas, Venezuela, January 1993.</p>
-            <p>Based in Miami, Florida.</p>
-            <ul className="space-y-1 text-xs">
-              <li>• Leveraging technical expertise for cutting-edge solutions</li>
-              <li>• Driving operational excellence through continuous improvement</li>
-              <li>• Passionate about innovation and process optimization</li>
-            </ul>
-          </div>
-
-          {/* Navigation */}
-          <nav className="space-y-2">
-            {navigationItems.map((item) => (
-              <Button
-                key={item.id}
-                variant="ghost"
-                onClick={() => onSectionChange(item.id)}
-                className={`
-                  w-full justify-start text-left h-12 px-4 rounded-sm font-normal
-                  ${activeSection === item.id 
-                    ? 'bg-sidebar-accent text-sidebar-accent-foreground' 
-                    : 'text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/50'
-                  }
-                `}
-              >
-                <item.icon className="h-4 w-4 mr-3" />
-                {item.label}
-              </Button>
-            ))}
+          {/* Section nav — typographic, hairline-rule indicator instead of filled pill */}
+          <nav className="space-y-px border-t border-sidebar-border pt-6">
+            <p className="eyebrow mb-3 px-3">Sections</p>
+            {navigationItems.map((item) => {
+              const isActive = activeSection === item.id
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => onSectionChange(item.id)}
+                  className={`group relative w-full flex items-center justify-between text-left h-11 px-3 rounded-lg transition-all duration-200
+                    ${isActive
+                      ? 'bg-foreground text-background'
+                      : 'text-foreground/70 hover:text-foreground hover:bg-secondary'
+                    }`}
+                >
+                  <span className="flex items-center gap-3 text-sm font-medium tracking-tight">
+                    <item.icon className="h-3.5 w-3.5 opacity-60" />
+                    {item.label}
+                  </span>
+                  <span className={`text-[10px] font-mono tracking-wider ${isActive ? 'opacity-80' : 'opacity-30 group-hover:opacity-60'}`}>
+                    /{item.id === 'about' ? '' : item.id}
+                  </span>
+                </button>
+              )
+            })}
           </nav>
         </div>
 
         {/* Footer */}
-        <div className="p-8 pt-4 mt-auto">
-          <p className="text-xs text-sidebar-foreground/40 text-center">
-            © 2025 Rafael Schwart. All rights reserved.
+        <div className="px-8 py-6 border-t border-sidebar-border mt-auto">
+          <p className="text-[11px] text-muted-foreground tracking-tight">
+            © 2025 Rafael Schwart
+          </p>
+          <p className="text-[10px] text-muted-foreground/70 tracking-tight mt-1">
+            Miami, FL · Born Caracas, VE · 1993
           </p>
         </div>
       </div>

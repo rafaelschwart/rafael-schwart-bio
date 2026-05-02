@@ -2,67 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/*
+ * Warm-earthy editorial design system.
+ * Cream parchment + charcoal + Fraunces serif display, alternating section
+ * surfaces (cream / peach / sage / ivory / clay / slate) carry the rhythm.
+ * Elevation is reserved for hover lift on cards. No decorative gradients.
+ *
+ * All shadcn-compatible tokens stay HSL so the existing primitives keep
+ * working; the named hex section surfaces are exposed via tailwind.config.
+ */
 
 @layer base {
   :root {
-    /* Enhanced professional theme with better contrast */
-    --background: 0 0% 14%;
-    --foreground: 0 0% 95%;
+    /* Background = cream parchment, foreground = warm charcoal */
+    --background: 43 33% 95%;            /* #f7f4ed cream */
+    --foreground: 40 8% 11%;             /* #1d1c19 warm charcoal */
 
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 95%;
+    --card: 45 38% 98%;                  /* #fcfbf8 offwhite */
+    --card-foreground: 40 8% 11%;
 
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 45 38% 98%;
+    --popover-foreground: 40 8% 11%;
 
-    --primary: 0 0% 95%;
-    --primary-foreground: 0 0% 6%;
+    --primary: 40 8% 11%;
+    --primary-foreground: 45 38% 98%;
 
-    --secondary: 0 0% 18%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 43 33% 95%;
+    --secondary-foreground: 40 8% 11%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 40 22% 92%;
+    --muted-foreground: 30 3% 37%;       /* #5f5e5c */
 
-    --accent: 0 0% 95%;
-    --accent-foreground: 0 0% 6%;
+    --accent: 40 8% 11%;
+    --accent-foreground: 45 38% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 95%;
+    --destructive: 8 56% 38%;
+    --destructive-foreground: 45 38% 98%;
 
-    --border: 0 0% 25%;
-    --input: 0 0% 18%;
-    --ring: 0 0% 95%;
+    --border: 40 22% 86%;                /* #e4dfd4 border-soft */
+    --input: 40 22% 86%;
+    --ring: 40 8% 11%;
 
     --radius: 0.75rem;
 
-    /* Enhanced gradients for better depth */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 14%) 0%, hsl(0 0% 18%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 6%) 0%, hsl(0 0% 10%) 100%);
+    /* Border ladder beyond shadcn's single token */
+    --border-soft: 40 22% 86%;           /* #e4dfd4 */
+    --border-medium: 38 22% 78%;         /* #d4ccbc */
+    --border-strong: 40 8% 11% / 0.4;
 
-    /* Enhanced shadows */
-    --shadow-soft: 0 2px 12px hsl(0 0% 0% / 0.4);
-    --shadow-medium: 0 4px 20px hsl(0 0% 0% / 0.5);
+    /* Charcoal tinted on warm transparencies, used for fills + text bodies */
+    --tint-3: 40 8% 11% / 0.03;
+    --tint-4: 40 8% 11% / 0.04;
+    --body-on-cream: 40 8% 11% / 0.82;
 
-    /* Animation variables */
-    --transition-smooth: all 0.2s ease-out;
-    --transition-hover: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Inset button shadow — the design's signature dark CTA */
+    --inset-btn:
+      hsl(0 0% 100% / 0.2) 0 0.5px 0 0 inset,
+      hsl(0 0% 0% / 0.2) 0 0 0 0.5px inset,
+      hsl(0 0% 0% / 0.05) 0 1px 2px 0;
 
-    /* Engineering schematic background */
-    --schematic-line: 0 0% 25%;
-    --schematic-accent: 0 0% 30%;
+    --shadow-soft: 0 1px 2px hsl(40 8% 11% / 0.04), 0 4px 16px hsl(40 8% 11% / 0.04);
+    --shadow-medium: 0 12px 28px -12px hsl(40 8% 11% / 0.18), 0 2px 6px -2px hsl(40 8% 11% / 0.08);
+    --shadow-strong: 0 24px 48px -12px hsl(40 8% 11% / 0.18);
 
-    --sidebar-background: 0 0% 10%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 0% 95%;
-    --sidebar-primary-foreground: 0 0% 10%;
-    --sidebar-accent: 0 0% 16%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 0 0% 22%;
-    --sidebar-ring: 0 0% 95%;
+    --transition-smooth: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-hover: transform 0.25s cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 0.25s ease, border-color 0.2s ease, background-color 0.2s ease;
+
+    /* Sidebar tokens kept for any legacy ui code that imports them */
+    --sidebar-background: 43 33% 95%;
+    --sidebar-foreground: 40 8% 11%;
+    --sidebar-primary: 40 8% 11%;
+    --sidebar-primary-foreground: 45 38% 98%;
+    --sidebar-accent: 40 22% 92%;
+    --sidebar-accent-foreground: 40 8% 11%;
+    --sidebar-border: 40 22% 86%;
+    --sidebar-ring: 40 8% 11%;
   }
 }
 
@@ -71,145 +85,149 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
-  /* Engineering schematic background pattern */
-  .schematic-background {
-    background-image: 
-      /* Main grid lines */
-      linear-gradient(hsl(var(--schematic-line) / 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--schematic-line) / 0.25) 1px, transparent 1px),
-      /* Accent grid lines every 5th line */
-      linear-gradient(hsl(var(--schematic-accent) / 0.4) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--schematic-accent) / 0.4) 1px, transparent 1px),
-      /* Blueprint dots at intersections */
-      radial-gradient(circle at 50px 50px, hsl(var(--schematic-line) / 0.35) 1.5px, transparent 1.5px);
-    background-size: 
-      20px 20px,
-      20px 20px,
-      100px 100px,
-      100px 100px,
-      100px 100px;
-    background-position: 
-      0 0,
-      0 0,
-      0 0,
-      0 0,
-      0 0;
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-weight: 600;
+    line-height: 1.05;
   }
 
-  /* Subtle animated circuit pattern overlay */
-  .schematic-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      /* Diagonal technical lines */
-      linear-gradient(45deg, transparent 47%, hsl(var(--schematic-line) / 0.15) 48%, hsl(var(--schematic-line) / 0.15) 52%, transparent 53%),
-      linear-gradient(-45deg, transparent 47%, hsl(var(--schematic-line) / 0.15) 48%, hsl(var(--schematic-line) / 0.15) 52%, transparent 53%),
-      /* Additional circuit-like patterns */
-      linear-gradient(0deg, transparent 48%, hsl(var(--schematic-accent) / 0.12) 49%, hsl(var(--schematic-accent) / 0.12) 51%, transparent 52%);
-    background-size: 150px 150px, 150px 150px, 300px 300px;
-    pointer-events: none;
-    opacity: 0.8;
+  /* Honor reduced-motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---- Display type ladder ---- */
+  .display-xl {
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(44px, 7vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+  .display-h2 {
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(36px, 5.4vw, 48px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+  }
+  .display-h3 {
+    font-family: 'Fraunces', ui-serif, Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 36px);
+    line-height: 1.1;
+    letter-spacing: -0.022em;
   }
 
-  /* Engineering Animation Utilities */
-  .engineering-hover {
+  .lead {
+    font-size: 18px;
+    line-height: 1.45;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: hsl(var(--muted-foreground));
+  }
+}
+
+@layer utilities {
+  /* ---- Card hover (used on every elevated card) ---- */
+  .card-hover {
     transition: var(--transition-hover);
-    position: relative;
   }
-
-  .engineering-hover:hover {
-    transform: translateY(-2px);
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: hsl(var(--foreground));
     box-shadow: var(--shadow-medium);
   }
 
-  .engineering-hover:hover::after {
-    content: '';
+  /* ---- Pill (chip-style metadata badge) ---- */
+  .meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border-radius: 9999px;
+    padding: 6px 14px;
+    font-size: 14px;
+    box-shadow: var(--inset-btn);
+    border: 0;
+  }
+
+  /* ---- Hero gradient wash (only decorative bg in the system) ---- */
+  .hero-wash {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 1px solid hsl(var(--schematic-accent) / 0.3);
-    border-radius: inherit;
+    inset: -10% -10% auto -10%;
+    height: 80%;
     pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(60% 50% at 20% 20%, hsl(20 100% 81% / 0.35), transparent 60%),
+      radial-gradient(50% 50% at 80% 10%, hsl(40 100% 77% / 0.30), transparent 60%),
+      radial-gradient(60% 50% at 70% 60%, hsl(220 60% 82% / 0.30), transparent 60%);
+    filter: blur(20px);
   }
 
-  .tech-badge-hover {
-    transition: var(--transition-hover);
-    cursor: pointer;
+  /* ---- Selection ---- */
+  ::selection {
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
 
-  .tech-badge-hover:hover {
-    transform: scale(1.05);
-    background: hsl(var(--schematic-accent) / 0.2);
-    border-color: hsl(var(--schematic-accent) / 0.4);
+  /* ---- Scrollbar ---- */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(40 22% 78%);
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--background));
   }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(40 8% 40%); }
 
-  .scan-line {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scan-line::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--schematic-accent)), transparent);
-    animation: scan 3s infinite;
-  }
-
-  @keyframes scan {
-    0% { left: -100%; }
-    100% { left: 100%; }
-  }
-
-  .pulse-dot {
-    position: relative;
-  }
-
-  .pulse-dot::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -8px;
-    width: 4px;
-    height: 4px;
-    background: hsl(var(--schematic-accent));
-    border-radius: 50%;
-    transform: translateY(-50%);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: translateY(-50%) scale(1); }
-    50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
-  }
-
+  /* ---- Page reveal animation (used by Hero and section heads) ---- */
   .fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
-
   @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .stagger-animation {
+    animation-delay: calc(var(--stagger-delay, 0) * 0.08s);
   }
 
-  .stagger-animation {
-    animation-delay: calc(var(--stagger-delay, 0) * 0.1s);
-  }
+  /* ---- Legacy aliases kept for any not-yet-refactored shadcn callers ---- */
+  .schematic-background { background-color: hsl(var(--background)); }
+  .engineering-hover { transition: var(--transition-hover); }
+  .engineering-hover:hover { transform: translateY(-3px); box-shadow: var(--shadow-medium); }
+  .scan-line { position: relative; }
+  .pulse-dot { position: relative; }
 }

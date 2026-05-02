@@ -255,8 +255,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const renderAbout = () => (
     <div className="space-y-8 fade-in-up">
-      <div className="scan-line">
-        <h2 className="text-3xl font-bold text-foreground mb-6">Professional Summary</h2>
+      <div>
+        <p className="eyebrow mb-4">About</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-8">Professional <br/>summary.</h2>
         <p className="text-muted-foreground leading-relaxed text-lg">
           Dynamic and results-driven Technical Project Manager and Process Engineer with over 10 years 
           of experience across Consumer Electronics, Augmented Reality, Medical Devices, Robotics, 
@@ -308,8 +309,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const renderExperience = () => (
     <div className="space-y-8 fade-in-up">
-      <div className="scan-line">
-        <h2 className="text-3xl font-bold text-foreground mb-6">Experience</h2>
+      <div>
+        <p className="eyebrow mb-4">Experience</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-8">Ten years across <br/>seven industries.</h2>
       </div>
       
       <div className="space-y-8">
@@ -361,7 +363,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src={experience.image} 
                   alt={`${experience.title} environment`}
-                  className="w-full h-72 object-contain rounded bg-black transition-transform duration-300 hover:scale-105"
+                  className="w-full h-72 object-contain rounded-2xl bg-secondary p-4 transition-transform duration-500 hover:scale-[1.02]"
                 />
               </div>
             </div>
@@ -373,8 +375,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const renderSkills = () => (
     <div className="space-y-8 fade-in-up">
-      <div className="scan-line">
-        <h2 className="text-3xl font-bold text-foreground mb-6">Skills</h2>
+      <div>
+        <p className="eyebrow mb-4">Skills</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-8">Built for <br/>cross-functional execution.</h2>
       </div>
       
       <div className="grid lg:grid-cols-3 gap-8">
@@ -400,8 +403,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const renderCertifications = () => (
     <div className="space-y-8 fade-in-up">
-      <div className="scan-line">
-        <h2 className="text-3xl font-bold text-foreground mb-6">Certifications</h2>
+      <div>
+        <p className="eyebrow mb-4">Certifications</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-8">Credentials <br/>that stand up.</h2>
       </div>
       
       <div className="grid lg:grid-cols-2 gap-6">
@@ -523,8 +527,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const renderProjects = () => (
     <div className="space-y-8 fade-in-up">
-      <div className="scan-line">
-        <h2 className="text-3xl font-bold text-foreground mb-6">Side Projects</h2>
+      <div>
+        <p className="eyebrow mb-4">Side projects</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-8">Building beyond <br/>the day job.</h2>
       </div>
       
       <div className="grid gap-8">
@@ -676,8 +681,9 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const renderEmploymentVerification = () => (
     <div className="space-y-8 fade-in-up">
-      <div className="scan-line">
-        <h2 className="text-3xl font-bold text-foreground mb-6">Employment Verification</h2>
+      <div>
+        <p className="eyebrow mb-4">Verification</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-8">Employment, <br/>verified.</h2>
       </div>
       
       <div className="grid gap-8">
@@ -915,7 +921,10 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
 
   const renderContact = () => (
     <div className="space-y-8">
-      <h2 className="text-3xl font-bold text-foreground mb-6">Contact</h2>
+      <div>
+        <p className="eyebrow mb-4">Contact</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-8">Let's talk.</h2>
+      </div>
       
       <div className="grid lg:grid-cols-2 gap-8">
         <div className="space-y-6">
@@ -1043,7 +1052,7 @@ export const MainContent = ({ activeSection }: MainContentProps) => {
                 <img 
                   src="/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png"
                   alt="Rafael Schwart Professional Headshot"
-                  className="w-full h-full object-cover grayscale"
+                  className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.src = rafaelHeadshot;
                     e.currentTarget.classList.remove('grayscale');

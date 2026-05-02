@@ -83,10 +83,11 @@ export const RecommendationsSection = () => {
 
   return (
     <div className="space-y-8 fade-in-up">
-      <div className="scan-line">
-        <h2 className="text-3xl font-bold text-foreground mb-6">Recommendations</h2>
-        <p className="text-muted-foreground text-lg mb-8">
-          Professional references and testimonials from colleagues and leaders I've worked with.
+      <div>
+        <p className="eyebrow mb-4">Recommendations</p>
+        <h2 className="display-headline text-5xl md:text-6xl text-foreground mb-6">In their <br/>own words.</h2>
+        <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed mb-8">
+          References and testimonials from colleagues and leaders I've worked with.
         </p>
       </div>
 

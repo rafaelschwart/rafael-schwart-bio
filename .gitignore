@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code local settings
+.claude/
+
+# Local secrets — Pinecone, etc.
+.env
+.env.*
+!.env.example
