@@ -156,7 +156,7 @@ export type SideProject = {
 export const projects: SideProject[] = [
   {
     name: "Arqentia",
-    role: "Founder",
+    role: "Co-Founder",
     description:
       "US engineering firm that designs, builds, hosts, and operates custom operational software for B2B companies — custom dashboards, workflow automation, AI agents, and integrations with the tools you already use. Architect, not contractor.",
     url: "https://arqentia.com",

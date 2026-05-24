@@ -151,9 +151,9 @@ Dynamic and results-driven Technical Project Manager and Process Engineer with o
 
 ## Side Projects
 
-### Arqentia — Founder
+### Arqentia — Co-Founder
 - Website: https://arqentia.com
-- Founded Arqentia, a US engineering firm that designs, builds, hosts, and operates custom operational software for B2B companies. Delivered under engineering contract, not as a SaaS subscription.
+- Co-founded Arqentia, a US engineering firm that designs, builds, hosts, and operates custom operational software for B2B companies. Delivered under engineering contract, not as a SaaS subscription.
 - Focus: custom operational dashboards, workflow automation, AI agents for business operations, systems integration with existing tools, enterprise software engineering, operational data infrastructure.
 - Positioning: "Architect, not contractor." Build, host, and keep it alive.
 
