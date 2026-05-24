@@ -59,12 +59,8 @@ rafael-schwart-bio/
 - **Host:** Vercel. Project URL: `rafael-schwart-bio.vercel.app`. Auto-deploys on push to `main`.
 - **Custom domain:** `rafaelschwart.com`, DNS managed at **IONOS**. Apex A record → `216.198.79.1` (Vercel). `www` also points to Vercel.
 - **Email:** Google Workspace MX records (`aspmx.l.google.com` etc.) — **never modify MX or email-related TXT/CNAME records** when changing DNS.
-- **vercel.json** at repo root has a host-aware rewrite chain:
-  - `bio.rafaelschwart.com/*` → `/bio/index.html` (the linktree-style page at `public/bio/index.html`)
-  - everything else → `/index.html` (the React SPA catch-all). Without the catch-all, deep-link routes 404 on Vercel because no static file matches.
-- **`bio.` subdomain setup:** the link-menu page lives at `public/bio/index.html` and is reachable as `rafaelschwart.com/bio` immediately. For the dedicated subdomain `bio.rafaelschwart.com`, two one-time manual steps are required (these can't be automated from this repo):
-  1. **Vercel dashboard → Project → Domains → Add** `bio.rafaelschwart.com`.
-  2. **IONOS DNS** → add a CNAME record: `bio` → `cname.vercel-dns.com.` (do not touch the apex A record, the `www` CNAME, or any MX/TXT records).
+- **vercel.json** at repo root has a catch-all SPA rewrite (`/(.*)` → `/index.html`). Without it, deep-link routes 404 on Vercel because no static file matches. Static files in `public/` (including `public/bio/index.html`) win over the rewrite via filesystem priority — that's how `/bio` serves the linktree page without needing a subdomain.
+- **Linktree page:** `public/bio/index.html` is a self-contained static page (no React) reachable at `rafaelschwart.com/bio`. Pure B&W aesthetic from the Claude Design `arqentia-v2` handoff (Space Grotesk + DM Sans + JetBrains Mono). If a subdomain is wanted later, restore the host-aware rewrite that was in commit `f372135` and add `bio.rafaelschwart.com` as a Vercel domain + IONOS CNAME.
 - **Previous host:** Lovable's built-in Publish (Cloudflare CDN at `185.158.133.1`). Still works as a fallback if DNS points back to it.
 
 ## Routing
