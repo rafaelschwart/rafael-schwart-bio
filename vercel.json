@@ -1,5 +1,10 @@
 {
   "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/bio/index.html",
+      "has": [{ "type": "host", "value": "bio.rafaelschwart.com" }]
+    },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
