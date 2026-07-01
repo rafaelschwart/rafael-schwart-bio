@@ -247,7 +247,15 @@
   [data-view-root="work"] [data-viewsection="work"],
   [data-view-root="credentials"] [data-viewsection="credentials"],
   [data-view-root="contact"] [data-viewsection="contact"] { display: block; }
+  /* Desktop keeps the selector + side panel; the accordion body hides. */
+  [data-exp-inline] { display: none; }
 }
+
+/* Experience accordion (mobile) — caret + open animation */
+[data-exp-caret] { display: none; }
+[data-exp-caret] svg { transition: transform 0.25s var(--ease-eng); }
+[data-exp-list] > button[data-active="true"] [data-exp-caret] svg { transform: rotate(180deg); }
+[data-exp-inline] { animation: rsFade 0.38s cubic-bezier(0.42, 0, 0.58, 1); }
 @media (max-width: 860px) {
   [data-hero-grid] { grid-template-columns: 1fr !important; gap: 30px !important; }
   [data-hero-video] { opacity: 0.14 !important; }
@@ -258,25 +266,10 @@
   [data-feat-grid] { grid-template-columns: repeat(2, 1fr) !important; }
   [data-exp-grid] { grid-template-columns: minmax(0, 1fr) !important; }
   [data-creds-grid] { grid-template-columns: minmax(0, 1fr) !important; }
-  /* Company selector becomes a horizontal snap rail instead of a tall stack,
-     so the detail panel stays within one thumb-scroll of the heading. */
-  [data-exp-list] {
-    flex-direction: row !important;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-  }
-  [data-exp-list] > button {
-    flex: 0 0 auto;
-    width: auto !important;
-    min-width: 200px;
-    scroll-snap-align: start;
-    border-left: none !important;
-    border-right: 1px solid var(--rule);
-    border-top: 3px solid transparent !important;
-  }
-  [data-exp-list] > button[data-active="true"] {
-    border-top-color: var(--signal) !important;
-  }
+  /* Experience becomes an accordion: the detail opens inline under the
+     tapped company (see [data-exp-inline]); the desktop side panel hides. */
+  [data-exp-panel] { display: none; }
+  [data-exp-caret] { display: grid; place-items: center; }
   [data-refs-wrap] { grid-template-columns: 1fr !important; }
   [data-projects-grid] { grid-template-columns: 1fr !important; }
   [data-nav-links] { overflow-x: auto; }
@@ -285,9 +278,10 @@
 }
 @media (max-width: 560px) {
   [data-feat-grid] { grid-template-columns: 1fr 1fr !important; }
-  /* NPI pipeline wraps 2×2 so CONCEPT→VOLUME stays legible on small phones */
+  /* NPI pipeline wraps 2×2 so CONCEPT→VOLUME stays legible on small phones.
+     (!important: the stage wrappers carry inline flex:1) */
   [data-pipeline] { flex-wrap: wrap; row-gap: 10px; }
-  [data-pipeline] > div { flex: 1 1 45%; min-width: 0; }
+  [data-pipeline] > div { flex: 1 1 45% !important; min-width: 0; }
   /* Featured PMP card stacks: certificate image above the copy */
   [data-pmp-card] { grid-template-columns: minmax(0, 1fr) !important; }
   [data-pmp-card] > div:first-child { border-right: none !important; border-bottom: 1px solid var(--rule); }
