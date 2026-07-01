@@ -4,14 +4,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio website for Rafael Schwart at **https://rafaelschwart.com**. This file is the fast onboarding brief for any Claude session working in this repo.
 
+> **Design status (2026-07-01): the V2 "engineering ledger" rebuild is code-complete locally**
+> (all views, motion, routing, SEO files, docs — build + lint green), **not yet pushed/deployed.**
+> The old warm-earthy *editorial* look (cream + Fraunces serif) is fully retired; its components
+> were deleted. **Build to V2 only** — see **Design system** below. The canonical reference stays
+> `Rafael Schwart V2/Rafael Schwart.dc.html`. The V2 build was produced with the `frontend-design`,
+> `ui-ux-pro-max`, `power-design`, and `animejs` skills plus the Magic (21st.dev) MCP; keep using
+> them for new UI. Remove this note once the deploy to rafaelschwart.com is verified.
+
 ## Who / why
-- Owner: Rafael Schwart — Senior Operations Program Manager (NPI) at Motorola Solutions, Miami, FL.
-- Contact email: Hi@rafaelschwart.com (Google Workspace — MX records are separate from web hosting, never touch them).
-- GitHub: https://github.com/rafaelschwart/rafael-schwart-bio (renamed from `rrgschwart-pixel` in April 2026; old URLs redirect).
+- Owner: Rafael Schwart — Senior Operations Program Manager (NPI) at Motorola Solutions, Miami, FL. Public positioning: *"I take hardware from first build to volume production."*
+- Contact email: Hi@rafaelschwart.com (Google Workspace — MX records are separate from web hosting, **never touch them**).
+- GitHub: https://github.com/rafaelschwart/rafael-schwart-bio (renamed from `rrgschwart-pixel`; old URLs redirect).
 
 ## Stack
 
 - **Vite 5** + **React 18** + **TypeScript** + **Tailwind** + **shadcn/ui** (heavy Radix)
+- **anime.js 3** (`animejs`) — the engineered draw/snap/settle motion layer for V2
 - **Capacitor 7** mobile wrappers in deps — irrelevant for the web site, ignore
 - **react-router-dom** for client-side routing
 - Generated and edited via **Lovable** (lovable.dev). Lovable auto-commits its changes to `main`.
@@ -26,143 +35,176 @@ npm run lint          # eslint over the repo — there is no test suite
 npm run preview       # serve the built dist/ locally
 ```
 
-There is no test runner configured — `lint` + `build` is the full pre-push check. Imports use the `@/` alias → `src/` (configured in `vite.config.ts`); prefer it over relative paths.
+No test runner — `lint` + `build` is the full pre-push check. Imports use the `@/` alias → `src/` (in `vite.config.ts`); prefer it over relative paths. Project lives at `C:\dev\rafael schwart website` on the owner's machine — deliberately **outside OneDrive**. Node 24.15 via winget.
 
-Project lives at `C:\dev\rafael-schwart-bio` on the owner's machine — deliberately **outside OneDrive** to avoid sync issues with `node_modules` / `.git`. Node 24.15 installed via winget.
+## Design system — V2 "engineering ledger"  (rs · v02 · 26.07)
 
-## Repo layout
+The canonical design reference is **`Rafael Schwart V2/Rafael Schwart.dc.html`** (a Design Compose
+export — a self-contained React-like component with the full markup, motion, and content). The
+`v1 (growmodo-structure)` and `v2 (motion-library)` files in that folder are **earlier explorations**;
+the unversioned file is the final website. Tokens live in `src/index.css` + `tailwind.config.ts` and
+are documented in **`DESIGN.md`**.
 
+**Aesthetic:** warm **paper** canvas, charcoal **ink**, one **blue signal** as the single live wire (orange until 2026-07-01, switched at the owner's request),
+a **blue beacon** reserved for verified/status moments. Sharp corners (≤3px radius), 1px hairline
+rules, corner ticks framing cards, a faint **square technical grid** ("bench grid") on stat/contact
+canvases, and grayscale video loops behind the hero and contact. Surfaces alternate
+`paper → paper-soft → ink` to carry the section rhythm. It should read like a precision instrument /
+an engineer's bench ledger — declarative, measured, never hype.
+
+**Tokens (see `src/index.css`):**
 ```
-rafael-schwart-bio/
-├── .claude/agents/           # Subagents (gitignored — see Agents section)
-├── profile/                  # Generated bio artifact
-│   └── Rafael_Schwart_Profile.pdf
-├── public/                   # Static — llms.txt, sitemap.xml, robots.txt, headshot
-├── scripts/                  # Out-of-band Python tooling (see Python scripts)
-├── src/                      # Lovable-managed React app
-│   └── components/landing/   # The post-2026-05-01 single-page surface (data.ts is bio source of truth)
-├── vercel.json               # SPA rewrite for deep links
-├── CLAUDE.md                 # This file (onboarding brief)
-├── PRODUCT.md                # Brand brief for the impeccable skill (users, voice, anti-references)
-├── DESIGN.md                 # Design tokens / palette / typography / motion (mirrors src/index.css + tailwind.config.ts)
-├── README.md                 # Stale Lovable template — ignore in favor of CLAUDE.md
-├── .env / .env.example       # PINECONE_API_KEY only (.env is gitignored)
-└── package.json + Vite/TS configs
+--paper #f5f3ec   --paper-soft #faf8f2   --paper-2 #edeae0   --paper-3 #e2dfd5
+--ink #0a0a0a     --ink-2 #181818        --ink-3 #353535     --mute #57534b   --fade #8e8e8e
+--signal #3664ff (blue · CTAs, active nodes)     --signal-deep #2348d4
+--beacon #3664ff (blue · verified/status only)   --grow #269926 (green · sparing)
+--rule rgba(24,24,24,.1)   --rule-strong rgba(24,24,24,.22)   --white #fff
 ```
+Tailwind exposes these as `bg-paper`, `text-ink`, `text-signal`, `border-signal`, `text-beacon`, etc.
+The shadcn/ui HSL tokens are **re-mapped onto this palette** so Radix primitives keep rendering right.
 
-`.claude/`, `.env`, `*.log`, `node_modules`, `dist` are all gitignored.
+**Typography:** **Satoshi** (display + body, weights 400/500/700/900 via Fontshare) + **IBM Plex Mono**
+(technical voice — labels, version stamps, `/ code-comment` dividers, metrics) via Google Fonts. Display
+uses weight **500** with tight negative tracking (~−0.025em). Mono labels are uppercase, `0.12em`
+tracking. Body reads 16px. Use `.mono-label`, `.display-xl/h2/h3` from `index.css`.
 
-**Personal Obsidian content lives outside this repo** at `C:/dev/Obsidian Vault/wiki/Biography/` (master vault). The project has no embedded vault. Any bio-related notes belong in the master vault under the `Biography` topic — see the **Personal Obsidian vault** section below.
+**Motion — engineered, never bouncy.** draw / snap / settle. Elements reveal on scroll (fade + 18px
+rise, 0.6s `cubic-bezier(.2,0,0,1)`), signals travel paths, counters tick up, nodes pulse. Easing is
+`cubic-bezier(.42,0,.58,1)` (`ease-eng`). Press = scale 0.97. **No spring overshoot, no bounce, no
+confetti.** Motion is implemented with **anime.js** (reveal controller + staggered counters/draws) and
+CSS keyframes (`rsPulse`, `rsRamp`, `rsSpin`, `rsGridDrift`, `rsDrawPulse`…) defined in `index.css` /
+`tailwind.config.ts`. Always honor `prefers-reduced-motion` (already globally short-circuited in
+`index.css`). Concentrate motion on high-impact moments; animate only `transform`/`opacity`.
+
+**Styling approach:** the V2 components port the source's precise inline styles referencing
+`var(--token)` (exact `clamp()` sizes, hairline borders, corner ticks) for fidelity, with Tailwind for
+layout scaffolding. This is deliberate — don't "Tailwind-ify" the intricate details away.
+
+**NOT the website — Rafael's video identity:** the `Rafael Schwart - Brand Manual.pdf` and
+`Motion Graphics Manual.pdf` in `Rafael Schwart V2/uploads/` describe a **black-&-white + signal-blue**
+"instrument" system with JetBrains Mono. That is the **short-form video / `@rafa_flows` brand** (a
+60-clip motion kit for on-camera content), **not** the website. Don't apply the B&W video palette to the
+site; the site is the warm ledger above. (They share the draw/snap/settle motion language and the
+`rs` mono voice.)
+
+**Anti-slop guardrails:** no generic Inter/Roboto body, no purple-on-white, no evenly-timid pastel
+palette, no cookie-cutter SaaS-cream hero, no Apple-clone, no sidebar nav. Dominant warm surface +
+one sharp accent, distinctive type, restraint. See `PRODUCT.md` for voice + anti-references.
+
+## Routing — view-tabbed SPA
+
+The V2 site is a **view-tabbed SPA on desktop** and a **scroll-stacked page on mobile** (breakpoint
+`860px`). `App.tsx` declares `/` and `/:section`; `Index.tsx` reads the param via `useParams`,
+validates against `VALID_SECTIONS`, and passes it to `Landing`. On desktop the nav swaps the active
+**view** and scrolls to top; on mobile it smooth-scrolls to the matching section. Per-section URLs stay
+crawlable for AI agents and shareable.
+
+Valid section slugs (must match a `data-viewsection` / section `id` in the landing):
+```
+home  method  experience  work  credentials  contact
+```
+`home` also answers at `/`. (This replaces the old `about/skills/certifications/projects/
+recommendations/employment-verification` slugs — the V2 information architecture consolidates skills +
+certs + references + employment verification into `method` and `credentials`.)
+
+When adding / renaming a section:
+1. Add/adjust the view block in `src/components/landing/` and render it in `Landing.tsx`
+2. Mirror its slug into `VALID_SECTIONS` in `src/pages/Index.tsx`
+3. Add a nav entry in `src/components/landing/data.ts` → nav/view list
+4. Update `public/sitemap.xml`
+5. Mirror the content to `public/llms.txt`
+
+Bio copy lives in **`src/components/landing/data.ts`** (single source of truth for the React app).
+Keep it in sync with `public/llms.txt`. Legacy per-section components from the editorial era
+(`About.tsx`, `Skills.tsx`, `Recommendations.tsx`, `MainContent.tsx`, `Sidebar.tsx`, etc.) are being
+replaced by the V2 view components; if Lovable regenerates stale ones, fold real content deltas into
+`landing/data.ts` and ignore the rest.
 
 ## Deployment
 
 - **Host:** Vercel. Project URL: `rafael-schwart-bio.vercel.app`. Auto-deploys on push to `main`.
-- **Custom domain:** `rafaelschwart.com`, DNS managed at **IONOS**. Apex A record → `216.198.79.1` (Vercel). `www` also points to Vercel.
-- **Email:** Google Workspace MX records (`aspmx.l.google.com` etc.) — **never modify MX or email-related TXT/CNAME records** when changing DNS.
-- **vercel.json** at repo root has a catch-all SPA rewrite (`/(.*)` → `/index.html`). Without it, deep-link routes 404 on Vercel because no static file matches. Static files in `public/` (including `public/bio/index.html`) win over the rewrite via filesystem priority — that's how `/bio` serves the linktree page without needing a subdomain.
-- **Linktree page:** `public/bio/index.html` is a self-contained static page (no React) reachable at `rafaelschwart.com/bio`. Pure B&W aesthetic from the Claude Design `arqentia-v2` handoff (Space Grotesk + DM Sans + JetBrains Mono). If a subdomain is wanted later, restore the host-aware rewrite that was in commit `f372135` and add `bio.rafaelschwart.com` as a Vercel domain + IONOS CNAME.
-- **Previous host:** Lovable's built-in Publish (Cloudflare CDN at `185.158.133.1`). Still works as a fallback if DNS points back to it.
-
-## Routing
-
-Single-page scroll layout, URL-driven anchor scroll. `App.tsx` declares `/` and `/:section`; `Index.tsx` reads the param via `useParams`, validates against `VALID_SECTIONS`, and passes it to `Landing`. `Landing.tsx`'s effect calls `scrollIntoView()` on the section whose `id` matches the URL slug — so `rafaelschwart.com/experience` deep-links to the `#experience` section, AI agents still get crawlable per-section URLs, and humans see the alternating-color rhythm. The `TopNav` anchor links call `useNavigate` so the URL updates as you click through.
-
-Valid section slugs (must match a section `id` in `Landing.tsx`):
-```
-about  experience  skills  certifications  projects
-recommendations  employment-verification  contact
-```
-
-When adding a new section:
-1. Add a `Landing*` component under `src/components/landing/` and render it inside `Landing.tsx`
-2. Mirror its `id` into `VALID_SECTIONS` in `src/pages/Index.tsx`
-3. Add a nav entry in `src/components/landing/data.ts` → `navLinks`
-4. Append a `<url>` entry to `public/sitemap.xml`
-5. Mirror the content to `public/llms.txt`
-
-Bio copy lives in `src/components/landing/data.ts` (single source of truth for the React app). Keep it in sync with `public/llms.txt`. The legacy `src/components/MainContent.tsx`, `Sidebar.tsx`, `Navigation.tsx`, and per-section files (`AboutSection.tsx`, `HeroSection.tsx`, `ContactSection.tsx`, `ExperienceSection.tsx`, `RecommendationsSection.tsx`) are **orphaned** as of the 2026-05-01 design migration — Vite tree-shakes them out of the bundle but they still live in the tree because Lovable expects them. If Lovable regenerates them with new content, fold the deltas into `landing/data.ts` and ignore the rest.
+- **Custom domain:** `rafaelschwart.com`, DNS at **IONOS**. Apex A → `216.198.79.1` (Vercel); `www` → Vercel.
+- **Email:** Google Workspace MX (`aspmx.l.google.com` etc.) — **never modify MX or email-related TXT/CNAME** when changing DNS.
+- **vercel.json** has a catch-all SPA rewrite (`/(.*)` → `/index.html`) so deep-link routes don't 404. Static files in `public/` (incl. `public/bio/index.html`) win over the rewrite via filesystem priority — that's how `/bio` serves the linktree page.
+- **V2 media:** the hero + contact video loops, poster frames, and headshot live in `public/assets/` (`hero-loop.mp4`, `hero-loop-poster.jpg`, `contact-loop.mp4`, `contact-loop-poster.jpg`, `headshot.jpg`), copied from `Rafael Schwart V2/assets/`. Referenced as `/assets/…`.
+- **Linktree page:** `public/bio/index.html` — self-contained static page at `rafaelschwart.com/bio` (B&W Space Grotesk aesthetic, independent of the React app).
+- **Previous host:** Lovable Publish (Cloudflare CDN `185.158.133.1`) still works as a fallback.
 
 ## AI-agent / SEO files (live at the site root)
 
-- **`public/llms.txt`** — full bio as markdown per llmstxt.org convention. AI agents fetch this for a JS-free structured summary. **Keep in sync with `src/components/landing/data.ts`** whenever you change bio facts.
-- **`public/sitemap.xml`** — lists all 9 URLs.
-- **`public/robots.txt`** — explicitly allows `GPTBot`, `ClaudeBot`, `PerplexityBot`, plus standard crawlers. Points to sitemap.
+- **`public/llms.txt`** — full bio as markdown (llmstxt.org). **Keep in sync with `landing/data.ts`.**
+- **`public/sitemap.xml`** — lists the section URLs.
+- **`public/robots.txt`** — allows `GPTBot`, `ClaudeBot`, `PerplexityBot` + standard crawlers; points to sitemap.
 
 ### `index.html` `<head>` + noscript fallback (canonical values)
 
-Every section URL serves the same `index.html` (SPA rewrite), so this file **is** the crawler/social-preview content for the entire site. The head and noscript body were scrubbed of Lovable template defaults on 2026-04-24. If Lovable regenerates `index.html`, re-apply:
+Every section URL serves the same `index.html` (SPA rewrite), so it **is** the crawler/social content
+for the whole site. If Lovable regenerates `index.html`, re-apply:
 
 - **`<title>` / `og:title`:** `Rafael Schwart — Senior Operations Program Manager (NPI), Motorola Solutions`
-- **`<meta name="description">` / `og:description`:** PMP-certified Senior Operations Program Manager (NPI) at Motorola Solutions — process engineer with 10+ years across consumer electronics, AR, medical devices, robotics, aerospace, solar.
-- **`og:image` / `twitter:image`:** `https://rafaelschwart.com/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png` (the professional headshot — referenced from `src/components/landing/data.ts` as `HEADSHOT_SRC`).
-- **`twitter:site`:** **omit** — no X/Twitter handle on file. Do not restore `@lovable_dev`.
+- **`meta description` / `og:description`:** lead with *"I take hardware from first build to volume production."* + PMP-certified Senior Operations Program Manager (NPI), 10+ years across consumer electronics, AR, medical, robotics, aerospace, solar.
+- **`og:image` / `twitter:image`:** `https://rafaelschwart.com/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png`.
+- **`twitter:site`:** **omit** — no X handle on file. Do not restore `@lovable_dev`.
 - **`og:url`:** `https://rafaelschwart.com/`.
-- **Fonts:** Fraunces (display, variable weights 400/480/600) + Inter (body, 400/500/600) loaded from Google Fonts via the `<link>` in `index.html`. If Lovable swaps these for Manrope/Barlow (its old defaults), restore them — the design depends on Fraunces specifically.
-- **Noscript fallback contact email:** `hi@rafaelschwart.com`. This is the canonical public contact address as of 2026-05-02 (was previously `rrgschwart@hotmail.com` — do not restore). It matches the rendered Contact section in [src/components/landing/Contact.tsx](src/components/landing/Contact.tsx), `llms.txt`'s "preferred" field, and the PDF résumé generated by `scripts/build_profile_pdf.py`. `hi@rafaelschwart.com` is the Google Workspace address — its MX records (`aspmx.l.google.com` etc.) are managed at IONOS and must never be touched when changing DNS. **Never** restore `rafaelschwart@gmail.com` (Lovable invented that, not a real address).
+- **Fonts:** **Satoshi** (Fontshare `api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900`) + **IBM Plex Mono** (Google `family=IBM+Plex+Mono:wght@400;500;600`). If Lovable swaps these for Fraunces/Inter/Manrope, **restore Satoshi + IBM Plex Mono** — the V2 design depends on them.
+- **Noscript fallback contact email:** `hi@rafaelschwart.com` — the canonical public contact address. Matches the rendered Contact view, `llms.txt`'s "preferred" field, and the PDF résumé. It's the Google Workspace address; its MX records live at IONOS and must never be touched when changing DNS. **Never** restore `rrgschwart@hotmail.com` or `rafaelschwart@gmail.com` (invented by Lovable).
 
 ## Python scripts (`scripts/`)
 
 Out-of-band tooling that publishes Rafael's bio to non-web surfaces. Not part of the Vite build — run manually with system Python (Playwright + Pinecone SDK + pypdf required).
 
-- **`build_profile_pdf.py`** — uses Playwright Chromium to render `profile/Rafael_Schwart_Profile.pdf` from three sources: `public/llms.txt` (canonical bio), the master Obsidian vault at `C:/dev/Obsidian Vault/wiki/Biography/` (richer per-employer notes, recommenders, certs), and Claude memory files under `~/.claude/projects/c--dev-rafael-schwart-bio/memory/`. Re-run whenever bio facts change.
-- **`vectorize_profile_pdf.py`** — chunks that PDF (~220 words, section-aware) and upserts to Pinecone serverless index `rafaels-bio`, namespace **`Biography`**, using server-side `multilingual-e5-large` integrated embeddings (1024 dim, hosted by Pinecone — no local model). Reads `PINECONE_API_KEY` from `.env`. Chunk IDs are deterministic (`profile-chunk-NNN`), so re-runs are idempotent.
+- **`build_profile_pdf.py`** — Playwright Chromium renders `profile/Rafael_Schwart_Profile.pdf` from `public/llms.txt` (canonical bio), the master Obsidian vault at `C:/dev/Obsidian Vault/wiki/Biography/`, and Claude memory files. Re-run whenever bio facts change.
+- **`vectorize_profile_pdf.py`** — chunks that PDF and upserts to Pinecone serverless index `rafaels-bio`, namespace **`Biography`**, using server-side `multilingual-e5-large` embeddings. Reads `PINECONE_API_KEY` from `.env`. Chunk IDs deterministic → idempotent.
 
-Order of operations when bio facts change: edit `src/components/landing/data.ts` → mirror to `public/llms.txt` → run `build_profile_pdf.py` → run `vectorize_profile_pdf.py`. The `bio-sync` agent automates this whole chain (note: the agent's frontmatter still references `MainContent.tsx`; in practice the source of truth is now `landing/data.ts` — update the agent if you regenerate it).
+Order of operations when bio facts change: edit `src/components/landing/data.ts` → mirror to `public/llms.txt` → run `build_profile_pdf.py` → run `vectorize_profile_pdf.py`. The `bio-sync` agent automates this (its frontmatter still references `MainContent.tsx`; source of truth is now `landing/data.ts`).
 
-Current Pinecone state (verified 2026-04-30): index `rafaels-bio` is healthy, namespace `Biography` holds 8 chunks. Old `profile` namespace was deleted as part of the 2026-04-30 reorg. Re-vectorize **only** when bio content changes — not on folder/path refactors.
+Pinecone state (verified 2026-04-30): index `rafaels-bio` healthy, namespace `Biography` holds 8 chunks. Re-vectorize **only** when bio content changes.
 
 ## Agents (`.claude/agents/`)
 
-Project-scoped Claude Code subagents for the workflows that show up repeatedly. The `.claude/` folder is gitignored, so these live locally; copy them between machines manually if you want them in multiple places.
+Project-scoped subagents (`.claude/` is gitignored — copy between machines manually):
 
-- **`bio-sync`** — invoke after editing bio facts in `src/components/landing/data.ts` (the new source of truth, post-2026-05-01). Mirrors changes to `public/llms.txt`, rebuilds the PDF, re-vectorizes Pinecone.
-- **`section-scaffolder`** — invoke when adding a brand-new top-level section (publications, speaking, etc.). Edits all five required surfaces in lockstep so deep links and AI-agent crawls work from day one.
-- **`lovable-rescue`** — invoke when `git diff` shows Lovable has clobbered the canonical `index.html` head/noscript or the `/:section` routing. Restores from documented values without overwriting legitimate Lovable visual edits.
-- **`deploy-validator`** — invoke before pushing (build + lint + `vercel.json` sanity) and again ~60–90s after push (curl checks against both `rafael-schwart-bio.vercel.app` and `rafaelschwart.com`).
-
-Each agent file has its own scoped tool allowlist and step-by-step playbook — read the agent's frontmatter before invoking if you're unsure whether it fits the situation.
+- **`bio-sync`** — after editing bio facts in `landing/data.ts`: mirror to `llms.txt`, rebuild PDF, re-vectorize Pinecone.
+- **`section-scaffolder`** — adding a brand-new top-level section: edits all five surfaces in lockstep.
+- **`lovable-rescue`** — when `git diff` shows Lovable clobbered canonical `index.html` head/noscript, fonts, or the `/:section` routing. Restores from the documented values above (fonts = Satoshi + IBM Plex Mono now).
+- **`deploy-validator`** — before pushing (build + lint + `vercel.json` sanity) and ~60–90s after (curl checks against both hosts).
 
 ## Personal Obsidian vault (master, outside this repo)
 
-Rafael's mind map lives in his **master vault** at `C:/dev/Obsidian Vault/`. The bio content is consolidated under `wiki/Biography/` with these subfolders:
-
-- `Identity/` — RAFAEL hub, Professional Summary, Contact, Education, Resume
-- `Experience/` — 9 employer notes (Motorola Solutions, Magic Leap, Stryker, Gables Engineering, Robotray, TerraSmart, Piece-makers LLC, Prompt Aero Services, General MRO Aerospace)
-- `Certifications/` — PMP, Six Sigma Green Belt, Agile Foundations, B.S. Mechanical Engineering
-- `Skills/`, `Side projects/`, `Recommendations/`, `Infrastructure/`, `Site management/`
-
-`Site management/` holds the runbooks for *this* repo (Project map, Workflows, Agents, Bio sources of truth, Ops cheat-sheet). Consumed by `scripts/build_profile_pdf.py` as one of the PDF's source materials. Hub note is `RAFAEL.md` under `Identity/`. The vault is **not** part of this git repo — it's a separate Obsidian vault entirely.
+Rafael's mind map lives in his master vault at `C:/dev/Obsidian Vault/`, bio consolidated under
+`wiki/Biography/` (`Identity/`, `Experience/` — 9 employer notes, `Certifications/`, `Skills/`,
+`Side projects/`, `Recommendations/`, `Infrastructure/`, `Site management/`). `Site management/` holds
+runbooks for *this* repo and is consumed by `build_profile_pdf.py`. Hub note: `RAFAEL.md` under
+`Identity/`. The vault is **not** part of this git repo.
 
 ## What Lovable owns vs what survives
 
-Lovable rewrites files when the user edits via Lovable's UI. To avoid having your changes clobbered:
 - **Lovable-managed (risky to edit outside Lovable):** everything under `src/` — especially `App.tsx`, `src/pages/*`, `src/components/*`, `src/main.tsx`, `index.html`.
-- **Safe to edit here and Lovable won't touch:** `public/*`, `scripts/*`, `profile/*`, `obsidian/*`, `.claude/*`, `vercel.json`, `.github/workflows/*`, `vite.config.ts` (usually), `.env`/`.env.example`, `CLAUDE.md`.
+- **Safe to edit here:** `public/*`, `scripts/*`, `profile/*`, `.claude/*`, `vercel.json`, `.github/workflows/*`, `vite.config.ts` (usually), `.env`/`.env.example`, `CLAUDE.md`, `DESIGN.md`, `PRODUCT.md`.
 
-If Lovable overwrites the routing work in `App.tsx` or `Index.tsx`, re-apply the `/:section` route and `useParams` logic from the git history (commit `3d977bf`) — or invoke the `lovable-rescue` agent.
+If Lovable overwrites the routing in `App.tsx`/`Index.tsx`, re-apply the `/:section` route + `useParams` + `VALID_SECTIONS` logic — or invoke `lovable-rescue`.
 
-## Design system (`PRODUCT.md` + `DESIGN.md` at repo root)
+## Design docs (`PRODUCT.md` + `DESIGN.md` at repo root)
 
-- **`PRODUCT.md`** — brand brief consumed by the [impeccable](https://github.com/anthropics/skills/tree/main/skills/frontend/impeccable) skill. Captures who the site is for (recruiters, background-check vendors, AI agents, co-founders), Rafael's voice (declarative, em-dash-ok, no marketing hype), and anti-references (no SaaS-cream landing, no Apple-clone, no sidebar nav).
-- **`DESIGN.md`** — design tokens / palette / typography / motion / banned patterns. Mirrors `src/index.css` + `tailwind.config.ts`. The visual language is **warm-earthy editorial**: cream parchment + charcoal + Fraunces serif, alternating section surfaces (peach / sage / ivory / clay / slate). Distilled from the Lovable design language during the 2026-05-01 design migration.
-
-If you're using `/impeccable` or `/frontend-design`, read both before designing. If you change tokens in `src/index.css` or `tailwind.config.ts`, mirror the change into `DESIGN.md`. If brand strategy or anti-references shift, update `PRODUCT.md`.
+- **`PRODUCT.md`** — brand brief (users, Rafael's voice, anti-references) consumed by the `impeccable`/`frontend-design` skills. Updated for V2.
+- **`DESIGN.md`** — V2 tokens / palette / typography / motion / banned patterns. Mirrors `src/index.css` + `tailwind.config.ts`. If you change tokens, mirror the change into `DESIGN.md`.
 
 ## Git conventions
 
 - `main` is the only branch; both Lovable and humans push to it.
-- For commits from an unconfigured machine, use `git -c user.email="<handle>@users.noreply.github.com" -c user.name="<handle>"` per-command rather than setting global config.
-- Include `Co-Authored-By: Claude <noreply@anthropic.com>` trailer when Claude made the edits.
+- From an unconfigured machine: `git -c user.email="<handle>@users.noreply.github.com" -c user.name="<handle>"` per-command.
+- Include `Co-Authored-By: Claude <noreply@anthropic.com>` when Claude made the edits.
 - Don't `--amend` or rewrite Lovable's commits — they sync from Lovable's side.
 
 ## Sanity checks before pushing
 
 ```sh
 npm run build              # must succeed
+npm run lint               # keep clean
 ```
 
-After pushing, Vercel rebuild takes ~30–60s. Verify from any shell:
+After pushing, Vercel rebuild takes ~30–60s. Verify:
 ```sh
-curl -I https://rafael-schwart-bio.vercel.app/about           # expect 200
+curl -I https://rafael-schwart-bio.vercel.app/experience        # expect 200
 curl -sI https://rafael-schwart-bio.vercel.app/llms.txt | head -1   # expect 200
 ```

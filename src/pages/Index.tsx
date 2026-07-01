@@ -1,27 +1,15 @@
 import { useParams, Navigate } from "react-router-dom"
 import { Landing } from "@/components/landing/Landing"
-
-const VALID_SECTIONS = [
-  "about",
-  "experience",
-  "skills",
-  "certifications",
-  "projects",
-  "recommendations",
-  "employment-verification",
-  "contact",
-] as const
+import { VIEW_SECTIONS, type SectionId } from "@/components/landing/data"
 
 const Index = () => {
   const { section } = useParams<{ section?: string }>()
 
-  if (section && !VALID_SECTIONS.includes(section as typeof VALID_SECTIONS[number])) {
+  if (section && !VIEW_SECTIONS.includes(section as SectionId)) {
     return <Navigate to="/" replace />
   }
 
-  const activeSection = section ?? "about"
-
-  return <Landing activeSection={activeSection} />
+  return <Landing section={(section as SectionId) ?? "home"} />
 }
 
 export default Index

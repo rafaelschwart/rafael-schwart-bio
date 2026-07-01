@@ -1,123 +1,215 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { Menu, X } from "lucide-react"
-import { Btn } from "./atoms"
-import { navLinks, RESUME_URL } from "./data"
-import { cn } from "@/lib/utils"
+import { useEffect, useRef } from "react"
+import anime from "animejs"
+import { navItems, type SectionId } from "./data"
+import { ArrowRight } from "./atoms"
+import { prefersReducedMotion } from "./motion"
+
+type TopNavProps = {
+  view: SectionId
+  onNav: (id: SectionId) => void
+}
 
 /**
- * Sticky top nav. Anchor links update both URL (so deep-link routes stay
- * crawlable) and scroll position. Mobile collapses into a sheet drawer.
+ * Sticky category-tab nav. On desktop the tabs swap the active view; on
+ * mobile the same rail (horizontally scrollable) smooth-scrolls the stack.
+ * A single signal underline slides to the active tab (measure-and-slide
+ * pattern sourced via 21st.dev, driven by anime.js on the settle curve).
  */
-export function TopNav() {
-  const navigate = useNavigate()
-  const [open, setOpen] = useState(false)
+export function TopNav({ view, onNav }: TopNavProps) {
+  const railRef = useRef<HTMLDivElement>(null)
+  const indicatorRef = useRef<HTMLSpanElement>(null)
+  const placedOnce = useRef(false)
 
   useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false)
-    }
-    window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  }, [open])
+    const rail = railRef.current
+    const ind = indicatorRef.current
+    if (!rail || !ind) return
 
-  const handleAnchor = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault()
-    setOpen(false)
-    const target = document.getElementById(id)
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" })
-    navigate(id === "about" ? "/" : `/${id}`, { replace: false })
-  }
+    const place = (animate: boolean) => {
+      const activeBtn = rail.querySelector<HTMLButtonElement>('button[aria-current="page"]')
+      anime.remove(ind)
+      if (!activeBtn) {
+        // Contact view — no tab is active; the underline retracts.
+        ind.style.width = "0px"
+        return
+      }
+      const left = activeBtn.offsetLeft
+      const width = activeBtn.offsetWidth
+      if (!animate || prefersReducedMotion()) {
+        ind.style.left = `${left}px`
+        ind.style.width = `${width}px`
+      } else {
+        anime({
+          targets: ind,
+          left,
+          width,
+          duration: 350,
+          easing: "cubicBezier(0.2, 0, 0, 1)",
+        })
+      }
+      // Keep the active tab in view on the mobile scroll rail.
+      activeBtn.scrollIntoView({ block: "nearest", inline: "nearest" })
+    }
+
+    place(placedOnce.current)
+    placedOnce.current = true
+
+    const remeasure = () => place(false)
+    const ro = new ResizeObserver(remeasure)
+    ro.observe(rail)
+    window.addEventListener("resize", remeasure)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener("resize", remeasure)
+    }
+  }, [view])
 
   return (
-    <header className="sticky top-0 z-30 backdrop-blur-md backdrop-saturate-150 bg-cream/85 border-b border-border-soft">
-      <div className="mx-auto flex max-w-[1180px] items-center gap-8 px-6 md:px-8 py-3.5">
-        <a
-          href="#home"
-          onClick={(e) => handleAnchor(e, "home")}
-          className="font-display text-[18px] font-semibold tracking-[-0.02em] text-charcoal no-underline"
+    <nav
+      aria-label="Primary"
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 80,
+        background: "color-mix(in srgb, var(--paper) 90%, transparent)",
+        WebkitBackdropFilter: "blur(12px)",
+        backdropFilter: "blur(12px)",
+        borderBottom: "1px solid var(--rule)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 1320,
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+          padding: "13px clamp(20px, 5vw, 64px)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => onNav("home")}
+          aria-label="Rafael Schwart — home"
+          className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--signal)]"
+          style={{
+            appearance: "none",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: 11,
+            padding: 0,
+            color: "var(--ink)",
+          }}
         >
-          Rafael Schwart
-        </a>
-
-        <nav className="hidden lg:flex items-center gap-[22px] ml-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={(e) => handleAnchor(e, link.id)}
-              className="text-sm text-charcoal/85 hover:text-charcoal no-underline transition-opacity"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="ml-auto flex items-center gap-2.5">
-          <Btn
-            href={RESUME_URL}
-            target="_blank"
-            rel="noopener"
-            variant="ghost"
-            size="sm"
-            className="hidden sm:inline-flex"
+          <span
+            aria-hidden="true"
+            style={{
+              width: 30,
+              height: 30,
+              background: "var(--ink)",
+              color: "var(--paper)",
+              display: "grid",
+              placeItems: "center",
+              fontFamily: "var(--fdisp)",
+              fontWeight: 900,
+              fontSize: 15,
+              letterSpacing: "-.03em",
+            }}
           >
-            Resume
-          </Btn>
-          <Btn
-            href="#contact"
-            onClick={(e) => handleAnchor(e, "contact")}
-            variant="dark"
-            size="sm"
-            className="hidden sm:inline-flex"
+            R
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--fdisp)",
+              fontWeight: 700,
+              fontSize: 16,
+              letterSpacing: "-.02em",
+              whiteSpace: "nowrap",
+            }}
           >
-            Get in touch
-          </Btn>
+            Rafael Schwart
+          </span>
+        </button>
+
+        <div
+          ref={railRef}
+          className="rail"
+          data-nav-links
+          style={{ position: "relative", display: "flex", alignItems: "center", gap: 2, minWidth: 0 }}
+        >
+          <span
+            ref={indicatorRef}
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              width: 0,
+              height: 2,
+              background: "var(--signal)",
+              pointerEvents: "none",
+            }}
+          />
+          {navItems.map((n) => {
+            const active = view === n.id
+            return (
+              <button
+                key={n.id}
+                type="button"
+                onClick={() => onNav(n.id)}
+                aria-current={active ? "page" : undefined}
+                className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[var(--signal)]"
+                style={{
+                  appearance: "none",
+                  background: "none",
+                  cursor: "pointer",
+                  border: "none",
+                  color: active ? "var(--ink)" : "var(--mute)",
+                  fontFamily: "var(--fdisp)",
+                  fontWeight: active ? 700 : 500,
+                  fontSize: 14.5,
+                  padding: "9px 13px",
+                  whiteSpace: "nowrap",
+                  transition: "color .18s ease",
+                }}
+              >
+                {n.label}
+              </button>
+            )
+          })}
           <button
             type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="lg:hidden p-2 rounded-md border border-border-soft text-charcoal hover:bg-cream"
+            onClick={() => onNav("contact")}
+            aria-current={view === "contact" ? "page" : undefined}
+            className={`group press ${
+              view === "contact" ? "bg-[var(--signal)]" : "bg-[var(--ink)] hover:bg-[var(--signal)]"
+            } transition-colors duration-200 ease-eng focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--signal)]`}
+            style={{
+              appearance: "none",
+              cursor: "pointer",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 9,
+              color: view === "contact" ? "#ffffff" : "var(--paper)",
+              border: "none",
+              padding: "11px 18px",
+              borderRadius: 3,
+              fontFamily: "var(--fdisp)",
+              fontWeight: 700,
+              fontSize: 14,
+              marginLeft: 10,
+              whiteSpace: "nowrap",
+            }}
           >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            Get in touch
+            <ArrowRight />
           </button>
         </div>
       </div>
-
-      <div
-        className={cn(
-          "lg:hidden border-t border-border-soft overflow-hidden transition-[max-height] duration-300 ease-out",
-          open ? "max-h-[480px]" : "max-h-0",
-        )}
-      >
-        <nav className="px-6 py-4 flex flex-col gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.id}
-              href={link.href}
-              onClick={(e) => handleAnchor(e, link.id)}
-              className="py-2.5 text-base text-charcoal no-underline"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="flex gap-2 pt-3">
-            <Btn href={RESUME_URL} target="_blank" rel="noopener" variant="ghost" size="sm">
-              Resume
-            </Btn>
-            <Btn
-              href="#contact"
-              onClick={(e) => handleAnchor(e, "contact")}
-              variant="dark"
-              size="sm"
-            >
-              Get in touch
-            </Btn>
-          </div>
-        </nav>
-      </div>
-    </header>
+    </nav>
   )
 }

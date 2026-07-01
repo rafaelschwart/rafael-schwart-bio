@@ -3,80 +3,89 @@
 @tailwind utilities;
 
 /*
- * Warm-earthy editorial design system.
- * Cream parchment + charcoal + Fraunces serif display, alternating section
- * surfaces (cream / peach / sage / ivory / clay / slate) carry the rhythm.
- * Elevation is reserved for hover lift on cards. No decorative gradients.
+ * ============================================================================
+ * V2 — "Engineering ledger" design system  (rs · v02 · 26.07)
+ * ----------------------------------------------------------------------------
+ * Warm paper + charcoal ink + one orange signal, with a blue "beacon" reserved
+ * for live/verified moments. Satoshi (display) + IBM Plex Mono (technical
+ * labels, stamps, dividers). Surfaces alternate paper / paper-soft / ink to
+ * carry the rhythm; a faint square technical grid gives the page its bench feel.
+ * Motion is engineered — draw / snap / settle, never bouncy.
  *
- * All shadcn-compatible tokens stay HSL so the existing primitives keep
- * working; the named hex section surfaces are exposed via tailwind.config.
+ * Source of truth for tokens. Mirrored in DESIGN.md and tailwind.config.ts.
+ * The shadcn/ui HSL tokens below are re-mapped onto this palette so the Radix
+ * primitives keep rendering correctly; the raw --paper/--ink/--signal vars are
+ * what the landing components actually consume.
+ * ============================================================================
  */
 
 @layer base {
   :root {
-    /* Background = cream parchment, foreground = warm charcoal */
-    --background: 43 33% 95%;            /* #f7f4ed cream */
-    --foreground: 40 8% 11%;             /* #1d1c19 warm charcoal */
+    /* ---- shadcn/ui compatibility layer (HSL, mapped onto the ledger palette) ---- */
+    --background: 46 33% 94%;            /* paper #f5f3ec */
+    --foreground: 0 0% 4%;               /* ink #0a0a0a */
 
-    --card: 45 38% 98%;                  /* #fcfbf8 offwhite */
-    --card-foreground: 40 8% 11%;
+    --card: 40 30% 98%;                  /* paper-soft #faf8f2 */
+    --card-foreground: 0 0% 4%;
 
-    --popover: 45 38% 98%;
-    --popover-foreground: 40 8% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
 
-    --primary: 40 8% 11%;
-    --primary-foreground: 45 38% 98%;
+    --primary: 0 0% 4%;                  /* ink */
+    --primary-foreground: 46 33% 94%;    /* paper */
 
-    --secondary: 43 33% 95%;
-    --secondary-foreground: 40 8% 11%;
+    --secondary: 44 24% 90%;             /* paper-2 */
+    --secondary-foreground: 0 0% 4%;
 
-    --muted: 40 22% 92%;
-    --muted-foreground: 30 3% 37%;       /* #5f5e5c */
+    --muted: 44 24% 90%;
+    --muted-foreground: 36 8% 32%;       /* mute #57534b */
 
-    --accent: 40 8% 11%;
-    --accent-foreground: 45 38% 98%;
+    --accent: 226 100% 61%;              /* signal #3664ff */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 8 56% 38%;
-    --destructive-foreground: 45 38% 98%;
+    --destructive: 227 72% 48%;          /* signal-deep #2348d4 */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 40 22% 86%;                /* #e4dfd4 border-soft */
-    --input: 40 22% 86%;
-    --ring: 40 8% 11%;
+    --border: 40 10% 84%;                /* ≈ rule on paper */
+    --input: 40 10% 84%;
+    --ring: 226 100% 61%;                /* signal focus ring */
 
-    --radius: 0.75rem;
+    --radius: 3px;                       /* the ledger is sharp — 3px max */
 
-    /* Border ladder beyond shadcn's single token */
-    --border-soft: 40 22% 86%;           /* #e4dfd4 */
-    --border-medium: 38 22% 78%;         /* #d4ccbc */
-    --border-strong: 40 8% 11% / 0.4;
+    /* ---- V2 ledger tokens (raw values — consumed directly in components) ---- */
+    --paper: #f5f3ec;
+    --paper-soft: #faf8f2;
+    --paper-2: #edeae0;
+    --paper-3: #e2dfd5;
+    --ink: #0a0a0a;
+    --ink-2: #181818;
+    --ink-3: #353535;
+    --mute: #57534b;
+    --fade: #8e8e8e;
+    --signal: #3664ff;        /* blue — the one live wire (CTAs, active nodes) */
+    --signal-deep: #2348d4;
+    --beacon: #3664ff;        /* blue — verified / status / "on track" only */
+    --grow: #269926;          /* green — reserved, sparing */
+    --rule: rgba(24, 24, 24, 0.1);
+    --rule-strong: rgba(24, 24, 24, 0.22);
+    --white: #ffffff;
 
-    /* Charcoal tinted on warm transparencies, used for fills + text bodies */
-    --tint-3: 40 8% 11% / 0.03;
-    --tint-4: 40 8% 11% / 0.04;
-    --body-on-cream: 40 8% 11% / 0.82;
+    --fdisp: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --fmono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
 
-    /* Inset button shadow — the design's signature dark CTA */
-    --inset-btn:
-      hsl(0 0% 100% / 0.2) 0 0.5px 0 0 inset,
-      hsl(0 0% 0% / 0.2) 0 0 0 0.5px inset,
-      hsl(0 0% 0% / 0.05) 0 1px 2px 0;
+    /* Engineered easing — no spring overshoot */
+    --ease-eng: cubic-bezier(0.42, 0, 0.58, 1);
+    --ease-settle: cubic-bezier(0.2, 0, 0, 1);
 
-    --shadow-soft: 0 1px 2px hsl(40 8% 11% / 0.04), 0 4px 16px hsl(40 8% 11% / 0.04);
-    --shadow-medium: 0 12px 28px -12px hsl(40 8% 11% / 0.18), 0 2px 6px -2px hsl(40 8% 11% / 0.08);
-    --shadow-strong: 0 24px 48px -12px hsl(40 8% 11% / 0.18);
-
-    --transition-smooth: all 0.32s cubic-bezier(0.22, 1, 0.36, 1);
-    --transition-hover: transform 0.25s cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 0.25s ease, border-color 0.2s ease, background-color 0.2s ease;
-
-    /* Sidebar tokens kept for any legacy ui code that imports them */
-    --sidebar-background: 43 33% 95%;
-    --sidebar-foreground: 40 8% 11%;
-    --sidebar-primary: 40 8% 11%;
-    --sidebar-primary-foreground: 45 38% 98%;
-    --sidebar-accent: 40 22% 92%;
-    --sidebar-accent-foreground: 40 8% 11%;
-    --sidebar-border: 40 22% 86%;
-    --sidebar-ring: 40 8% 11%;
+    /* Sidebar tokens kept for any legacy shadcn code that imports them */
+    --sidebar-background: 46 33% 94%;
+    --sidebar-foreground: 0 0% 4%;
+    --sidebar-primary: 0 0% 4%;
+    --sidebar-primary-foreground: 46 33% 94%;
+    --sidebar-accent: 44 24% 90%;
+    --sidebar-accent-foreground: 0 0% 4%;
+    --sidebar-border: 40 10% 84%;
+    --sidebar-ring: 226 100% 61%;
   }
 }
 
@@ -94,140 +103,192 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--fdisp);
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Fraunces', ui-serif, Georgia, serif;
-    font-weight: 600;
+    font-family: var(--fdisp);
+    font-weight: 500;               /* display weight — 500, per the ledger */
     line-height: 1.05;
+    letter-spacing: -0.025em;
   }
 
-  /* Honor reduced-motion globally */
+  /* Tabular figures everywhere numbers matter (stats, metrics, dates) */
+  .tnum { font-variant-numeric: tabular-nums; font-feature-settings: 'tnum' 1; }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
-      animation-duration: 0.01ms !important;
+      animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
+      transition-duration: 0.001ms !important;
     }
   }
 }
 
 @layer components {
+  /* ---- Mono label — the brand's most recognizable typographic signal ---- */
+  .mono-label {
+    font-family: var(--fmono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mute);
+  }
+
   /* ---- Display type ladder ---- */
   .display-xl {
-    font-family: 'Fraunces', ui-serif, Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(44px, 7vw, 60px);
-    line-height: 1.05;
+    font-family: var(--fdisp);
+    font-weight: 500;
+    font-size: clamp(38px, 5.6vw, 78px);
+    line-height: 1.02;
     letter-spacing: -0.025em;
   }
   .display-h2 {
-    font-family: 'Fraunces', ui-serif, Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(36px, 5.4vw, 48px);
-    line-height: 1.0;
+    font-family: var(--fdisp);
+    font-weight: 500;
+    font-size: clamp(30px, 4.4vw, 54px);
+    line-height: 1.05;
     letter-spacing: -0.025em;
   }
   .display-h3 {
-    font-family: 'Fraunces', ui-serif, Georgia, serif;
-    font-weight: 600;
-    font-size: clamp(28px, 4vw, 36px);
-    line-height: 1.1;
-    letter-spacing: -0.022em;
-  }
-
-  .lead {
-    font-size: 18px;
-    line-height: 1.45;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .eyebrow {
-    font-size: 12px;
+    font-family: var(--fdisp);
     font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: hsl(var(--muted-foreground));
+    font-size: clamp(22px, 2.7vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
+
+  /* ---- Corner tick — the little bracket that frames ledger cards ---- */
+  .tick-tl, .tick-br { position: absolute; width: 10px; height: 10px; }
+  .tick-tl { top: 6px; left: 6px; border-top: 1.5px solid var(--ink-3); border-left: 1.5px solid var(--ink-3); }
+  .tick-br { bottom: 6px; right: 6px; border-bottom: 1.5px solid var(--ink-3); border-right: 1.5px solid var(--ink-3); }
 }
 
 @layer utilities {
-  /* ---- Card hover (used on every elevated card) ---- */
-  .card-hover {
-    transition: var(--transition-hover);
+  /* ---- Faint technical grid used on stat / contact canvases ---- */
+  .bench-grid {
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 88px 88px;
   }
-  .card-hover:hover {
-    transform: translateY(-3px);
-    border-color: hsl(var(--foreground));
-    box-shadow: var(--shadow-medium);
+  .bench-grid-drift { animation: rsGridDrift 70s linear infinite; }
+
+  /* ---- Reveal target: hidden until the reveal controller lifts it ---- */
+  .reveal { opacity: 0; transform: translateY(18px); }
+  .reveal-in {
+    opacity: 1; transform: none;
+    transition: opacity 0.6s var(--ease-settle), transform 0.6s var(--ease-settle);
   }
 
-  /* ---- Pill (chip-style metadata badge) ---- */
-  .meta-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: hsl(var(--background));
-    color: hsl(var(--foreground));
-    border-radius: 9999px;
-    padding: 6px 14px;
-    font-size: 14px;
-    box-shadow: var(--inset-btn);
-    border: 0;
-  }
-
-  /* ---- Hero gradient wash (only decorative bg in the system) ---- */
-  .hero-wash {
-    position: absolute;
-    inset: -10% -10% auto -10%;
-    height: 80%;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      radial-gradient(60% 50% at 20% 20%, hsl(20 100% 81% / 0.35), transparent 60%),
-      radial-gradient(50% 50% at 80% 10%, hsl(40 100% 77% / 0.30), transparent 60%),
-      radial-gradient(60% 50% at 70% 60%, hsl(220 60% 82% / 0.30), transparent 60%);
-    filter: blur(20px);
-  }
+  /* ---- Press feedback for tappable ledger cards / CTAs ---- */
+  .press { transition: transform 0.12s var(--ease-eng); }
+  .press:active { transform: scale(0.97); }
 
   /* ---- Selection ---- */
-  ::selection {
-    background: hsl(var(--foreground));
-    color: hsl(var(--background));
-  }
+  ::selection { background: var(--ink); color: var(--paper); }
 
-  /* ---- Scrollbar ---- */
+  /* ---- Thin bench scrollbars on horizontal rails ---- */
+  .rail::-webkit-scrollbar { height: 6px; }
+  .rail::-webkit-scrollbar-thumb { background: var(--rule-strong); border-radius: 3px; }
+
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(40 22% 78%);
-    border-radius: 9999px;
-    border: 2px solid hsl(var(--background));
-  }
-  ::-webkit-scrollbar-thumb:hover { background: hsl(40 8% 40%); }
+  ::-webkit-scrollbar-thumb { background: var(--paper-3); border: 2px solid var(--paper); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--mute); }
 
-  /* ---- Page reveal animation (used by Hero and section heads) ---- */
-  .fade-in-up {
-    animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  @keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .stagger-animation {
-    animation-delay: calc(var(--stagger-delay, 0) * 0.08s);
-  }
+  /* Legacy aliases kept for any not-yet-refactored shadcn callers */
+  .schematic-background { background-color: var(--paper); }
+}
 
-  /* ---- Legacy aliases kept for any not-yet-refactored shadcn callers ---- */
-  .schematic-background { background-color: hsl(var(--background)); }
-  .engineering-hover { transition: var(--transition-hover); }
-  .engineering-hover:hover { transform: translateY(-3px); box-shadow: var(--shadow-medium); }
-  .scan-line { position: relative; }
-  .pulse-dot { position: relative; }
+/* ============================================================================
+ * Engineered motion keyframes — ported from the V2 motion library.
+ * draw / snap / settle · cubic-bezier(.42,0,.58,1) · no bounce.
+ * ==========================================================================*/
+@keyframes rsFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes rsGridDrift { from { background-position: 0 0; } to { background-position: 88px 88px; } }
+@keyframes rsPulse {
+  0% { box-shadow: 0 0 0 0 rgba(54, 100, 255, 0.45); }
+  70% { box-shadow: 0 0 0 14px rgba(54, 100, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(54, 100, 255, 0); }
+}
+@keyframes rsRamp {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(54, 100, 255, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(54, 100, 255, 0); }
+}
+@keyframes rsSpin { to { transform: rotate(360deg); } }
+@keyframes rsWaveA {
+  0% { opacity: 0; transform: scale(0.35); }
+  30% { opacity: 0.75; }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+@keyframes rsDrawPulse { from { stroke-dashoffset: 82; } to { stroke-dashoffset: 0; } }
+@keyframes rsBlip { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+@keyframes rsBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes rsDash { to { stroke-dashoffset: -22; } }
+@keyframes rsCaret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* ============================================================================
+ * View-tabbed SPA plumbing + responsive overrides (ported from the V2 source).
+ * Desktop (>860px): only the active [data-viewsection] renders; the active
+ * view is carried on [data-view-root] at the landing root. Mobile (≤860px):
+ * every section stacks and the nav smooth-scrolls instead of swapping views.
+ * ==========================================================================*/
+@media (min-width: 861px) {
+  [data-viewsection] { display: none; }
+  [data-view-root="home"] [data-viewsection="home"],
+  [data-view-root="method"] [data-viewsection="method"],
+  [data-view-root="experience"] [data-viewsection="experience"],
+  [data-view-root="work"] [data-viewsection="work"],
+  [data-view-root="credentials"] [data-viewsection="credentials"],
+  [data-view-root="contact"] [data-viewsection="contact"] { display: block; }
+}
+@media (max-width: 860px) {
+  [data-hero-grid] { grid-template-columns: 1fr !important; gap: 30px !important; }
+  [data-hero-video] { opacity: 0.14 !important; }
+  [data-hero-scrim] { background: color-mix(in srgb, var(--paper) 80%, transparent) !important; }
+  [data-stats-grid] { grid-template-columns: repeat(2, 1fr) !important; }
+  [data-phase-track] { flex-direction: column !important; }
+  [data-phase-detail] { grid-template-columns: 1fr !important; gap: 26px !important; }
+  [data-feat-grid] { grid-template-columns: repeat(2, 1fr) !important; }
+  [data-exp-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-creds-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+  /* Company selector becomes a horizontal snap rail instead of a tall stack,
+     so the detail panel stays within one thumb-scroll of the heading. */
+  [data-exp-list] {
+    flex-direction: row !important;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+  [data-exp-list] > button {
+    flex: 0 0 auto;
+    width: auto !important;
+    min-width: 200px;
+    scroll-snap-align: start;
+    border-left: none !important;
+    border-right: 1px solid var(--rule);
+    border-top: 3px solid transparent !important;
+  }
+  [data-exp-list] > button[data-active="true"] {
+    border-top-color: var(--signal) !important;
+  }
+  [data-refs-wrap] { grid-template-columns: 1fr !important; }
+  [data-projects-grid] { grid-template-columns: 1fr !important; }
+  [data-nav-links] { overflow-x: auto; }
+  /* 44px+ touch targets for the scrollable tab rail */
+  [data-nav-links] > button { padding-top: 12px; padding-bottom: 12px; }
+}
+@media (max-width: 560px) {
+  [data-feat-grid] { grid-template-columns: 1fr 1fr !important; }
+  /* NPI pipeline wraps 2×2 so CONCEPT→VOLUME stays legible on small phones */
+  [data-pipeline] { flex-wrap: wrap; row-gap: 10px; }
+  [data-pipeline] > div { flex: 1 1 45%; min-width: 0; }
+  /* Featured PMP card stacks: certificate image above the copy */
+  [data-pmp-card] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-pmp-card] > div:first-child { border-right: none !important; border-bottom: 1px solid var(--rule); }
 }

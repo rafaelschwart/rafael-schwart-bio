@@ -30,3 +30,7 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# V2 design sources (Design Compose exports, brand-manual PDFs, raw uploads).
+# Local-only by choice: the site consumes copies in public/assets/.
+Rafael Schwart V2/

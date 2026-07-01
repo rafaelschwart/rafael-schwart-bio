@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -19,14 +20,15 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-				'display': ['Fraunces', 'ui-serif', 'Georgia', 'serif'],
-				'mono': ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+				'sans': ['Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				'display': ['Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				'mono': ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
 			},
 			letterSpacing: {
 				'microtight': '-0.04em',
 				'tightest': '-0.025em',
 				'tight-display': '-0.022em',
+				'label': '0.12em',
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -72,29 +74,33 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				/* Warm-earthy section surfaces — exact hex from the design package */
-				cream: '#f7f4ed',
-				charcoal: '#1d1c19',
-				offwhite: '#fcfbf8',
-				'border-soft': '#e4dfd4',
-				'border-medium': '#d4ccbc',
-				'surface-cream': '#f7f4ed',
-				'surface-peach': '#f4e9dc',
-				'surface-sage': '#e8ebe0',
-				'surface-ivory': '#fbf8f0',
-				'surface-clay': '#efe2d4',
-				'surface-slate': '#e6e6e0',
-				'surface-dark': '#1f1e1a',
-			},
-			boxShadow: {
-				'soft': 'var(--shadow-soft)',
-				'medium': 'var(--shadow-medium)',
-				'strong': 'var(--shadow-strong)',
-				'inset-btn': 'var(--inset-btn)',
+				/* V2 "engineering ledger" palette — raw hex, source in src/index.css */
+				paper: '#f5f3ec',
+				'paper-soft': '#faf8f2',
+				'paper-2': '#edeae0',
+				'paper-3': '#e2dfd5',
+				ink: '#0a0a0a',
+				'ink-2': '#181818',
+				'ink-3': '#353535',
+				mute: '#57534b',
+				fade: '#8e8e8e',
+				signal: '#3664ff',
+				'signal-deep': '#2348d4',
+				beacon: '#3664ff',
+				grow: '#269926',
+				/* Legacy aliases so any not-yet-refactored callers still resolve */
+				charcoal: '#0a0a0a',
+				'surface-cream': '#f5f3ec',
+				'surface-dark': '#0a0a0a',
 			},
 			transitionTimingFunction: {
 				'smooth': 'cubic-bezier(0.22, 1, 0.36, 1)',
 				'lift': 'cubic-bezier(0.2, 0.7, 0.3, 1)',
+				'eng': 'cubic-bezier(0.42, 0, 0.58, 1)',
+				'settle': 'cubic-bezier(0.2, 0, 0, 1)',
+			},
+			maxWidth: {
+				'ledger': '1320px',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -113,14 +119,34 @@ export default {
 				'fade-in-up': {
 					from: { opacity: '0', transform: 'translateY(16px)' },
 					to: { opacity: '1', transform: 'translateY(0)' }
-				}
+				},
+				'rs-fade': {
+					from: { opacity: '0', transform: 'translateY(8px)' },
+					to: { opacity: '1', transform: 'none' }
+				},
+				'rs-pulse': {
+					'0%': { boxShadow: '0 0 0 0 rgba(54,100,255,0.45)' },
+					'70%': { boxShadow: '0 0 0 14px rgba(54,100,255,0)' },
+					'100%': { boxShadow: '0 0 0 0 rgba(54,100,255,0)' }
+				},
+				'rs-ramp': {
+					'0%,100%': { boxShadow: '0 0 0 0 rgba(54,100,255,0.5)' },
+					'50%': { boxShadow: '0 0 0 6px rgba(54,100,255,0)' }
+				},
+				'rs-spin': { to: { transform: 'rotate(360deg)' } },
+				'rs-caret': { '0%,100%': { opacity: '1' }, '50%': { opacity: '0' } }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in-up': 'fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards'
+				'fade-in-up': 'fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+				'rs-fade': 'rs-fade 0.38s cubic-bezier(0.42,0,0.58,1)',
+				'rs-pulse': 'rs-pulse 3.2s ease-out infinite',
+				'rs-ramp': 'rs-ramp 2.4s ease-in-out infinite',
+				'rs-spin': 'rs-spin 5s linear infinite',
+				'rs-caret': 'rs-caret 1.1s step-end infinite'
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;
