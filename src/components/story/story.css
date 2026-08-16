@@ -1,0 +1,480 @@
+/*
+ * ============================================================================
+ * /story — the FULL SITE, built in the notebook design  (rs · v03-story · 26.08)
+ * ----------------------------------------------------------------------------
+ * This layers on top of `components/notebook/notebook.css`, which owns the
+ * design system: spiral binding, ruled paper, red/blue margin rule, ENTRY
+ * stamps, highlighter swipes, tape, sticker cards with hard offset shadows,
+ * handwritten margin notes, and the inverted night-mode spread.
+ *
+ * Everything below is additive — the pieces the original notebook page didn't
+ * need: taped photographic plates, a chronological spine, the fixed year rail,
+ * the scroll-linked word reveal, and the sticky entry index.
+ *
+ * Scoped under `.nb` (inherited) plus `.st-*` for the additions.
+ * ==========================================================================*/
+
+.st-root { --st-railw: 58px; }
+
+/* ---- Year rail, hung off the spiral binding ------------------------------ */
+
+.st-yearrail {
+  position: fixed;
+  left: var(--nb-rail);
+  top: 0;
+  bottom: 0;
+  width: 46px;
+  z-index: 39;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: none;
+}
+
+.st-year,
+.st-yearlabel {
+  font-family: var(--fmono);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.st-year {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.st-yearlabel {
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fade);
+}
+
+.st-track {
+  width: 2px;
+  height: 26vh;
+  background: var(--rule-strong);
+  position: relative;
+  overflow: hidden;
+}
+
+.st-fill {
+  position: absolute;
+  inset: 0 0 auto 0;
+  width: 2px;
+  height: 100%;
+  background: var(--signal);
+  transform-origin: top;
+}
+
+/* ---- Sticky entry index -------------------------------------------------- */
+
+.st-index {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.st-index button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--fmono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fade);
+  padding: 13px 7px;
+  white-space: nowrap;
+  transition: color 200ms var(--ease-eng);
+}
+.st-index button {
+  transform: translateY(0);
+  transition: color 0.2s var(--ease-eng), transform 0.2s var(--ease-eng);
+}
+.st-index button:hover { color: var(--ink); transform: translateY(-2px); }
+.st-index button[data-active="1"] { color: var(--signal); }
+
+@media (prefers-reduced-motion: reduce) {
+  .st-index button { transition: color 0.2s linear; }
+  .st-index button:hover { transform: none; }
+}
+
+/* Sliding hairline under the active entry */
+.st-navbar { position: relative; }
+
+.st-navind {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--signal);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, width;
+}
+
+/* ---- Narrative passage + word reveal ------------------------------------- */
+
+.st-passage {
+  font-family: var(--fdisp);
+  font-size: clamp(16.5px, 1.25vw, 18.5px);
+  line-height: 1.62;
+  max-width: 62ch;
+}
+
+.st-passage p + p { margin-top: 1.15em; }
+
+.st-word {
+  transition: color 380ms var(--ease-settle);
+  color: color-mix(in srgb, var(--ink) 24%, var(--paper));
+}
+.st-word[data-lit="1"] { color: var(--ink-2); }
+
+.nb-night .st-word { color: rgba(245, 243, 236, 0.24); }
+.nb-night .st-word[data-lit="1"] { color: rgba(245, 243, 236, 0.88); }
+
+/* ---- Taped photographic plate -------------------------------------------- */
+
+/* A photo pasted into the notebook: white border, tape, hard shadow, and a
+   handwritten-feeling mono caption underneath. */
+.st-plate {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--rule-strong);
+  box-shadow: 5px 5px 0 rgba(24, 24, 24, 0.13);
+  padding: 10px 10px 0;
+}
+
+.st-plate-inner {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.st-plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.18) contrast(1.03);
+  will-change: transform;
+}
+
+.st-curtain {
+  position: absolute;
+  inset: 0;
+  background: var(--paper-2);
+  z-index: 2;
+  will-change: transform;
+}
+
+.st-plate-cap {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--fmono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+  padding: 10px 2px 11px;
+}
+
+/* ---- Chronological spine ------------------------------------------------- */
+
+.st-era { position: relative; }
+
+.st-spine {
+  position: absolute;
+  left: calc(-1 * clamp(16px, 2.6vw, 36px));
+  top: 4px;
+  bottom: -1px;
+  width: 1px;
+  background: var(--rule-strong);
+}
+
+.st-spine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 9px;
+  height: 9px;
+  background: var(--signal);
+}
+
+/* ---- Big metric readout -------------------------------------------------- */
+
+.st-metric {
+  font-family: var(--fdisp);
+  font-weight: 700;
+  font-size: clamp(46px, 6.4vw, 86px);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--signal);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Section titles ------------------------------------------------------ */
+
+/* Deliberately larger than the landing's .display-h2 — on a long scrolling
+   page the entry titles are the primary wayfinding. */
+.st-h2 {
+  font-family: var(--fdisp);
+  font-weight: 500;
+  font-size: clamp(40px, 6.2vw, 86px);
+  line-height: 0.98;
+  letter-spacing: -0.032em;
+}
+
+.st-h3 {
+  font-family: var(--fdisp);
+  font-weight: 500;
+  font-size: clamp(30px, 4vw, 52px);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+}
+
+/* ---- Company dossier ----------------------------------------------------- */
+
+.st-role { position: relative; }
+
+.st-logoplate {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 250px;
+  height: 56px;
+  padding: 9px 12px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+/* Marks are already monochrome ink — hover just lifts them to full strength.
+   max-* sizing (not 100%/100%): raster marks have intrinsic dimensions, and
+   percentage heights resolve to auto inside the grid, overflowing the plate. */
+.st-logoplate img {
+  max-width: 100%;
+  max-height: 38px;
+  width: auto;
+  height: auto;
+  opacity: 0.82;
+  transition: opacity 0.28s var(--ease-eng);
+}
+
+.st-role:hover .st-logoplate img,
+.st-role:focus-within .st-logoplate img { opacity: 1; }
+
+.st-logomark {
+  font-family: var(--fmono);
+  font-size: 17px;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+/* The company's own brand colour, used only as a hairline */
+.st-brandrule {
+  height: 2px;
+  width: 34px;
+  transition: width 0.3s var(--ease-eng);
+}
+.st-role:hover .st-brandrule { width: 68px; }
+
+/* Small sticker button — "Know more" on the role cards */
+.nb-cta--sm {
+  padding: 9px 14px;
+  font-size: 12.5px;
+  gap: 7px;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.nb-cta--sm:hover { box-shadow: 5px 5px 0 var(--ink); }
+.nb-cta--sm:active { box-shadow: 1px 1px 0 var(--ink); }
+
+/* Full-width variant for CTAs stacked inside a card */
+.nb-cta--block { display: flex; width: 100%; justify-content: center; }
+
+/* ---- Remaining interactive surfaces ------------------------------------- */
+
+/* Nav wordmark */
+.st-wordmark {
+  transition: color 0.2s var(--ease-eng), transform 0.2s var(--ease-eng);
+}
+.st-wordmark:hover { color: var(--signal); transform: translateY(-1px); }
+
+/* Footer link on the ink surface */
+.st-footlink {
+  text-decoration: none;
+  background-image: linear-gradient(var(--signal), var(--signal));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.24s var(--ease-eng), color 0.2s var(--ease-eng);
+}
+.st-footlink:hover { color: var(--paper); background-size: 100% 3px; }
+
+/* Sticky notes press flat and lift under the pointer */
+.nb-sticky {
+  transition: transform 0.3s var(--ease-eng), box-shadow 0.3s var(--ease-eng);
+}
+.nb-sticky:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 5px 7px 0 rgba(24, 24, 24, 0.16);
+}
+
+/* Pipeline stages respond so the diagram reads as inspectable */
+[data-pipeline] > div > span {
+  transition: background-color 0.22s var(--ease-eng), color 0.22s var(--ease-eng),
+    border-color 0.22s var(--ease-eng), transform 0.22s var(--ease-eng);
+}
+[data-pipeline] > div > span:hover {
+  border-color: var(--signal);
+  color: var(--signal);
+  transform: translateY(-2px);
+}
+/* The live stage is already filled — keep its text legible on hover */
+.nb-night [data-pipeline] > div > span:hover { color: #fff; }
+
+/* Logo plate firms up with the card */
+.st-logoplate { transition: border-color 0.25s var(--ease-eng); }
+.st-role:hover .st-logoplate { border-color: var(--rule-strong); }
+
+/* Stat readouts are deliberately NOT hover-reactive: they aren't controls, and
+   the night-mode counters set colour inline, so a hover rule would only take
+   on half of them. */
+
+@media (prefers-reduced-motion: reduce) {
+  .st-wordmark, .st-footlink, .nb-sticky, [data-pipeline] > div > span,
+  .st-logoplate { transition: none; }
+  .st-wordmark:hover, .nb-sticky:hover, [data-pipeline] > div > span:hover { transform: none; }
+}
+
+/* ---- Dossier modal ------------------------------------------------------- */
+
+.st-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(3px);
+}
+
+.st-modal-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 91;
+  display: grid;
+  place-items: center;
+  padding: clamp(14px, 3vw, 40px);
+  overflow-y: auto;
+}
+
+.st-modal {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: var(--paper-soft);
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: clamp(22px, 4vw, 36px);
+}
+
+/* Ruled paper inside the modal too — it is a notebook page */
+.st-modal {
+  background-image: linear-gradient(var(--nb-rule-line, rgba(24,24,24,.07)) 1px, transparent 1px);
+  background-size: 100% 34px;
+  background-color: var(--paper-soft);
+}
+
+.st-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 1;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.16s var(--ease-eng), box-shadow 0.16s var(--ease-eng),
+    background-color 0.16s var(--ease-eng);
+}
+.st-modal-close:hover {
+  background: var(--signal);
+  color: #fff;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.st-modal-close:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--ink); }
+
+.st-modal-logo {
+  display: grid;
+  place-items: center;
+  height: 84px;
+  padding: 14px 18px;
+  background: var(--white);
+  border: 1px solid var(--rule-strong);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+/* The marks are raster (intrinsic dimensions), so max-* constrains reliably —
+   height:100% resolves to auto inside an auto grid row and overflows. */
+.st-modal-logo img { max-width: 100%; max-height: 56px; width: auto; height: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .st-logoplate img,
+  .st-brandrule,
+  .st-modal-close { transition: none; }
+}
+
+/* ---- Record cards -------------------------------------------------------- */
+
+.st-role-title {
+  font-family: var(--fmono);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  color: var(--signal);
+}
+
+.st-bullet { position: relative; padding-left: 15px; }
+.st-bullet::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  background: var(--signal);
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .st-yearrail { display: none; }
+  .st-spine { display: none; }
+  .st-era-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .st-two { grid-template-columns: 1fr !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-word { transition: none; }
+  .st-plate img { transform: none !important; }
+}

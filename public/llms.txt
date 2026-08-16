@@ -14,7 +14,7 @@ This file is a structured summary of Rafael Schwart's professional portfolio for
 
 ## Section URLs
 
-- Home (hero, past companies, stats): https://rafaelschwart.com/
+- Home (full portfolio: career narrative 2014-present, all 9 roles, method, credentials, references, ventures, contact): https://rafaelschwart.com/
 - Method (stage-gate operating model, capabilities, skills): https://rafaelschwart.com/method
 - Experience (9 companies): https://rafaelschwart.com/experience
 - Work (ventures / side projects): https://rafaelschwart.com/work

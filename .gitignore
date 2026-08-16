@@ -34,3 +34,10 @@ dist-ssr
 # V2 design sources (Design Compose exports, brand-manual PDFs, raw uploads).
 # Local-only by choice: the site consumes copies in public/assets/.
 Rafael Schwart V2/
+
+# Signed HR / immigration documents (employment verification, recommendation letters).
+# Local-only: contains employee ID, exact employment dates and wet signatures.
+Employment & Recommendations/
+
+# Credential certificates (PMP, Six Sigma). Local-only: certification numbers + citizenship.
+Certifications/

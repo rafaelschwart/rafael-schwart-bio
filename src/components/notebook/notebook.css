@@ -1,0 +1,477 @@
+/*
+ * ============================================================================
+ * NOTEBOOK ITERATION — "the engineer's field notebook"  (rs · v03-nb · 26.08)
+ * ----------------------------------------------------------------------------
+ * A design exploration that re-skins the V2 ledger as a spiral-bound notebook:
+ * ruled paper, a red margin rule, ENTRY stamps, highlighter swipes, taped
+ * sticker cards, handwritten margin annotations, and an inverted "night mode"
+ * numbers spread.
+ *
+ * Palette is UNCHANGED from V2 — paper / ink / blue signal, Satoshi + IBM Plex
+ * Mono. The only addition is Caveat for the handwritten annotations, injected
+ * at runtime by Notebook.tsx so index.html stays canonical.
+ *
+ * Everything is scoped under `.nb` so it cannot leak into the live landing.
+ * ==========================================================================*/
+
+.nb {
+  --nb-rule-line: rgba(24, 24, 24, 0.07);
+  --nb-margin: rgba(54, 100, 255, 0.28);
+  --nb-ring: #b8b2a2;
+  --nb-rail: 58px;
+  --nb-hand: "Caveat", "Segoe Script", cursive;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--fdisp);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---- Ruled paper: horizontal lines + the red/blue margin rule ------------ */
+
+.nb-paper {
+  background-image: linear-gradient(var(--nb-rule-line) 1px, transparent 1px);
+  background-size: 100% 34px;
+  background-position: 0 -1px;
+}
+
+.nb-graph {
+  background-image:
+    linear-gradient(var(--nb-rule-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nb-rule-line) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+/* The vertical margin rule that runs the whole page, just right of the rings */
+.nb-margin-rule {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--nb-rail) + 34px);
+  width: 1px;
+  background: var(--nb-margin);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ---- Spiral binding ------------------------------------------------------ */
+
+.nb-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--nb-rail);
+  background: var(--paper-2);
+  border-right: 1px solid var(--rule-strong);
+  z-index: 40;
+  pointer-events: none;
+}
+
+.nb-rail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='58' height='46'%3E%3Cpath d='M12 34 C 5 31, 4 18, 12 14 L 44 7 C 52 5, 54 15, 47 18 L 15 25 C 8 27, 8 34, 16 35' fill='none' stroke='%23b8b2a2' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-y;
+  background-position: 0 12px;
+  opacity: 0.9;
+}
+
+/* Page content clears the binding */
+.nb-page {
+  padding-left: var(--nb-rail);
+}
+
+/* ---- ENTRY stamp --------------------------------------------------------- */
+
+.nb-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fmono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+.nb-stamp-sq {
+  width: 9px;
+  height: 9px;
+  background: var(--signal);
+  flex: none;
+}
+
+/* ---- Highlighter swipe --------------------------------------------------- */
+
+.nb-hl {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.nb-hl > span {
+  position: relative;
+  z-index: 1;
+}
+
+/* --hl drives the marker sweep (0 = un-swiped, 1 = full). It defaults to 1 so
+   any page that doesn't run the motion controller renders fully highlighted. */
+.nb-hl::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: -0.14em;
+  right: -0.14em;
+  top: 0.16em;
+  bottom: 0.08em;
+  background: color-mix(in srgb, var(--signal) 24%, transparent);
+  transform: rotate(-0.7deg) skewX(-9deg) scaleX(var(--hl, 1));
+  transform-origin: left center;
+  border-radius: 2px;
+}
+
+.nb-hl-ink::before {
+  background: color-mix(in srgb, var(--signal) 62%, transparent);
+}
+
+/* Hand-drawn underline that sits under a phrase */
+.nb-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.nb-underline::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.18em;
+  height: 0.28em;
+  background: var(--signal);
+  clip-path: polygon(0 42%, 6% 12%, 26% 4%, 58% 16%, 84% 6%, 100% 30%, 97% 84%, 62% 62%, 30% 78%, 4% 66%);
+  opacity: 0.85;
+}
+
+.nb-strike {
+  position: relative;
+  color: var(--fade);
+}
+
+.nb-strike::after {
+  content: "";
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  top: 52%;
+  height: 2px;
+  background: var(--ink-3);
+  transform: rotate(-1.2deg);
+}
+
+/* ---- Handwritten margin annotations -------------------------------------- */
+
+.nb-hand {
+  font-family: var(--nb-hand);
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--ink-2);
+  transform: rotate(-0.8deg);
+}
+
+.nb-hand-sm {
+  font-family: var(--nb-hand);
+  font-size: 17px;
+  color: var(--mute);
+}
+
+/* --write reveals the note left-to-right, as if it were being written.
+   Defaults to 1 so a page that doesn't animate renders the note in full.
+   The clip lives on this inner span, never on the paragraph: a fully
+   clip-path'd element reports isIntersecting:false, so clipping the observed
+   element itself would deadlock the reveal (it can never come into view). */
+.nb-write {
+  display: inline-block;
+  clip-path: inset(-24% calc((1 - var(--write, 1)) * 102%) -24% -4%);
+}
+
+.nb-hand-signal {
+  color: var(--signal);
+}
+
+/* ---- Sticker / taped cards ----------------------------------------------- */
+
+.nb-card {
+  position: relative;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule-strong);
+  border-radius: 3px;
+  transition: transform 0.22s var(--ease-eng), border-color 0.22s var(--ease-eng),
+    box-shadow 0.22s var(--ease-eng);
+}
+
+/* Every card responds to the pointer: a small lift + firmer edge. */
+.nb-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--ink-3);
+  box-shadow: 0 4px 0 rgba(24, 24, 24, 0.08);
+}
+
+/* Cards with the hard sticker shadow lift via the shadow instead (see
+   .nb-lift:hover) — suppress the generic lift so they don't double up. */
+.nb-card.nb-lift:hover { transform: none; }
+
+.nb-lift {
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: box-shadow 0.22s var(--ease-eng);
+}
+
+.nb-lift:hover { box-shadow: 8px 8px 0 var(--ink); }
+
+/* ---- Buttons ------------------------------------------------------------- */
+
+/* The sticker CTA: lifts off the page on hover, presses flat on click. The
+   arrow travels along its own direction of movement. */
+.nb-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  font-family: var(--fdisp);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition:
+    transform 0.18s var(--ease-eng),
+    box-shadow 0.18s var(--ease-eng),
+    background-color 0.18s var(--ease-eng);
+}
+
+.nb-cta--signal { background: var(--signal); color: #fff; }
+.nb-cta--ink    { background: var(--ink);    color: var(--paper); }
+.nb-cta--paper  { background: var(--paper-soft); color: var(--ink); }
+
+.nb-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--ink);
+}
+.nb-cta--paper:hover { background: var(--white); }
+
+.nb-cta:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--ink);
+  transition-duration: 0.06s;
+}
+
+.nb-cta-arrow {
+  display: inline-block;
+  transition: transform 0.18s var(--ease-eng);
+}
+.nb-cta:hover .nb-cta-arrow { transform: translateX(4px); }
+
+/* Underlined text links: the rule grows in from the left */
+.nb-link-ul {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(var(--signal), var(--signal));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1.5px;
+  padding-bottom: 2px;
+  transition: background-size 0.24s var(--ease-eng), color 0.2s var(--ease-eng);
+}
+.nb-link-ul:hover { background-size: 100% 3px; }
+
+/* Any inline arrow that should nudge with its parent's hover */
+.nb-nudge { display: inline-block; transition: transform 0.18s var(--ease-eng); }
+a:hover > .nb-nudge,
+button:hover > .nb-nudge { transform: translate(2px, -2px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-cta,
+  .nb-cta-arrow,
+  .nb-link-ul,
+  .nb-nudge { transition: none; }
+  .nb-cta:hover { transform: none; }
+}
+
+.nb-lift-soft {
+  box-shadow: 4px 4px 0 var(--paper-3);
+}
+
+.nb-tape {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 92px;
+  height: 22px;
+  margin-left: -46px;
+  background: color-mix(in srgb, var(--signal) 16%, var(--paper-3));
+  border-left: 1px dashed rgba(24, 24, 24, 0.16);
+  border-right: 1px dashed rgba(24, 24, 24, 0.16);
+  /* --tape presses the strip down from the centre out. Defaults to 1. */
+  transform: rotate(-1.6deg) scaleX(var(--tape, 1));
+  opacity: 0.9;
+}
+
+.nb-tilt-l,
+.nb-tilt-r { transition: transform 0.3s var(--ease-eng); }
+.nb-tilt-l { transform: rotate(-0.9deg); }
+.nb-tilt-r { transform: rotate(0.8deg); }
+
+/* Tilted stickers straighten under the pointer, like being pressed flat */
+.nb-tilt-l:hover,
+.nb-tilt-r:hover { transform: rotate(0deg); }
+
+/* ---- Marquee tape strip -------------------------------------------------- */
+
+.nb-marquee {
+  overflow: hidden;
+  background: var(--signal);
+  color: var(--white);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  transform: rotate(-0.55deg);
+  width: 106%;
+  margin-left: -3%;
+}
+
+.nb-marquee-track {
+  display: flex;
+  gap: 34px;
+  white-space: nowrap;
+  padding: 13px 0;
+  animation: nbMarquee 34s linear infinite;
+  will-change: transform;
+}
+
+/* The tape pauses under the pointer so it can actually be read */
+.nb-marquee:hover .nb-marquee-track { animation-play-state: paused; }
+
+@keyframes nbMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ---- Night-mode spread --------------------------------------------------- */
+
+.nb-night {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* The ink grid is invisible on an ink surface — invert the ruling */
+.nb-night.nb-graph {
+  background-image:
+    linear-gradient(rgba(245, 243, 236, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 243, 236, 0.06) 1px, transparent 1px);
+}
+
+.nb-night .nb-stamp { color: var(--fade); }
+.nb-night .nb-card {
+  background: var(--ink-2);
+  border-color: rgba(245, 243, 236, 0.16);
+}
+.nb-night .nb-hand { color: var(--signal); }
+
+/* ---- Sticky note --------------------------------------------------------- */
+
+.nb-sticky {
+  background: color-mix(in srgb, var(--signal) 14%, var(--paper-soft));
+  border: 1px solid var(--rule-strong);
+  box-shadow: 3px 3px 0 rgba(24, 24, 24, 0.14);
+  transform: rotate(-1.8deg);
+}
+
+/* ---- Log / dated entries ------------------------------------------------- */
+
+.nb-log-item {
+  position: relative;
+  padding-left: 26px;
+}
+
+.nb-log-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--signal);
+  background: var(--paper);
+}
+
+.nb-log-item[data-live="1"]::before {
+  background: var(--signal);
+  animation: rsRamp 2.6s var(--ease-eng) infinite;
+}
+
+.nb-date-chip {
+  display: inline-block;
+  font-family: var(--fmono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper-2);
+  color: var(--ink-2);
+  transition: background-color 0.2s var(--ease-eng), border-color 0.2s var(--ease-eng);
+}
+.nb-date-chip:hover { background: var(--white); border-color: var(--ink-3); }
+
+/* Checklist rows tint on hover so the toolset feels alive */
+[data-checks] > div {
+  transition: background-color 0.18s var(--ease-eng);
+  border-radius: 2px;
+}
+[data-checks] > div:hover { background: color-mix(in srgb, var(--signal) 7%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-card, .nb-tilt-l, .nb-tilt-r, .nb-date-chip, [data-checks] > div { transition: none; }
+  .nb-card:hover { transform: none; }
+  .nb-tilt-l:hover { transform: rotate(-0.9deg); }
+  .nb-tilt-r:hover { transform: rotate(0.8deg); }
+}
+
+/* ---- Misc ---------------------------------------------------------------- */
+
+.nb-dashed { border-top: 1px dashed var(--rule-strong); }
+
+.nb-link-ul {
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+.nb a:focus-visible,
+.nb button:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .nb { --nb-rail: 30px; }
+  .nb-rail::after { background-size: 30px 24px; }
+  .nb-margin-rule { display: none; }
+  .nb-hand { font-size: 18px; }
+  .nb-grid-2 { grid-template-columns: 1fr !important; }
+  .nb-grid-3 { grid-template-columns: 1fr !important; }
+  .nb-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  .nb-cover { grid-template-columns: 1fr !important; }
+  /* The header CTA crowds the entry rail on phones — contact lives in the
+     announce strip and entry 10 anyway. */
+  .nb-nav-cta { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nb-marquee-track { animation: none; }
+}

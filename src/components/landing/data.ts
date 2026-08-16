@@ -16,7 +16,7 @@ export const CONTACT_VIDEO = "/assets/contact-loop.mp4"
 export const CONTACT_POSTER = "/assets/contact-loop-poster.jpg"
 
 export const ANNOUNCE =
-  "Currently at Motorola Solutions  ·  Open to senior program and NPI roles"
+  "Senior Operations Program Manager, NPI at Motorola Solutions  ·  Hardware from first build to volume production"
 
 /* ---------------------------------------------------------------- nav ---- */
 
@@ -467,22 +467,22 @@ export const refs: Reference[] = [
   {
     name: "Jose Gibaja",
     role: "Principal Engineer · Stryker",
-    url: "https://drive.google.com/file/d/1gsqFCu4JNY6-6nbR1ym2mCNjVzYt-fWF/view?usp=drive_link",
+    url: "https://drive.google.com/file/d/1OOb5nCWnSRehqACE84Fc8vxZRsyKrykK/view?usp=drive_link",
   },
   {
-    name: "Joe Zeichmann",
+    name: "Joe Zeichman",
     role: "Senior Staff Engineer · Stryker",
-    url: "https://drive.google.com/file/d/12BXRuEfVv9GFW5c1fcSluN-37kefTSYz/view?usp=drive_link",
+    url: "https://drive.google.com/file/d/1hjpvuIOBIlu98ZcgzUEp3fJl-dsPpr9a/view?usp=drive_link",
   },
   {
     name: "Melody Chan",
     role: "Project Manager · Stryker",
-    url: "https://drive.google.com/file/d/1EyDO2Iokxw6xLZIG26hUYYUY6n0iLzWU/view?usp=drive_link",
+    url: "https://drive.google.com/file/d/15G8wmeNO0DfTXSEgO7HKzwvO0YY7jJ8A/view?usp=drive_link",
   },
   {
     name: "Alan Fitzpatrick",
     role: "Manufacturing Manager · Stryker",
-    url: "https://drive.google.com/file/d/1UhJ70FumtafzIgLPVOQGZjqzQkGQhoNs/view?usp=drive_link",
+    url: "https://drive.google.com/file/d/1IIHLJ3F0Z7k6AgI3mbnOaXLdA9WPfRQU/view?usp=drive_link",
   },
 ]
 
@@ -492,17 +492,17 @@ export const verifs: Verification[] = [
   {
     org: "Gables Engineering, Inc.",
     dates: "07/24/2017 to 08/14/2019",
-    url: "https://drive.google.com/file/d/1xa-fAODnaGyCMsBTxdrShp0ZvehnaXo1/view?usp=drive_link",
+    url: "https://drive.google.com/file/d/1kCyWHoTKvw3rwrqSisf-lYBdSJfFhHRZ/view?usp=drive_link",
   },
   {
     org: "Stryker Corporation",
-    dates: "02/17/2020 to 12/28/2022",
-    url: "https://drive.google.com/file/d/1G2VtB20hJUGoyxSDWz53OtADO1Pk8x2S/view?usp=drive_link",
+    dates: "02/17/2020 to 12/26/2022",
+    url: "https://drive.google.com/file/d/1cpPctqpEvs-gB3tD1qmo0_uzFAurgziy/view?usp=drive_link",
   },
   {
     org: "Magic Leap, Inc.",
     dates: "01/03/2023 to 05/24/2024",
-    url: "https://drive.google.com/file/d/1oY8w8qy4pr_gRZ5gEVyl1lWRRQMqjWaK/view?usp=drive_link",
+    url: "https://drive.google.com/file/d/1g9BQbrdTabmSkdEHdlt1wupGdRC8A-l4/view?usp=drive_link",
   },
 ]
 
@@ -510,7 +510,7 @@ export const verifs: Verification[] = [
 
 export const contact = {
   eyebrow: "Get in touch",
-  headline: "Open to senior program roles.",
+  headline: "Let's talk about your hardware program.",
   sub: "Program management, NPI, and process engineering. Based in Miami, working globally.",
 }
 
