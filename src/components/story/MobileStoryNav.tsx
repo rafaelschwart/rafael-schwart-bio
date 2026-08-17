@@ -1,4 +1,5 @@
-import { useEffect, useId, useState } from "react"
+import { useEffect, useState } from "react"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
 export type MobileStoryNavItem = {
   id: string
@@ -14,7 +15,6 @@ type MobileStoryNavProps = {
 
 export function MobileStoryNav({ items, activeId, onSelect }: MobileStoryNavProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const panelId = useId()
   const activeItem = items.find((item) => item.id === activeId)
 
   useEffect(() => {
@@ -28,7 +28,8 @@ export function MobileStoryNav({ items, activeId, onSelect }: MobileStoryNavProp
   }, [isOpen])
 
   return (
-    <nav
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <nav
       className="st-mobile-index"
       aria-label="Entries"
       style={{ position: "sticky", top: 0, zIndex: 30 }}
@@ -56,32 +57,29 @@ export function MobileStoryNav({ items, activeId, onSelect }: MobileStoryNavProp
         >
           {activeItem?.index ?? "01"} / {activeItem?.label ?? "Cover"}
         </span>
-        <button
-          type="button"
-          aria-expanded={isOpen}
-          aria-controls={panelId}
-          onClick={() => setIsOpen((open) => !open)}
-          style={{
-            minHeight: 44,
-            padding: "0 14px",
-            background: "var(--paper-soft)",
-            border: "1px solid var(--ink)",
-            boxShadow: "2px 2px 0 var(--ink)",
-            color: "var(--ink)",
-            cursor: "pointer",
-            fontFamily: "var(--fmono)",
-            fontSize: 11,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-          }}
-        >
-          Entries
-        </button>
+          <CollapsibleTrigger asChild>
+            <button
+              type="button"
+              style={{
+                minHeight: 44,
+                padding: "0 14px",
+                background: "var(--paper-soft)",
+                border: "1px solid var(--ink)",
+                boxShadow: "2px 2px 0 var(--ink)",
+                color: "var(--ink)",
+                cursor: "pointer",
+                fontFamily: "var(--fmono)",
+                fontSize: 11,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+              }}
+            >
+              Entries
+            </button>
+          </CollapsibleTrigger>
       </div>
 
-      {isOpen && (
-        <div
-          id={panelId}
+        <CollapsibleContent
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
@@ -120,8 +118,8 @@ export function MobileStoryNav({ items, activeId, onSelect }: MobileStoryNavProp
               {item.label}
             </button>
           ))}
-        </div>
-      )}
-    </nav>
+        </CollapsibleContent>
+      </nav>
+    </Collapsible>
   )
 }

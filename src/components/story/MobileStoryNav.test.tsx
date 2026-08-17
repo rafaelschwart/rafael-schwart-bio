@@ -57,4 +57,17 @@ describe("MobileStoryNav", () => {
 
     expect(screen.queryByRole("button", { name: "The record" })).not.toBeInTheDocument()
   })
+
+  it("exposes its open state for disclosure styling", async () => {
+    const user = userEvent.setup()
+
+    render(<MobileStoryNav items={items} activeId="cover" onSelect={() => undefined} />)
+
+    const entries = screen.getByRole("button", { name: "Entries" })
+    expect(entries).toHaveAttribute("data-state", "closed")
+
+    await user.click(entries)
+
+    expect(entries).toHaveAttribute("data-state", "open")
+  })
 })

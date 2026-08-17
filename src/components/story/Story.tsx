@@ -116,6 +116,7 @@ export function Story() {
   })
   const [dossier, setDossier] = useState<string | null>(null)
   const [status, setStatus] = useState("")
+  const [skipLinkFocused, setSkipLinkFocused] = useState(false)
   // which chapter of the record is open (sub-navigation inside one category)
   const [era, setEra] = useState<string>(eras[0].id)
 
@@ -223,16 +224,34 @@ export function Story() {
       <div className="nb-page">
         <a
           href="#story-main"
-          style={{
-            position: "absolute",
-            width: 1,
-            height: 1,
-            padding: 0,
-            overflow: "hidden",
-            clip: "rect(0, 0, 0, 0)",
-            whiteSpace: "nowrap",
-            border: 0,
-          }}
+          onFocus={() => setSkipLinkFocused(true)}
+          onBlur={() => setSkipLinkFocused(false)}
+          style={
+            skipLinkFocused
+              ? {
+                  position: "fixed",
+                  top: 12,
+                  left: 12,
+                  zIndex: 100,
+                  padding: "10px 14px",
+                  background: "var(--paper)",
+                  border: "1px solid var(--ink)",
+                  boxShadow: "3px 3px 0 var(--ink)",
+                  color: "var(--ink)",
+                  fontFamily: "var(--fmono)",
+                  fontSize: 12,
+                }
+              : {
+                  position: "absolute",
+                  width: 1,
+                  height: 1,
+                  padding: 0,
+                  overflow: "hidden",
+                  clip: "rect(0, 0, 0, 0)",
+                  whiteSpace: "nowrap",
+                  border: 0,
+                }
+          }
         >
           Skip to main content
         </a>
@@ -240,7 +259,24 @@ export function Story() {
           {status}
         </p>
         {/* ------------------------------------------------- announce --- */}
-        <div
+        {compactViewport ? (
+          <div
+            className="st-mobile-copy"
+            role="status"
+            style={{
+              background: "var(--signal)",
+              color: "#fff",
+              textAlign: "center",
+              padding: "9px 16px",
+              fontFamily: "var(--fmono)",
+              fontSize: 11.5,
+              letterSpacing: ".08em",
+            }}
+          >
+            NPI leadership · hardware to volume
+          </div>
+        ) : (
+        <div className="st-desktop-copy"
           role="status"
           style={{
             background: "var(--signal)",
@@ -254,6 +290,7 @@ export function Story() {
         >
           ● {ANNOUNCE}
         </div>
+        )}
 
         {compactViewport ? (
           <>
@@ -262,11 +299,8 @@ export function Story() {
               activeId={view}
               onSelect={go}
             />
-            <div className="st-mobile-copy" style={{ padding: "16px 18px 18px", borderBottom: "1px solid var(--rule)" }}>
-              <p
-                className="st-mobile-summary"
-                style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: "var(--ink-2)" }}
-              >
+            <div className="st-mobile-summary" style={{ padding: "16px 18px 18px", borderBottom: "1px solid var(--rule)" }}>
+              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: "var(--ink-2)" }}>
                 Senior Operations Program Manager, NPI at Motorola Solutions. 15% production efficiency at Magic Leap and 50%+ faster Boeing avionics test cycles.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
