@@ -417,29 +417,6 @@ export type Venture = {
 
 export const ventures: Venture[] = [
   {
-    id: "arqentia",
-    no: "12",
-    name: "Arqentia",
-    role: "Co-Founder",
-    standfirst: "US engineering firm · operational software for B2B",
-    url: "https://arqentia.com/",
-    urlLabel: "arqentia.com",
-    image: "/assets/ventures/arqentia.webp",
-    imageAlt:
-      "A small business back office: a laptop showing a dashboard beside a marked-up printed process flowchart",
-    plateLabel: "Plate · the back office",
-    passage: [
-      "Arqentia designs, builds, hosts and operates custom operational software for B2B companies: dashboards, workflow automation, AI agents, and integrations with the tools they already run.",
-      "This is where the forward deployed engineering happens. I am the engineer who goes into the operation, finds the constraint, and builds the thing that removes it.",
-    ],
-    facts: [
-      "Co-founder; engineering and delivery",
-      "Dashboards, workflow automation, AI agents, integrations",
-      "Built with Claude Code, Codex, Devin, Windsurf and n8n",
-      "Process engineering method applied to business operations",
-    ],
-  },
-  {
     id: "tiento",
     no: "13",
     name: "Tiento",
@@ -507,9 +484,8 @@ export const ventures: Venture[] = [
   },
 ]
 
-/** Arqentia gets its own category; the other three share one page. */
-export const arqentiaVenture = ventures[0]
-export const sideVentures = ventures.slice(1)
+/** Arqentia is covered by the Forward deployed category, not repeated here. */
+export const sideVentures = ventures
 
 export const sideVenturesMeta = {
   id: "ventures",
@@ -529,7 +505,6 @@ export const storyNav = [
   { id: "method", label: "Method" },
   { id: "credentials", label: "Credentials" },
   { id: "references", label: "Proof" },
-  { id: "arqentia", label: "Arqentia" },
   { id: "ventures", label: "Ventures" },
   { id: "contact", label: "Contact" },
 ]

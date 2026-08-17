@@ -58,7 +58,6 @@ import {
   shipped,
   recordMeta,
   storyNav,
-  arqentiaVenture,
   sideVentures,
   sideVenturesMeta,
 } from "./chapters"
@@ -1168,83 +1167,6 @@ export function Story() {
           </View>
 
           {/* ============================================ ENTRY 12 ==== */}
-          {/* ============================ ARQENTIA: its own page ==== */}
-          <View id="arqentia" active={view}>
-            <Spread id="arqentia" tone="soft">
-              <div
-                className="st-era-grid"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1.1fr 0.9fr",
-                  gap: "clamp(28px, 5vw, 62px)",
-                  alignItems: "start",
-                }}
-              >
-                <div>
-                  <EntryStamp
-                    entry={arqentiaVenture.no}
-                    title={arqentiaVenture.name}
-                    note={arqentiaVenture.standfirst}
-                  />
-                  <h2 className="st-h2" style={{ margin: "22px 0 0" }} data-enter>
-                    <Hl>
-                      <span>{arqentiaVenture.name}</span>
-                    </Hl>
-                  </h2>
-                  <DrawRule width={420} />
-                  <p className="nb-stamp" style={{ marginBottom: 22 }} data-enter>
-                    {arqentiaVenture.role}
-                  </p>
-                  <Passage paragraphs={arqentiaVenture.passage} />
-
-                  <div style={{ marginTop: 28 }}>
-                    <p className="nb-stamp" style={{ fontSize: 10, marginBottom: 12 }} data-enter>
-                      What it is
-                    </p>
-                    <div data-checks>
-                      {arqentiaVenture.facts.map((f) => (
-                        <CheckRow key={f}>{f}</CheckRow>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: 14,
-                      alignItems: "center",
-                      marginTop: 28,
-                    }}
-                    data-enter
-                  >
-                    <NbCta href={arqentiaVenture.url}>Visit Arqentia</NbCta>
-                    <a
-                      href={arqentiaVenture.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="nb-link-ul"
-                      style={{ fontFamily: "var(--fmono)", fontSize: 11.5, color: "var(--signal)" }}
-                    >
-                      {arqentiaVenture.urlLabel} <span className="nb-nudge">↗</span>
-                    </a>
-                  </div>
-                </div>
-
-                <div style={{ position: "sticky", top: 92 }}>
-                  <Plate
-                    src={arqentiaVenture.image}
-                    alt={arqentiaVenture.imageAlt}
-                    label={arqentiaVenture.plateLabel}
-                    index={arqentiaVenture.role}
-                    ratio="3 / 4"
-                    tilt="r"
-                  />
-                </div>
-              </div>
-            </Spread>
-          </View>
-
           {/* ================= SIDE VENTURES: the other three ==== */}
           <View id="ventures" active={view}>
             <Spread id="ventures">
