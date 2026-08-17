@@ -393,6 +393,120 @@ export const footerPitch = {
 
 /* ------------------------------------------------------------------ nav ---- */
 
+/* ---------------------------------------------------------- ventures ---- */
+
+/**
+ * Each venture gets its own category rather than sharing one "Ventures" tab.
+ * They are a parallel career, not a footnote — a reader should be able to land
+ * directly on any one of them.
+ */
+export type Venture = {
+  id: string
+  no: string
+  name: string
+  role: string
+  standfirst: string
+  url: string
+  urlLabel: string
+  image: string
+  imageAlt: string
+  plateLabel: string
+  passage: string[]
+  facts: string[]
+}
+
+export const ventures: Venture[] = [
+  {
+    id: "arqentia",
+    no: "12",
+    name: "Arqentia",
+    role: "Co-Founder",
+    standfirst: "US engineering firm · operational software for B2B",
+    url: "https://arqentia.com/",
+    urlLabel: "arqentia.com",
+    image: "/assets/ventures/arqentia.webp",
+    imageAlt:
+      "A small business back office: a laptop showing a dashboard beside a marked-up printed process flowchart",
+    plateLabel: "Plate · the back office",
+    passage: [
+      "Arqentia designs, builds, hosts and operates custom operational software for B2B companies: dashboards, workflow automation, AI agents, and integrations with the tools they already run.",
+      "This is where the forward deployed engineering happens. I am the engineer who goes into the operation, finds the constraint, and builds the thing that removes it.",
+    ],
+    facts: [
+      "Co-founder; engineering and delivery",
+      "Dashboards, workflow automation, AI agents, integrations",
+      "Built with Claude Code, Codex, Devin, Windsurf and n8n",
+      "Process engineering method applied to business operations",
+    ],
+  },
+  {
+    id: "tiento",
+    no: "13",
+    name: "Tiento",
+    role: "CTO",
+    standfirst: "Blockchain · football formation rights and scouting data",
+    url: "https://www.tiento.io/",
+    urlLabel: "tiento.io",
+    image: "/assets/ventures/tiento.webp",
+    imageAlt: "A professional football pitch at dusk under floodlights, seen from the empty stands",
+    plateLabel: "Plate · the pitch",
+    passage: [
+      "Tiento tokenizes football player formation rights and provides verified scouting data, letting fans invest in the development of professional players.",
+      "As CTO I own the infrastructure, the smart contracts and the verification systems — the part that has to be right before anyone puts money behind a claim.",
+    ],
+    facts: [
+      "CTO; infrastructure and smart contracts",
+      "Tokenized player formation rights",
+      "Verified scouting data pipeline",
+      "Verification systems for fan investment",
+    ],
+  },
+  {
+    id: "earthrobotics",
+    no: "14",
+    name: "Earth Robotics",
+    role: "Mechanical Engineer",
+    standfirst: "Sustainable robotics · environmental monitoring",
+    url: "https://www.earthrobotics.co/",
+    urlLabel: "earthrobotics.co",
+    image: "/assets/ventures/earthrobotics.webp",
+    imageAlt: "A tracked field robot with a sensor mast standing in wetland grass at dawn",
+    plateLabel: "Plate · the field",
+    passage: [
+      "Earth Robotics builds sustainable robotics for environmental monitoring — machines that go into wetlands and open terrain and come back with data.",
+      "My work is the mechanical side: structural analysis, mechatronic integration and field testing. Hardware that has to survive being outdoors is its own discipline.",
+    ],
+    facts: [
+      "Mechanical engineering and structural analysis",
+      "Mechatronic integration",
+      "Field testing of robotic systems",
+      "Environmental monitoring applications",
+    ],
+  },
+  {
+    id: "recovrz",
+    no: "15",
+    name: "Recovrz",
+    role: "Co-Founder",
+    standfirst: "Athletic recovery · consumer product",
+    url: "https://www.recovrz.com/",
+    urlLabel: "recovrz.com",
+    image: "/assets/ventures/recovrz.webp",
+    imageAlt: "Athletic recovery equipment laid out on a bench in a quiet locker room",
+    plateLabel: "Plate · recovery",
+    passage: [
+      "Recovrz is an athletic recovery brand for professional and amateur athletes: next-generation nasal strips for better breathing during recovery, plus recovery bundles.",
+      "The only consumer product on this list, and the one that taught me the most about the distance between a good idea and something a person will actually buy twice.",
+    ],
+    facts: [
+      "Co-founder",
+      "Next-generation nasal strips for recovery breathing",
+      "Recovery bundles for pro and amateur athletes",
+      "Direct-to-consumer product and packaging",
+    ],
+  },
+]
+
 export const storyNav = [
   { id: "cover", label: "Cover" },
   { id: "forward", label: "Forward deployed" },
@@ -401,6 +515,6 @@ export const storyNav = [
   { id: "method", label: "How I work" },
   { id: "credentials", label: "Credentials" },
   { id: "references", label: "Proof" },
-  { id: "parallel", label: "Ventures" },
+  ...ventures.map((v) => ({ id: v.id, label: v.name })),
   { id: "contact", label: "Contact" },
 ]

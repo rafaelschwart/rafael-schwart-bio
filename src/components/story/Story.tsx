@@ -53,10 +53,10 @@ import {
   forwardDeployed,
   howIWork,
   opening,
-  parallel,
   prologue,
   shipped,
   storyNav,
+  ventures,
 } from "./chapters"
 import { CompanyModal, DrawRule, Metric, Passage, Plate, RoleCard } from "./StoryAtoms"
 import { reduced, useDraw, useEnter, useImageWipe, useParallax, useProgress, useYearRail } from "./motion"
@@ -232,7 +232,7 @@ export function Story() {
               margin: "0 auto",
               padding: "0 clamp(20px, 4vw, 56px)",
               display: "flex",
-              alignItems: "center",
+              alignItems: "flex-start",
               gap: 12,
             }}
           >
@@ -247,6 +247,7 @@ export function Story() {
                 color: "var(--ink)",
                 textDecoration: "none",
                 flex: "none",
+                paddingTop: 12,
               }}
             >
               rs<span style={{ color: "var(--signal)" }}>_</span>
@@ -254,7 +255,7 @@ export function Story() {
             <div
               ref={navBarRef}
               className="st-navbar"
-              style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none" }}
+              style={{ display: "flex", flexWrap: "wrap" }}
             >
               {storyNav.map((n, i) => (
                 <button
@@ -608,11 +609,6 @@ export function Story() {
                         </p>
                         <Passage paragraphs={era.passage} />
 
-                        {era.metric ? (
-                          <div style={{ marginTop: 38 }}>
-                            <Metric {...era.metric} />
-                          </div>
-                        ) : null}
                       </div>
 
                       <div style={{ position: "sticky", top: 92 }}>
@@ -621,10 +617,15 @@ export function Story() {
                           alt={era.plateAlt}
                           label={era.plateLabel}
                           index={era.span}
-                          ratio={era.id === "drawing" ? "4 / 5" : "4 / 3"}
+                          ratio="3 / 4"
                           tilt={i % 2 === 0 ? "l" : "r"}
                           priority={i === 0}
                         />
+                        {era.metric ? (
+                          <div style={{ marginTop: 24 }}>
+                            <Metric {...era.metric} />
+                          </div>
+                        ) : null}
                       </div>
                     </div>
 
@@ -1092,86 +1093,78 @@ export function Story() {
           </View>
 
           {/* ============================================ ENTRY 12 ==== */}
-          <View id="parallel" active={view}>
-          <Spread id="parallel" tone="soft">
-            <YearMark year={2026} />
-            <div
-              className="st-era-grid"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1.1fr 0.9fr",
-                gap: "clamp(28px, 5vw, 62px)",
-                alignItems: "start",
-              }}
-            >
-              <div>
-                <EntryStamp entry="12" title={parallel.title} note={parallel.standfirst} />
-                <h2 className="st-h2" style={{ margin: "22px 0 0" }} data-enter>
-                  {parallel.title}
-                </h2>
-                <DrawRule width={420} />
-                <Passage paragraphs={parallel.passage} />
-              </div>
-              <div>
-                <Plate
-                  src={parallel.plate}
-                  alt={parallel.plateAlt}
-                  label={parallel.plateLabel}
-                  ratio="4 / 3"
-                  tilt="r"
-                />
-              </div>
-            </div>
-
-            <div
-              className="nb-grid-2"
-              data-stagger
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 18,
-                marginTop: 40,
-              }}
-            >
-              {projects.map((p, i) => (
-                <NbCard
-                  key={p.name}
-                  tilt={i % 2 === 0 ? "l" : "r"}
-                  style={{ padding: "22px 24px", display: "flex", flexDirection: "column" }}
+          {/* ====================== VENTURES: one page each ==== */}
+          {ventures.map((v, i) => (
+            <View key={v.id} id={v.id} active={view}>
+              <Spread id={v.id} tone={i % 2 === 0 ? "soft" : "paper"}>
+                <div
+                  className="st-era-grid"
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1.1fr 0.9fr",
+                    gap: "clamp(28px, 5vw, 62px)",
+                    alignItems: "start",
+                  }}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "baseline",
-                      marginBottom: 10,
-                    }}
-                  >
-                    <p style={{ fontWeight: 700, fontSize: 19 }}>{p.name}</p>
-                    <span className="nb-date-chip">{p.role}</span>
+                  <div>
+                    <EntryStamp entry={v.no} title={v.name} note={v.standfirst} />
+                    <h2 className="st-h2" style={{ margin: "22px 0 0" }} data-enter>
+                      {i === 0 ? (
+                        <Hl>
+                          <span>{v.name}</span>
+                        </Hl>
+                      ) : (
+                        v.name
+                      )}
+                    </h2>
+                    <DrawRule width={420} />
+                    <p className="nb-stamp" style={{ marginBottom: 22 }} data-enter>
+                      {v.role}
+                    </p>
+                    <Passage paragraphs={v.passage} />
+
+                    <div style={{ marginTop: 28 }}>
+                      <p className="nb-stamp" style={{ fontSize: 10, marginBottom: 12 }} data-enter>
+                        What it is
+                      </p>
+                      <div data-checks>
+                        {v.facts.map((f) => (
+                          <CheckRow key={f}>{f}</CheckRow>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center", marginTop: 28 }}
+                      data-enter
+                    >
+                      <NbCta href={v.url}>Visit {v.name}</NbCta>
+                      <a
+                        href={v.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="nb-link-ul"
+                        style={{ fontFamily: "var(--fmono)", fontSize: 11.5, color: "var(--signal)" }}
+                      >
+                        {v.urlLabel} <span className="nb-nudge">↗</span>
+                      </a>
+                    </div>
                   </div>
-                  <p style={{ fontSize: 13.5, lineHeight: 1.65, color: "var(--mute)", flex: 1 }}>
-                    {p.desc}
-                  </p>
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="nb-link-ul"
-                    style={{
-                      marginTop: 16,
-                      fontFamily: "var(--fmono)",
-                      fontSize: 11,
-                      color: "var(--signal)",
-                    }}
-                  >
-                    {p.label} ↗
-                  </a>
-                </NbCard>
-              ))}
-            </div>
-          </Spread>
-          </View>
+
+                  <div style={{ position: "sticky", top: 92 }}>
+                    <Plate
+                      src={v.image}
+                      alt={v.imageAlt}
+                      label={v.plateLabel}
+                      index={v.role}
+                      ratio="3 / 4"
+                      tilt={i % 2 === 0 ? "r" : "l"}
+                    />
+                  </div>
+                </div>
+              </Spread>
+            </View>
+          ))}
 
           {/* ============================================ ENTRY 13 ==== */}
           <View id="contact" active={view}>

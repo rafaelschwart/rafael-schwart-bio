@@ -16,7 +16,7 @@ export const CONTACT_VIDEO = "/assets/contact-loop.mp4"
 export const CONTACT_POSTER = "/assets/contact-loop-poster.jpg"
 
 export const ANNOUNCE =
-  "Senior Operations Program Manager, NPI at Motorola Solutions  ·  Hardware from first build to volume production"
+  "Senior Operations Program Manager, NPI at Motorola Solutions  ·  AI Systems Integrator at Arqentia"
 
 /* ---------------------------------------------------------------- nav ---- */
 

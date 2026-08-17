@@ -103,8 +103,8 @@
   z-index: 0;
   border: 1px solid transparent;
   border-radius: 3px;
-  margin: 8px 13px;
-  padding: 8px 12px;
+  margin: 5px 12px;
+  padding: 6px 10px;
   transform: translateY(0);
   transition:
     color 0.22s var(--ease-eng),
@@ -182,7 +182,7 @@
 }
 
 @media (max-width: 900px) {
-  .st-index button { margin: 8px 10px; }
+  .st-index button { margin: 5px 9px; }
   .st-index button:not(:last-of-type)::after { width: 9px; right: -16px; }
   .st-index .st-flow-tip { right: -9px; }
 }
@@ -202,8 +202,17 @@
   .st-index button:hover { transform: none; }
 }
 
-/* Sliding hairline under the active entry */
-.st-navbar { position: relative; }
+/* The rail wraps rather than scrolling: with this many categories a
+   horizontal scroller silently truncated the last few, so a reader never
+   saw them. Wrapping keeps every step of the flow visible. */
+.st-navbar {
+  position: relative;
+  flex-wrap: wrap;
+  row-gap: 0;
+}
+
+/* an arrow at the end of a wrapped row points nowhere — hide it there */
+.st-navbar { --flow-hide: 0; }
 
 .st-navind {
   position: absolute;
@@ -329,7 +338,7 @@
 .st-metric {
   font-family: var(--fdisp);
   font-weight: 700;
-  font-size: clamp(46px, 6.4vw, 86px);
+  font-size: clamp(40px, 4.6vw, 62px);
   line-height: 0.88;
   letter-spacing: -0.04em;
   color: var(--signal);
