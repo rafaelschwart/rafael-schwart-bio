@@ -524,12 +524,23 @@ export const sideVenturesMeta = {
 export const storyNav = [
   { id: "cover", label: "Cover" },
   { id: "forward", label: "Forward deployed" },
-  ...eras.map((e) => ({ id: e.id, label: e.title })),
-  { id: "shipped", label: "What shipped" },
-  { id: "method", label: "How I work" },
+  { id: "record", label: "The record" },
+  { id: "shipped", label: "Shipped" },
+  { id: "method", label: "Method" },
   { id: "credentials", label: "Credentials" },
   { id: "references", label: "Proof" },
   { id: "arqentia", label: "Arqentia" },
-  { id: "ventures", label: "Side ventures" },
+  { id: "ventures", label: "Ventures" },
   { id: "contact", label: "Contact" },
 ]
+
+/**
+ * The six eras are one thing — a chronology — so they live inside a single
+ * "The record" category with their own selector. As separate top-level
+ * categories they cost 698px of the rail on their own and forced it to wrap.
+ */
+export const recordMeta = {
+  no: "03",
+  title: "The record",
+  standfirst: "Twelve years, in the order it happened",
+}

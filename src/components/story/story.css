@@ -103,7 +103,7 @@
   z-index: 0;
   border: 1px solid transparent;
   border-radius: 3px;
-  margin: 5px 12px;
+  margin: 5px 9px;
   padding: 6px 10px;
   transform: translateY(0);
   transition:
@@ -783,4 +783,77 @@
   .st-venture, .st-venture-shot img { transition: none; }
   .st-venture:hover { padding-left: 0; }
   .st-venture:hover .st-venture-shot img { transform: none; }
+}
+
+/* ---- Chapter sub-rail (inside "The record") ------------------------------ */
+
+/* The six eras are a chronology, so they get a secondary rail of their own
+   rather than six slots on the primary one. Quieter than the top rail: no
+   fill sweep, just a year, a label and the same flow connectors. */
+.st-subrail-wrap {
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: clamp(22px, 3vw, 34px);
+}
+
+.st-subrail {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px) 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.st-subrail button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: none;
+  border: 0;
+  border-top: 2px solid var(--rule);
+  cursor: pointer;
+  font-family: var(--fmono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fade);
+  text-align: left;
+  padding: 11px 22px 4px 0;
+  margin-right: 22px;
+  transition: color 0.22s var(--ease-eng), border-color 0.22s var(--ease-eng);
+}
+
+.st-subrail-yr {
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--rule-strong);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.22s var(--ease-eng);
+}
+
+.st-subrail button:hover { color: var(--ink); border-top-color: var(--ink-3); }
+.st-subrail button[data-active="1"] { color: var(--signal); border-top-color: var(--signal); }
+.st-subrail button[data-active="1"] .st-subrail-yr { color: var(--signal); }
+.st-subrail button[data-done="1"] { border-top-color: color-mix(in srgb, var(--signal) 45%, transparent); }
+
+/* flow arrow between chapters, matching the primary rail */
+.st-subrail button:not(:last-of-type) .st-flow-tip {
+  right: 6px;
+  top: 60%;
+  border-color: var(--rule-strong);
+}
+.st-subrail button[data-done="1"] .st-flow-tip,
+.st-subrail button[data-active="1"] .st-flow-tip {
+  border-top-color: var(--signal);
+  border-right-color: var(--signal);
+}
+.st-subrail button:last-of-type .st-flow-tip { display: none; }
+
+@media (max-width: 900px) {
+  .st-subrail button { padding-right: 16px; margin-right: 16px; font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-subrail button, .st-subrail-yr { transition: none; }
 }

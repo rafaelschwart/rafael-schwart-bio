@@ -56,6 +56,7 @@ import {
   opening,
   prologue,
   shipped,
+  recordMeta,
   storyNav,
   arqentiaVenture,
   sideVentures,
@@ -112,14 +113,16 @@ export function Story() {
     return storyNav.some((n) => n.id === h) ? h : "cover"
   })
   const [dossier, setDossier] = useState<string | null>(null)
+  // which chapter of the record is open (sub-navigation inside one category)
+  const [era, setEra] = useState<string>(eras[0].id)
 
-  useEnter(rootRef, [view])
-  useImageWipe(rootRef, [view])
-  useDraw(rootRef, [view])
+  useEnter(rootRef, [view, era])
+  useImageWipe(rootRef, [view, era])
+  useDraw(rootRef, [view, era])
   useParallax(rootRef)
-  useCounters(rootRef, [view])
+  useCounters(rootRef, [view, era])
   useYearRail(rootRef, yearRef, eras.map((e) => e.yearValue))
-  useNotebookMotion(rootRef, [view])
+  useNotebookMotion(rootRef, [view, era])
   useNavIndicator(navBarRef, navIndRef, view)
   const progress = useProgress(rootRef)
 
@@ -230,13 +233,15 @@ export function Story() {
         {/* ------------------------------------------------ entry index --- */}
         <nav className="st-index" aria-label="Entries">
           <div
+            /* The rail is wider than the 1080px reading column on purpose:
+               constrained to the text measure it wrapped to two rows. */
             style={{
-              maxWidth: 1080,
+              maxWidth: 1280,
               margin: "0 auto",
-              padding: "0 clamp(20px, 4vw, 56px)",
+              padding: "0 clamp(18px, 3vw, 40px)",
               display: "flex",
               alignItems: "flex-start",
-              gap: 12,
+              gap: 10,
             }}
           >
             <a
@@ -571,12 +576,37 @@ export function Story() {
           </View>
 
 
-          {/* ======================================= ERAS 03 — 08 ==== */}
-          {eras.map((era, i) => {
-            const entryNo = String(i + 3).padStart(2, "0")
+          {/* =========== THE RECORD: six chapters, one category ==== */}
+          <View id="record" active={view}>
+            <div className="st-subrail-wrap">
+              <div className="st-subrail" role="tablist" aria-label="Chapters of the record">
+                {eras.map((e) => (
+                  <button
+                    key={e.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={era === e.id}
+                    data-subnav={e.id}
+                    data-active={era === e.id ? "1" : undefined}
+                    data-done={eras.findIndex((x) => x.id === era) > eras.indexOf(e) ? "1" : undefined}
+                    onClick={() => {
+                      setEra(e.id)
+                      window.scrollTo({ top: 0, behavior: reduced() ? "auto" : "smooth" })
+                    }}
+                  >
+                    <span className="st-subrail-yr">{e.span.split(" — ")[0]}</span>
+                    {e.title}
+                    <span className="st-flow-tip" aria-hidden />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+          {eras.filter((e) => e.id === era).map((era, i) => {
+            const entryNo = String(eras.findIndex((x) => x.id === era.id) + 3).padStart(2, "0")
             return (
             <Fragment key={era.id}>
-              <View id={era.id} active={view}>
+              <div>
                 <Spread id={era.id} tone={i % 2 === 1 ? "soft" : "paper"}>
                   <YearMark year={era.yearValue} />
                   <div className="st-era">
@@ -661,11 +691,15 @@ export function Story() {
                     </div>
                   </div>
                 </Spread>
-              </View>
+              </div>
+            </Fragment>
+            )
+          })}
+          </View>
 
-              {/* "What shipped" is its own category, not a mid-era detour */}
-              {era.id === "line" ? (
-                <View id="shipped" active={view}>
+          {/* "What shipped" is its own category */}
+          {eras.filter((e) => e.id === "line").map((era) => (
+                <View key="shipped" id="shipped" active={view}>
                   <Spread id="shipped" tone="night" graph>
                     <EntryStamp
                       entry={shipped.no}
@@ -751,10 +785,7 @@ export function Story() {
                     </p>
                   </Spread>
                 </View>
-              ) : null}
-            </Fragment>
-            )
-          })}
+          ))}
 
           {/* ============================================ ENTRY 09 ==== */}
           <View id="method" active={view}>
