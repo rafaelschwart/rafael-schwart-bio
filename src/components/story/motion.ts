@@ -362,6 +362,7 @@ export function useParallax(root: RefObject<HTMLElement>, enabled = true) {
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onScroll)
       if (raf) cancelAnimationFrame(raf)
+      els.forEach((el) => el.style.removeProperty("transform"))
     }
   }, [root, enabled])
 }
@@ -399,4 +400,45 @@ export function useProgress(root: RefObject<HTMLElement>, enabled = true) {
     }
   }, [root, enabled])
   return p
+}
+
+/**
+ * Flow connectors join each nav step to the next, but a wrapped row leaves its
+ * last chip pointing at empty space. CSS can't see line breaks, so measure
+ * them: any button whose successor sits lower is the end of a visual row, and
+ * gets `data-rowend` for the stylesheet to drop its connector.
+ *
+ * Covers both the category rail and the chapter sub-rail.
+ */
+export function useRowEnds(root: RefObject<HTMLElement>, deps: unknown[] = []) {
+  useEffect(() => {
+    const el = root.current
+    if (!el) return
+
+    const mark = () => {
+      el.querySelectorAll<HTMLElement>(".st-navbar, .st-subrail").forEach((rail) => {
+        const btns = Array.from(rail.querySelectorAll<HTMLElement>(":scope > button"))
+        btns.forEach((b, i) => {
+          const next = btns[i + 1]
+          if (!next || next.offsetTop > b.offsetTop) b.dataset.rowend = "1"
+          else delete b.dataset.rowend
+        })
+      })
+    }
+
+    mark()
+
+    // jsdom has no ResizeObserver, and neither do older Safaris — fall back to
+    // the resize event, which catches the case that actually matters (the rail
+    // reflowing as the viewport changes).
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", mark)
+      return () => window.removeEventListener("resize", mark)
+    }
+
+    const ro = new ResizeObserver(mark)
+    ro.observe(el)
+    return () => ro.disconnect()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
 }

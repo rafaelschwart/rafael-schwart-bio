@@ -62,7 +62,7 @@ import {
   sideVenturesMeta,
 } from "./chapters"
 import { CompanyModal, DrawRule, Metric, Passage, Plate, RoleCard } from "./StoryAtoms"
-import { reduced, useDraw, useEnter, useImageWipe, useParallax, useProgress, useYearRail } from "./motion"
+import { reduced, useDraw, useEnter, useImageWipe, useParallax, useProgress, useYearRail, useRowEnds } from "./motion"
 import { useNavIndicator, useNotebookMotion } from "./notebookMotion"
 import { MobileStoryNav } from "./MobileStoryNav"
 import { useCompactViewport } from "./mobile"
@@ -131,6 +131,7 @@ export function Story() {
   useYearRail(rootRef, yearRef, eras.map((e) => e.yearValue), !compactViewport)
   useNotebookMotion(rootRef, [view, era])
   useNavIndicator(navBarRef, navIndRef, view)
+  useRowEnds(rootRef, [view, era])
   const progress = useProgress(rootRef, !compactViewport)
 
   // Caveat carries the handwritten margin notes; loaded only while mounted so
@@ -164,7 +165,10 @@ export function Story() {
       { threshold: 0.25 },
     )
     vids.forEach((v) => io.observe(v))
-    return () => io.disconnect()
+    return () => {
+      io.disconnect()
+      vids.forEach((v) => v.pause())
+    }
   }, [compactViewport])
 
   // Category switching. The hash keeps a view shareable and makes the browser

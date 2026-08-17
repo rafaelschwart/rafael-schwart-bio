@@ -804,51 +804,112 @@
 .st-subrail {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 56px) 14px;
+  padding: 0 clamp(20px, 4vw, 56px) 16px;
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
+  row-gap: 10px;
+  align-items: stretch;
 }
 
+/* Chapter tabs. These used to be bare text on a 10%-ink hairline, which read
+   as a caption rather than a control — nothing said "press me". They're now
+   ledger tabs: a paper chip with a hairline, a weighted top edge that carries
+   the progress state, and the same lift-onto-a-hard-shadow gesture the primary
+   rail uses, at a smaller amplitude so the hierarchy still reads. */
 .st-subrail button {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  background: none;
-  border: 0;
-  border-top: 2px solid var(--rule);
+  gap: 4px;
+  background: var(--paper-soft);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--rule-strong);
+  border-radius: 0 0 3px 3px;
   cursor: pointer;
   font-family: var(--fmono);
   font-size: 10.5px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--fade);
+  color: var(--mute);
   text-align: left;
-  padding: 11px 22px 4px 0;
-  margin-right: 22px;
-  transition: color 0.22s var(--ease-eng), border-color 0.22s var(--ease-eng);
+  padding: 9px 13px 10px;
+  margin: 0 30px 0 0;
+  transform: translate(0, 0);
+  transition:
+    color 0.22s var(--ease-eng),
+    background 0.22s var(--ease-eng),
+    border-color 0.22s var(--ease-eng),
+    transform 0.22s var(--ease-eng),
+    box-shadow 0.22s var(--ease-eng);
 }
 
 .st-subrail-yr {
   font-size: 9.5px;
   letter-spacing: 0.12em;
-  color: var(--rule-strong);
+  color: var(--fade);
   font-variant-numeric: tabular-nums;
   transition: color 0.22s var(--ease-eng);
 }
 
-.st-subrail button:hover { color: var(--ink); border-top-color: var(--ink-3); }
-.st-subrail button[data-active="1"] { color: var(--signal); border-top-color: var(--signal); }
-.st-subrail button[data-active="1"] .st-subrail-yr { color: var(--signal); }
-.st-subrail button[data-done="1"] { border-top-color: color-mix(in srgb, var(--signal) 45%, transparent); }
-
-/* flow arrow between chapters, matching the primary rail */
-.st-subrail button:not(:last-of-type) .st-flow-tip {
-  right: 6px;
-  top: 60%;
-  border-color: var(--rule-strong);
+.st-subrail button:hover,
+.st-subrail button:focus-visible {
+  color: var(--ink);
+  background: var(--white);
+  border-color: var(--ink);
+  border-top-color: var(--ink);
+  transform: translate(-1px, -2px);
+  box-shadow: 2px 2px 0 var(--ink);
 }
+.st-subrail button:hover .st-subrail-yr,
+.st-subrail button:focus-visible .st-subrail-yr { color: var(--ink-3); }
+.st-subrail button:active { transform: translate(0, 0) scale(0.97); box-shadow: none; }
+
+/* Active chapter: white plate under a solid signal edge, label in ink so the
+   year — not the title — is what the blue picks out. */
+.st-subrail button[data-active="1"] {
+  color: var(--ink);
+  background: var(--white);
+  border-color: var(--rule-strong);
+  border-top: 2px solid var(--signal);
+  box-shadow: 0 2px 0 -1px var(--signal);
+}
+.st-subrail button[data-active="1"] .st-subrail-yr { color: var(--signal); }
+
+/* Chapters already passed keep a half-strength signal edge as a progress trace */
+.st-subrail button[data-done="1"] {
+  border-top-color: color-mix(in srgb, var(--signal) 55%, var(--rule-strong));
+}
+
+/* Flow connector between chapters, matching the primary rail. The tip needs
+   its full geometry here: `.st-flow-tip`'s base rule is scoped to `.st-index`,
+   so these spans were zero-size and the sub-rail rendered no arrows at all. */
+.st-subrail button:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  right: -22px;
+  top: 50%;
+  width: 14px;
+  height: 1.5px;
+  background: var(--rule-strong);
+  transform: translateY(-50%);
+  transition: background-color 0.28s var(--ease-eng);
+  pointer-events: none;
+}
+
+.st-subrail .st-flow-tip {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-top: 1.5px solid var(--rule-strong);
+  border-right: 1.5px solid var(--rule-strong);
+  transform: translateY(-50%) rotate(45deg);
+  transition: border-color 0.28s var(--ease-eng);
+  pointer-events: none;
+}
+
+.st-subrail button[data-done="1"]::after { background: var(--signal); }
 .st-subrail button[data-done="1"] .st-flow-tip,
 .st-subrail button[data-active="1"] .st-flow-tip {
   border-top-color: var(--signal);
@@ -857,11 +918,16 @@
 .st-subrail button:last-of-type .st-flow-tip { display: none; }
 
 @media (max-width: 860px) {
-  .st-subrail button { padding-right: 16px; margin-right: 16px; font-size: 10px; }
+  .st-subrail button { padding: 8px 10px 9px; margin-right: 22px; font-size: 10px; }
+  .st-subrail button:not(:last-of-type)::after { width: 9px; right: -16px; }
+  .st-subrail .st-flow-tip { right: -10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .st-subrail button, .st-subrail-yr { transition: none; }
+  .st-subrail button:hover,
+  .st-subrail button:focus-visible { transform: none; }
+  .st-subrail button:active { transform: none; }
 }
 
 /* ---- Compact portfolio: phone and tablet only -------------------------- */
@@ -920,3 +986,12 @@
   }
   .st-shipped-metric { white-space: normal; }
 }
+
+/* ---- Wrapped-row flow connectors ---------------------------------------- */
+
+/* A connector at the end of a wrapped row points at empty space. `useRowEnds`
+   measures which chips actually end a visual row and marks them. */
+.st-index button[data-rowend="1"]::after,
+.st-index button[data-rowend="1"] .st-flow-tip,
+.st-subrail button[data-rowend="1"]::after,
+.st-subrail button[data-rowend="1"] .st-flow-tip { display: none; }
