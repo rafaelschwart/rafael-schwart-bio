@@ -105,7 +105,7 @@ export function Hero({ onNav }: HeroProps) {
               </span>
             </Cta>
             <Cta variant="ghost" href={RESUME_URL}>
-              Download résumé
+              Download resume
             </Cta>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 22, marginTop: 34 }}>

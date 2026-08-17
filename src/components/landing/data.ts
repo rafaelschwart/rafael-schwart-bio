@@ -435,7 +435,7 @@ export const pmp = {
   title: "Project Management Professional.",
   desc: "Covers scope, schedule, cost, quality, risk, and stakeholder management on hardware programs.",
   credlyUrl: "https://www.credly.com/badges/f6c6c143-768b-4b63-836a-ca062b99639a",
-  diplomaUrl: "https://drive.google.com/file/d/1JKohOdgfwKokcy-hL8WHf0pze3dp6vX-/view?usp=sharing",
+  diplomaUrl: "https://drive.google.com/file/d/1hyFQHuAKKCniRhsqyex6iTw8_XsetUtD/view?usp=sharing",
 }
 
 export type Certification = {
@@ -451,7 +451,7 @@ export const certifications: Certification[] = [
     eyebrow: "ASQ · Certified",
     title: "Six Sigma Green Belt",
     org: "American Society for Quality",
-    url: "https://drive.google.com/file/d/1fIUGdS8duNPwlG2wxCVrj9yv7frJTR7j/view?usp=sharing",
+    url: "https://drive.google.com/file/d/1pPz3TYgQKt9fQeq87th17K3sv73_2iGj/view?usp=sharing",
     urlLabel: "View diploma",
   },
   {

@@ -110,7 +110,7 @@ export const eras: Era[] = [
     standfirst: "Boeing avionics · the first number I cared about",
     passage: [
       "At Gables I worked on test engineering and automation for Boeing avionics. Cockpit hardware, tested until the testing itself becomes the bottleneck.",
-      "So I designed automated fixtures and cut test cycle times by more than half. That is the first number I ever cared about the way I care about numbers now, not because it looked good on a résumé but because it changed what the team could do in a day.",
+      "So I designed automated fixtures and cut test cycle times by more than half. That is the first number I ever cared about the way I care about numbers now, not because it looked good on a resume but because it changed what the team could do in a day.",
       "I also deployed a PDM system that fixed the engineering change workflow, so ECNs and ECOs stopped getting lost between people. I was still an engineer. I had started, without noticing, to think about throughput.",
     ],
     plate: "/assets/story/05-avionics.webp",

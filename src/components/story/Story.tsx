@@ -340,7 +340,7 @@ export function Story() {
                     className="nb-link-ul"
                     style={{ fontSize: 14.5, color: "var(--ink-2)" }}
                   >
-                    Or open the résumé ↓
+                    Or open the resume ↓
                   </a>
                 </div>
 
@@ -1198,7 +1198,7 @@ export function Story() {
                   LinkedIn
                 </NbCta>
                 <NbCta href={RESUME_URL} variant="paper">
-                  Résumé
+                  Resume
                 </NbCta>
               </div>
 
@@ -1316,7 +1316,7 @@ export function Story() {
                     className="st-footlink"
                     style={{ color: "rgba(245,243,236,.78)", fontSize: 14 }}
                   >
-                    Résumé <span className="nb-nudge">↗</span>
+                    Resume <span className="nb-nudge">↗</span>
                   </a>
                   <button
                     type="button"

@@ -139,7 +139,7 @@ export function Cover() {
               className="nb-link-ul"
               style={{ fontSize: 14.5, color: "var(--ink-2)" }}
             >
-              Or open the résumé ↓
+              Or open the resume ↓
             </a>
           </div>
 

@@ -685,7 +685,7 @@ export function TheClose() {
             LinkedIn
           </NbCta>
           <NbCta href={RESUME_URL} variant="paper">
-            Résumé
+            Resume
           </NbCta>
         </div>
 

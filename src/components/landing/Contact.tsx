@@ -99,7 +99,7 @@ export function Contact() {
             LinkedIn
           </Cta>
           <Cta variant="ghost-dark" href={RESUME_URL}>
-            Download résumé
+            Download resume
           </Cta>
         </div>
       </div>
