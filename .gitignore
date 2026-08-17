@@ -44,3 +44,6 @@ Certifications/
 
 # 21st CLI design-token cache (regenerated on demand)
 .21st/
+
+# Firecrawl scrape output (local research artifacts)
+.scrape/
