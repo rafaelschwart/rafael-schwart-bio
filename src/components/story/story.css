@@ -181,7 +181,7 @@
   border-right-color: var(--signal);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 860px) {
   .st-index button { margin: 5px 9px; }
   .st-index button:not(:last-of-type)::after { width: 9px; right: -16px; }
   .st-index .st-flow-tip { right: -9px; }
@@ -597,7 +597,7 @@
   z-index: 1;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 860px) {
   .st-flow { grid-template-columns: 1fr; gap: 30px; }
   /* the flow turns vertical: connectors point down */
   .st-flow-step:not(:last-child)::after {
@@ -727,7 +727,7 @@
 
 /* ---- Responsive ---------------------------------------------------------- */
 
-@media (max-width: 900px) {
+@media (max-width: 860px) {
   .st-yearrail { display: none; }
   .st-spine { display: none; }
   .st-era-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
@@ -850,10 +850,67 @@
 }
 .st-subrail button:last-of-type .st-flow-tip { display: none; }
 
-@media (max-width: 900px) {
+@media (max-width: 860px) {
   .st-subrail button { padding-right: 16px; margin-right: 16px; font-size: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .st-subrail button, .st-subrail-yr { transition: none; }
+}
+
+/* ---- Compact portfolio: phone and tablet only -------------------------- */
+
+@media (max-width: 860px) {
+  /* The compact shell is opaque and legible; desktop's blurred rail is not
+     needed once the 52px entry bar takes over. */
+  .st-index { backdrop-filter: none; background: var(--paper); }
+
+  .st-word,
+  .st-word[data-lit="1"] { color: var(--ink-2); }
+  .nb-night .st-word,
+  .nb-night .st-word[data-lit="1"] { color: rgba(245, 243, 236, 0.92); }
+
+  .st-root :is(button, .nb-cta, .nb-link-ul) {
+    min-height: 44px;
+  }
+  .st-root .nb-link-ul {
+    display: inline-flex;
+    align-items: center;
+  }
+  .st-modal-close { width: 44px; height: 44px; }
+
+  .st-record-grid > * { min-width: 0; }
+  .st-record-grid .st-role { padding: 18px 16px !important; }
+
+  .st-recommendation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .st-shipped-metric { min-width: 0; }
+}
+
+@media (min-width: 600px) and (max-width: 860px) {
+  .st-cover-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 360px) !important;
+    gap: 28px !important;
+  }
+  .st-cover-photo {
+    width: 100%;
+    max-width: 360px;
+    justify-self: end;
+  }
+  .st-record-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 599px) {
+  .st-cover-photo { max-width: 360px; }
+  .st-record-grid,
+  .st-recommendation-grid { grid-template-columns: 1fr !important; }
+
+  /* A third implicit metrics column was the source of the 320px overflow.
+     On phones every part of a shipped item gets its own full-width row. */
+  .st-thing { grid-template-columns: 1fr; gap: 12px; }
+  .st-thing-shot { width: min(100%, 240px); }
+  .st-thing > div:last-child {
+    grid-column: auto;
+    text-align: left !important;
+  }
+  .st-shipped-metric { white-space: normal; }
 }

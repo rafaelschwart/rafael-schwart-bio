@@ -1,7 +1,8 @@
 import { cleanup, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { afterEach, describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import { MobileStoryNav } from "./MobileStoryNav"
+import { Story } from "./Story"
 
 const items = [
   { id: "cover", label: "Cover", index: "01" },
@@ -15,7 +16,26 @@ const items = [
   { id: "contact", label: "Contact", index: "09" },
 ]
 
-afterEach(cleanup)
+const setViewport = (compact: boolean) => {
+  vi.stubGlobal(
+    "matchMedia",
+    vi.fn().mockImplementation((query: string) => ({
+      matches: query === "(max-width: 860px)" ? compact : query === "(prefers-reduced-motion: reduce)",
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  )
+}
+
+afterEach(() => {
+  cleanup()
+  vi.unstubAllGlobals()
+})
 
 describe("MobileStoryNav", () => {
   it("shows every entry and marks the active entry after opening the panel", async () => {
@@ -69,5 +89,29 @@ describe("MobileStoryNav", () => {
     await user.click(entries)
 
     expect(entries).toHaveAttribute("data-state", "open")
+  })
+})
+
+describe("Story mobile cover", () => {
+  it("serves compact recruiter details and portrait sources while retaining an identifiable desktop rail", () => {
+    setViewport(true)
+
+    const { unmount } = render(<Story />)
+
+    expect(screen.getByText(/Senior Operations Program Manager, NPI at Motorola Solutions/)).toBeVisible()
+    expect(screen.getByRole("link", { name: "Email" })).toBeVisible()
+    expect(screen.getByRole("link", { name: "Resume" })).toBeVisible()
+    const portrait = screen.getByRole("img", { name: "Rafael Schwart" })
+    expect(
+      portrait
+        .closest("picture")
+        ?.querySelector('source[type="image/webp"][srcset*="headshot-mobile-480.webp"]'),
+    ).toBeInTheDocument()
+
+    unmount()
+    setViewport(false)
+    render(<Story />)
+
+    expect(document.querySelector(".st-desktop-index")).toBeInTheDocument()
   })
 })

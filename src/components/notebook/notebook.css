@@ -460,6 +460,7 @@ button:hover > .nb-nudge { transform: translate(2px, -2px); }
 
 @media (max-width: 860px) {
   .nb { --nb-rail: 30px; }
+  .nb-page { min-width: 0; }
   .nb-rail::after { background-size: 30px 24px; }
   .nb-margin-rule { display: none; }
   .nb-hand { font-size: 18px; }
@@ -470,6 +471,16 @@ button:hover > .nb-nudge { transform: translate(2px, -2px); }
   /* The header CTA crowds the entry rail on phones — contact lives in the
      announce strip and entry 10 anyway. */
   .nb-nav-cta { display: none; }
+}
+
+@media (min-width: 600px) and (max-width: 860px) {
+  /* Compact tablets retain a little of the notebook's spread rhythm without
+     reintroducing the desktop's cramped multi-column reading measure. */
+  .nb-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 599px) {
+  .nb-cta { min-height: 44px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

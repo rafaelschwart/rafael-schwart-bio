@@ -315,7 +315,7 @@ export function Story() {
           </>
         ) : (
         /* ------------------------------------------------ entry index --- */
-        <nav className="st-index" aria-label="Entries">
+        <nav className="st-index st-desktop-index" aria-label="Entries">
           <div
             /* The rail is wider than the 1080px reading column on purpose:
                constrained to the text measure it wrapped to two rows. */
@@ -376,7 +376,7 @@ export function Story() {
           <Spread id="cover" style={{ paddingTop: "clamp(38px, 5vw, 68px)" }}>
             <YearMark year={2014} />
             <div
-              className="st-two"
+              className="st-two st-cover-layout"
               style={{
                 display: "grid",
                 gridTemplateColumns: "1.12fr 0.88fr",
@@ -476,21 +476,34 @@ export function Story() {
               </div>
 
               {/* ---- Rafael's photograph, taped to the cover ---- */}
-              <div>
+              <div className="st-cover-photo">
                 <NbCard tape tilt="r" lift className="st-photo" style={{ padding: 14 }}>
-                  <img
-                    src={HEADSHOT_SRC}
-                    alt="Rafael Schwart"
-                    loading="eager"
-                    decoding="async"
-                    style={{
-                      width: "100%",
-                      aspectRatio: "4 / 5",
-                      objectFit: "cover",
-                      display: "block",
-                      borderRadius: 2,
-                    }}
-                  />
+                  <picture>
+                    <source
+                      media="(max-width: 599px)"
+                      srcSet="/assets/headshot-mobile-480.webp"
+                      type="image/webp"
+                    />
+                    <source
+                      media="(max-width: 860px)"
+                      srcSet="/assets/headshot-mobile-720.webp"
+                      type="image/webp"
+                    />
+                    <img
+                      className="st-headshot"
+                      src={HEADSHOT_SRC}
+                      alt="Rafael Schwart"
+                      loading="eager"
+                      decoding="async"
+                      style={{
+                        width: "100%",
+                        aspectRatio: "4 / 5",
+                        objectFit: "cover",
+                        display: "block",
+                        borderRadius: 2,
+                      }}
+                    />
+                  </picture>
                   <div
                     style={{
                       display: "flex",
@@ -755,6 +768,7 @@ export function Story() {
                         {era.companies.length === 1 ? "role" : "roles"}
                       </p>
                       <div
+                        className="st-record-grid"
                         data-stagger
                         style={{
                           display: "grid",
@@ -827,7 +841,7 @@ export function Story() {
                               {it.detail}
                             </p>
                           </div>
-                          <div style={{ textAlign: "right", whiteSpace: "nowrap" }}>
+                          <div className="st-shipped-metric" style={{ textAlign: "right" }}>
                             <p
                               className="nb-stamp"
                               style={{ fontSize: 10, color: "var(--signal)" }}
@@ -1167,7 +1181,7 @@ export function Story() {
               Recommendations · {refs.length} letters
             </p>
             <div
-              className="nb-grid-4"
+              className="nb-grid-4 st-recommendation-grid"
               data-stagger
               style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
             >
