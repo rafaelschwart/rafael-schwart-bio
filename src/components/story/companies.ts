@@ -28,6 +28,8 @@ export type Company = {
   product: string | null
   /** Mono caption under the product plate */
   productLabel?: string
+  /** True when the image is the company's own product photography, not a generated study */
+  productIsReal?: boolean
   /** The company's own brand colour, used as a hairline accent only */
   brand: string
   /** What they do — one paragraph */
@@ -43,7 +45,8 @@ export const companies: Record<string, Company> = {
     urlLabel: "motorolasolutions.com",
     logo: "/assets/companies/motorola-mark.webp",
     product: "/assets/companies/motorola-product.webp",
-    productLabel: "Land-mobile radio",
+    productLabel: "APX NEXT XE · P25 smart radio",
+    productIsReal: true,
     brand: "#005EB8",
     blurb:
       "Mission-critical communications and public-safety technology: land-mobile radio, command-centre software, and video security used by first responders, government, and enterprise operations worldwide.",

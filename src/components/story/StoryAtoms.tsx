@@ -379,7 +379,7 @@ export function CompanyModal({ company, onClose }: { company: string | null; onC
               </div>
               <figcaption className="st-plate-cap">
                 <span>{co.productLabel}</span>
-                <span>Study · not company photography</span>
+                <span>{co.productIsReal ? "Motorola Solutions" : "Study · not company photography"}</span>
               </figcaption>
             </figure>
           ) : null}
