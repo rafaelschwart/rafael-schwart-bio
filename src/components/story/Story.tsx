@@ -64,6 +64,8 @@ import {
 import { CompanyModal, DrawRule, Metric, Passage, Plate, RoleCard } from "./StoryAtoms"
 import { reduced, useDraw, useEnter, useImageWipe, useParallax, useProgress, useYearRail } from "./motion"
 import { useNavIndicator, useNotebookMotion } from "./notebookMotion"
+import { MobileStoryNav } from "./MobileStoryNav"
+import { useCompactViewport } from "./mobile"
 import "@/components/notebook/notebook.css"
 import "./story.css"
 
@@ -103,6 +105,7 @@ function YearMark({ year }: { year: number }) {
 }
 
 export function Story() {
+  const compactViewport = useCompactViewport()
   const rootRef = useRef<HTMLDivElement>(null)
   const yearRef = useRef<HTMLSpanElement>(null)
   const navBarRef = useRef<HTMLDivElement>(null)
@@ -112,6 +115,7 @@ export function Story() {
     return storyNav.some((n) => n.id === h) ? h : "cover"
   })
   const [dossier, setDossier] = useState<string | null>(null)
+  const [status, setStatus] = useState("")
   // which chapter of the record is open (sub-navigation inside one category)
   const [era, setEra] = useState<string>(eras[0].id)
 
@@ -173,10 +177,14 @@ export function Story() {
 
   const go = (id: string) => {
     setView(id)
+    setStatus(`Selected ${storyNav.find((item) => item.id === id)?.label ?? "section"}`)
     if (window.location.hash.replace("#", "") !== id) {
       window.history.pushState(null, "", id === "cover" ? window.location.pathname : `#${id}`)
     }
     window.scrollTo({ top: 0, behavior: reduced() ? "auto" : "smooth" })
+    if (compactViewport) {
+      window.requestAnimationFrame(() => document.getElementById("story-main")?.focus())
+    }
   }
 
   const activeIndex = Math.max(0, storyNav.findIndex((n) => n.id === view))
@@ -213,6 +221,24 @@ export function Story() {
       </aside>
 
       <div className="nb-page">
+        <a
+          href="#story-main"
+          style={{
+            position: "absolute",
+            width: 1,
+            height: 1,
+            padding: 0,
+            overflow: "hidden",
+            clip: "rect(0, 0, 0, 0)",
+            whiteSpace: "nowrap",
+            border: 0,
+          }}
+        >
+          Skip to main content
+        </a>
+        <p className="st-sr-status" role="status" aria-live="polite" style={{ position: "absolute", left: -9999 }}>
+          {status}
+        </p>
         {/* ------------------------------------------------- announce --- */}
         <div
           role="status"
@@ -229,7 +255,32 @@ export function Story() {
           ● {ANNOUNCE}
         </div>
 
-        {/* ------------------------------------------------ entry index --- */}
+        {compactViewport ? (
+          <>
+            <MobileStoryNav
+              items={storyNav.map((item, index) => ({ ...item, index: String(index + 1).padStart(2, "0") }))}
+              activeId={view}
+              onSelect={go}
+            />
+            <div className="st-mobile-copy" style={{ padding: "16px 18px 18px", borderBottom: "1px solid var(--rule)" }}>
+              <p
+                className="st-mobile-summary"
+                style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: "var(--ink-2)" }}
+              >
+                Senior Operations Program Manager, NPI at Motorola Solutions. 15% production efficiency at Magic Leap and 50%+ faster Boeing avionics test cycles.
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 12 }}>
+                <a href={`mailto:${EMAIL}`} className="nb-cta" style={{ minHeight: 44, display: "inline-flex", alignItems: "center" }}>
+                  Email
+                </a>
+                <a href={RESUME_URL} target="_blank" rel="noreferrer" className="nb-cta nb-cta--paper" style={{ minHeight: 44, display: "inline-flex", alignItems: "center" }}>
+                  Resume
+                </a>
+              </div>
+            </div>
+          </>
+        ) : (
+        /* ------------------------------------------------ entry index --- */
         <nav className="st-index" aria-label="Entries">
           <div
             /* The rail is wider than the 1080px reading column on purpose:
@@ -271,6 +322,7 @@ export function Story() {
                   data-nav={n.id}
                   onClick={() => go(n.id)}
                   data-active={view === n.id ? "1" : undefined}
+                  aria-current={view === n.id ? "page" : undefined}
                   /* gates already passed are drawn live, like the NPI pipeline */
                   data-done={i < activeIndex ? "1" : undefined}
                 >
@@ -282,8 +334,9 @@ export function Story() {
             </div>
           </div>
         </nav>
+        )}
 
-        <main>
+        <main id="story-main" tabIndex={-1}>
           {/* ============================================ ENTRY 01 ==== */}
           <View id="cover" active={view}>
           <Spread id="cover" style={{ paddingTop: "clamp(38px, 5vw, 68px)" }}>
@@ -297,7 +350,7 @@ export function Story() {
                 alignItems: "start",
               }}
             >
-              <div>
+              <div className="st-desktop-copy">
                 <div
                   style={{ display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center" }}
                   data-enter
