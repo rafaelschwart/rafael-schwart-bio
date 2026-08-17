@@ -79,46 +79,48 @@ export function MobileStoryNav({ items, activeId, onSelect }: MobileStoryNavProp
           </CollapsibleTrigger>
       </div>
 
-        <CollapsibleContent
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-            gap: 8,
-            padding: 12,
-            background: "var(--paper-soft)",
-            borderBottom: "1px solid var(--rule-strong)",
-          }}
-        >
-          {items.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              aria-current={item.id === activeId ? "page" : undefined}
-              onClick={() => {
-                onSelect(item.id)
-                setIsOpen(false)
-              }}
-              style={{
-                minHeight: 44,
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "8px 10px",
-                background: item.id === activeId ? "var(--signal)" : "var(--paper)",
-                border: "1px solid var(--ink)",
-                color: item.id === activeId ? "#fff" : "var(--ink)",
-                cursor: "pointer",
-                fontFamily: "var(--fmono)",
-                fontSize: 11,
-                letterSpacing: "0.04em",
-                textAlign: "left",
-              }}
-            >
-              {item.index && <span aria-hidden>{item.index}</span>}
-              {item.label}
-            </button>
-          ))}
-        </CollapsibleContent>
+        {isOpen && (
+          <CollapsibleContent
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              gap: 8,
+              padding: 12,
+              background: "var(--paper-soft)",
+              borderBottom: "1px solid var(--rule-strong)",
+            }}
+          >
+            {items.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                aria-current={item.id === activeId ? "page" : undefined}
+                onClick={() => {
+                  onSelect(item.id)
+                  setIsOpen(false)
+                }}
+                style={{
+                  minHeight: 44,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "8px 10px",
+                  background: item.id === activeId ? "var(--signal)" : "var(--paper)",
+                  border: "1px solid var(--ink)",
+                  color: item.id === activeId ? "#fff" : "var(--ink)",
+                  cursor: "pointer",
+                  fontFamily: "var(--fmono)",
+                  fontSize: 11,
+                  letterSpacing: "0.04em",
+                  textAlign: "left",
+                }}
+              >
+                {item.index && <span aria-hidden>{item.index}</span>}
+                {item.label}
+              </button>
+            ))}
+          </CollapsibleContent>
+        )}
       </nav>
     </Collapsible>
   )

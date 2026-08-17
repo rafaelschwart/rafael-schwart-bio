@@ -181,7 +181,7 @@
   border-right-color: var(--signal);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .st-index button { margin: 5px 9px; }
   .st-index button:not(:last-of-type)::after { width: 9px; right: -16px; }
   .st-index .st-flow-tip { right: -9px; }
@@ -603,7 +603,7 @@
   z-index: 1;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .st-flow { grid-template-columns: 1fr; gap: 30px; }
   /* the flow turns vertical: connectors point down */
   .st-flow-step:not(:last-child)::after {
@@ -733,7 +733,7 @@
 
 /* ---- Responsive ---------------------------------------------------------- */
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .st-yearrail { display: none; }
   .st-spine { display: none; }
   .st-era-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
@@ -917,7 +917,7 @@
 }
 .st-subrail button:last-of-type .st-flow-tip { display: none; }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .st-subrail button { padding: 8px 10px 9px; margin-right: 22px; font-size: 10px; }
   .st-subrail button:not(:last-of-type)::after { width: 9px; right: -16px; }
   .st-subrail .st-flow-tip { right: -10px; }
@@ -946,6 +946,11 @@
     min-height: 44px;
   }
   .st-root .nb-link-ul {
+    display: inline-flex;
+    align-items: center;
+  }
+  .st-root a.st-footlink {
+    min-height: 44px;
     display: inline-flex;
     align-items: center;
   }

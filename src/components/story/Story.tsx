@@ -79,9 +79,9 @@ const CAVEAT =
  */
 
 /**
- * One category = one page. Hidden views stay mounted (hidden, not unmounted)
- * so the full record remains in the DOM for crawlers and in-page search, and
- * so switching back is instant.
+ * One category = one page. Desktop keeps hidden views mounted for crawlers,
+ * in-page search, and instant switching; compact viewports mount only the
+ * active view so inactive media is not fetched.
  */
 function View({
   id,
@@ -229,6 +229,7 @@ export function Story() {
       </aside>
 
       <div className="nb-page">
+        <h1 className="sr-only">Rafael Schwart</h1>
         <a
           href="#story-main"
           onFocus={() => setSkipLinkFocused(true)}
@@ -307,6 +308,17 @@ export function Story() {
               onSelect={go}
             />
             <div className="st-mobile-summary" style={{ padding: "16px 18px 18px", borderBottom: "1px solid var(--rule)" }}>
+              <p
+                style={{
+                  margin: "0 0 4px",
+                  fontFamily: "var(--fdisp)",
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: "var(--ink)",
+                }}
+              >
+                Rafael Schwart
+              </p>
               <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: "var(--ink-2)" }}>
                 Senior Operations Program Manager, NPI at Motorola Solutions. 15% production efficiency at Magic Leap and 50%+ faster Boeing avionics test cycles.
               </p>
@@ -420,7 +432,7 @@ export function Story() {
                   {opening.eyebrow}
                 </p>
 
-                <h1
+                <h2
                   className="display-xl"
                   style={{ margin: "0 0 6px", fontSize: "clamp(32px, 4.1vw, 58px)", maxWidth: "16ch" }}
                   data-enter
@@ -429,7 +441,7 @@ export function Story() {
                   <Hl>
                     <em style={{ fontStyle: "italic" }}>in the order it happened.</em>
                   </Hl>
-                </h1>
+                </h2>
 
                 <DrawRule width={480} />
 
@@ -686,13 +698,12 @@ export function Story() {
           {/* =========== THE RECORD: six chapters, one category ==== */}
           <View id="record" active={view} compact={compactViewport}>
             <div className="st-subrail-wrap">
-              <div className="st-subrail" role="tablist" aria-label="Chapters of the record">
+              <nav className="st-subrail" aria-label="Chapters of the record">
                 {eras.map((e) => (
                   <button
                     key={e.id}
                     type="button"
-                    role="tab"
-                    aria-selected={era === e.id}
+                    aria-current={era === e.id ? "step" : undefined}
                     data-subnav={e.id}
                     data-active={era === e.id ? "1" : undefined}
                     data-done={eras.findIndex((x) => x.id === era) > eras.indexOf(e) ? "1" : undefined}
@@ -706,7 +717,7 @@ export function Story() {
                     <span className="st-flow-tip" aria-hidden />
                   </button>
                 ))}
-              </div>
+              </nav>
             </div>
 
           {eras.filter((e) => e.id === era).map((era, i) => {

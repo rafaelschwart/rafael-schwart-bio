@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from "@testing-library/react"
+import { cleanup, render, screen, within } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { useState } from "react"
 import { afterEach, describe, expect, it, vi } from "vitest"
@@ -36,6 +36,7 @@ const setViewport = (compact: boolean) => {
 
 afterEach(() => {
   cleanup()
+  window.history.replaceState(null, "", "/")
   vi.unstubAllGlobals()
 })
 
@@ -80,17 +81,25 @@ describe("MobileStoryNav", () => {
     expect(screen.queryByRole("button", { name: "The record" })).not.toBeInTheDocument()
   })
 
-  it("exposes its open state for disclosure styling", async () => {
+  it("keeps the entry panel out of view while closed and visible while open", async () => {
     const user = userEvent.setup()
 
     render(<MobileStoryNav items={items} activeId="cover" onSelect={() => undefined} />)
 
     const entries = screen.getByRole("button", { name: "Entries" })
+    const panelId = entries.getAttribute("aria-controls")
     expect(entries).toHaveAttribute("data-state", "closed")
+    expect(document.getElementById(panelId ?? "")).not.toBeInTheDocument()
 
     await user.click(entries)
 
     expect(entries).toHaveAttribute("data-state", "open")
+    expect(document.getElementById(panelId ?? "")).toBeVisible()
+
+    await user.click(entries)
+
+    const closedPanel = document.getElementById(panelId ?? "")
+    if (closedPanel) expect(closedPanel).not.toBeVisible()
   })
 })
 
@@ -100,6 +109,11 @@ describe("Story mobile cover", () => {
 
     const { unmount } = render(<Story />)
 
+    const summary = document.querySelector(".st-mobile-summary")
+    expect(summary).toBeInTheDocument()
+    expect(within(summary as HTMLElement).getByText("Rafael Schwart")).toBeVisible()
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1)
+    expect(screen.getByRole("heading", { level: 1, name: "Rafael Schwart" })).toHaveClass("sr-only")
     expect(screen.getByText(/Senior Operations Program Manager, NPI at Motorola Solutions/)).toBeVisible()
     expect(screen.getByRole("link", { name: "Email" })).toBeVisible()
     expect(screen.getByRole("link", { name: "Resume" })).toBeVisible()
@@ -125,6 +139,10 @@ describe("Story mobile cover", () => {
 
     expect(document.querySelector(".st-desktop-index")).toBeInTheDocument()
     expect(document.querySelector(".st-word")).toBeInTheDocument()
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1)
+    expect(
+      screen.getByRole("heading", { level: 2, name: /Twelve years of engineering/i }),
+    ).toBeVisible()
   })
 
   it("makes meaningful mobile video user-initiated and decorative mobile video poster-only", () => {
@@ -144,6 +162,27 @@ describe("Story mobile cover", () => {
     const decorative = document.querySelector('video[poster="/assets/contact-loop-poster.jpg"]')
     expect(decorative).toBeInTheDocument()
     expect(decorative).not.toHaveAttribute("src")
+  })
+
+  it("uses native chapter buttons and identifies the current Record chapter", async () => {
+    const user = userEvent.setup()
+    setViewport(true)
+    vi.stubGlobal("scrollTo", vi.fn())
+    window.history.replaceState(null, "", "/#record")
+
+    render(<Story />)
+
+    const chapters = screen.getByRole("navigation", { name: "Chapters of the record" })
+    const chapterButtons = within(chapters).getAllByRole("button")
+    expect(chapterButtons).toHaveLength(6)
+    expect(chapterButtons[0]).toHaveAttribute("aria-current", "step")
+    expect(chapterButtons[0]).not.toHaveAttribute("role", "tab")
+    expect(chapterButtons[0]).not.toHaveAttribute("aria-selected")
+
+    await user.click(chapterButtons[1])
+
+    expect(chapterButtons[0]).not.toHaveAttribute("aria-current")
+    expect(chapterButtons[1]).toHaveAttribute("aria-current", "step")
   })
 })
 
