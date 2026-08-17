@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "project": {
+    "name": "vite_react_shadcn_ts",
+    "productType": null,
+    "stack": [
+      "react",
+      "shadcn",
+      "tailwind-v3",
+      "vite"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "src/index.css",
+      "src/app.css"
+    ],
+    "components": [
+      "src/components/ui"
+    ],
+    "assets": [
+      "public/assets",
+      "src/assets"
+    ],
+    "instructions": [
+      "DESIGN.md",
+      "PRODUCT.md",
+      "CLAUDE.md"
+    ]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--background": {
+        "value": "46 33% 94%",
+        "source": "src/index.css"
+      },
+      "--foreground": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--card-foreground": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--popover-foreground": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--primary": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--primary-foreground": {
+        "value": "46 33% 94%",
+        "source": "src/index.css"
+      },
+      "--secondary": {
+        "value": "44 24% 90%",
+        "source": "src/index.css"
+      },
+      "--secondary-foreground": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--muted": {
+        "value": "44 24% 90%",
+        "source": "src/index.css"
+      },
+      "--muted-foreground": {
+        "value": "36 8% 32%",
+        "source": "src/index.css"
+      },
+      "--accent": {
+        "value": "226 100% 61%",
+        "source": "src/index.css"
+      },
+      "--accent-foreground": {
+        "value": "0 0% 100%",
+        "source": "src/index.css"
+      },
+      "--destructive": {
+        "value": "227 72% 48%",
+        "source": "src/index.css"
+      },
+      "--destructive-foreground": {
+        "value": "0 0% 100%",
+        "source": "src/index.css"
+      },
+      "--border": {
+        "value": "40 10% 84%",
+        "source": "src/index.css"
+      },
+      "--ring": {
+        "value": "226 100% 61%",
+        "source": "src/index.css"
+      },
+      "--sidebar-background": {
+        "value": "46 33% 94%",
+        "source": "src/index.css"
+      },
+      "--sidebar-foreground": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--sidebar-primary": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--sidebar-primary-foreground": {
+        "value": "46 33% 94%",
+        "source": "src/index.css"
+      },
+      "--sidebar-accent": {
+        "value": "44 24% 90%",
+        "source": "src/index.css"
+      },
+      "--sidebar-accent-foreground": {
+        "value": "0 0% 4%",
+        "source": "src/index.css"
+      },
+      "--sidebar-border": {
+        "value": "40 10% 84%",
+        "source": "src/index.css"
+      },
+      "--sidebar-ring": {
+        "value": "226 100% 61%",
+        "source": "src/index.css"
+      }
+    },
+    "typography": {},
+    "spacing": {},
+    "radius": {
+      "--radius": {
+        "value": "3px",
+        "source": "src/index.css"
+      }
+    },
+    "shadows": {},
+    "motion": {
+      "--ease-eng": {
+        "value": "cubic-bezier(0.42, 0, 0.58, 1)",
+        "source": "src/index.css"
+      },
+      "--ease-settle": {
+        "value": "cubic-bezier(0.2, 0, 0, 1)",
+        "source": "src/index.css"
+      }
+    },
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [
+      "accordion",
+      "alert",
+      "alert-dialog",
+      "aspect-ratio",
+      "avatar",
+      "badge",
+      "breadcrumb",
+      "button",
+      "calendar",
+      "card",
+      "carousel",
+      "chart",
+      "checkbox",
+      "collapsible",
+      "command",
+      "context-menu",
+      "dialog",
+      "drawer",
+      "dropdown-menu",
+      "form",
+      "hover-card",
+      "input",
+      "input-otp",
+      "label",
+      "menubar",
+      "navigation-menu",
+      "pagination",
+      "popover",
+      "progress",
+      "radio-group",
+      "resizable",
+      "scroll-area",
+      "select",
+      "separator",
+      "sheet",
+      "sidebar",
+      "skeleton",
+      "slider",
+      "sonner",
+      "switch",
+      "table",
+      "tabs",
+      "textarea",
+      "toast",
+      "toaster",
+      "toggle",
+      "toggle-group",
+      "tooltip",
+      "use-toast"
+    ],
+    "preferredPrimitives": [
+      "radix-ui"
+    ],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Keep the existing desktop portfolio visually unchanged above 860px",
+      "Preserve the ruled-paper notebook identity and signal-blue accent",
+      "Use 44px minimum mobile interaction targets"
+    ],
+    "avoid": [
+      "Wrapped multi-row sticky navigation on mobile",
+      "Automatic looping video on mobile",
+      "Low-contrast scroll-dependent prose on mobile"
+    ]
+  },
+  "decisions": [
+    {
+      "id": "mobile-portfolio-2026-08-16",
+      "decision": "Use a compact current-entry bar with an accessible two-column Entries disclosure at 860px and below.",
+      "rationale": "It keeps all nine destinations discoverable while reclaiming more than 100px of phone viewport height and preserving the desktop process rail unchanged."
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "components.installed",
+      "source": "src/components/ui"
+    },
+    {
+      "fact": "design.colorMode:light",
+      "source": "src/index.css, src/app.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/app.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/index.css"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "CLAUDE.md"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "DESIGN.md"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "PRODUCT.md"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:shadcn",
+      "source": "components.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v3",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:vite",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-08-17T02:17:56.156Z"
+}

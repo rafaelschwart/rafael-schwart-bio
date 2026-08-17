@@ -447,8 +447,8 @@ export const ventures: Venture[] = [
     url: "https://www.earthrobotics.co/",
     urlLabel: "earthrobotics.co",
     image: "/assets/ventures/earthrobotics.webp",
-    imageAlt: "A tracked field robot with a sensor mast standing in wetland grass at dawn",
-    plateLabel: "Plate · the field",
+    imageAlt: "The Earth Robotics LU autonomous delivery robot, lit against a dark studio background",
+    plateLabel: "LU · autonomous delivery robot",
     passage: [
       "Earth Robotics builds sustainable robotics for environmental monitoring — machines that go into wetlands and open terrain and come back with data.",
       "My work is the mechanical side: structural analysis, mechatronic integration and field testing. Hardware that has to survive being outdoors is its own discipline.",
