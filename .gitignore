@@ -41,3 +41,6 @@ Employment & Recommendations/
 
 # Credential certificates (PMP, Six Sigma). Local-only: certification numbers + citizenship.
 Certifications/
+
+# 21st CLI design-token cache (regenerated on demand)
+.21st/
