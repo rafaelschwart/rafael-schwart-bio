@@ -24,6 +24,7 @@ import {
   HEADSHOT_SRC,
   LINKEDIN_URL,
   RESUME_URL,
+  anthropicCerts,
   certifications,
   footer as footerData,
   pmp,
@@ -56,7 +57,9 @@ import {
   prologue,
   shipped,
   storyNav,
-  ventures,
+  arqentiaVenture,
+  sideVentures,
+  sideVenturesMeta,
 } from "./chapters"
 import { CompanyModal, DrawRule, Metric, Passage, Plate, RoleCard } from "./StoryAtoms"
 import { reduced, useDraw, useEnter, useImageWipe, useParallax, useProgress, useYearRail } from "./motion"
@@ -983,6 +986,47 @@ export function Story() {
                 </div>
               </NbCard>
             </div>
+
+          {/* Anthropic training — the AI-tooling side of the Arqentia work */}
+          <div style={{ marginTop: "clamp(34px, 5vw, 56px)" }}>
+            <p className="nb-stamp" style={{ marginBottom: 14 }} data-enter>
+              Anthropic · AI engineering training · 2026
+            </p>
+            <div
+              className="nb-grid-3"
+              data-stagger
+              style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}
+            >
+              {anthropicCerts.map((c) => (
+                <NbCard key={c.credentialId} style={{ padding: "20px 20px" }}>
+                  <p
+                    className="nb-stamp"
+                    style={{ fontSize: 9.5, color: "var(--signal)", marginBottom: 11 }}
+                  >
+                    Anthropic · Certified
+                  </p>
+                  <p style={{ fontWeight: 700, fontSize: 16, lineHeight: 1.3, marginBottom: 10 }}>
+                    {c.title}
+                  </p>
+                  <p className="nb-stamp" style={{ fontSize: 9.5, color: "var(--fade)" }}>
+                    Issued {c.issued}
+                  </p>
+                  <p
+                    className="tnum"
+                    style={{
+                      fontFamily: "var(--fmono)",
+                      fontSize: 10.5,
+                      color: "var(--mute)",
+                      marginTop: 6,
+                      wordBreak: "break-all",
+                    }}
+                  >
+                    ID {c.credentialId}
+                  </p>
+                </NbCard>
+              ))}
+            </div>
+          </div>
           </Spread>
           </View>
 
@@ -1093,78 +1137,175 @@ export function Story() {
           </View>
 
           {/* ============================================ ENTRY 12 ==== */}
-          {/* ====================== VENTURES: one page each ==== */}
-          {ventures.map((v, i) => (
-            <View key={v.id} id={v.id} active={view}>
-              <Spread id={v.id} tone={i % 2 === 0 ? "soft" : "paper"}>
-                <div
-                  className="st-era-grid"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "1.1fr 0.9fr",
-                    gap: "clamp(28px, 5vw, 62px)",
-                    alignItems: "start",
-                  }}
-                >
-                  <div>
-                    <EntryStamp entry={v.no} title={v.name} note={v.standfirst} />
-                    <h2 className="st-h2" style={{ margin: "22px 0 0" }} data-enter>
-                      {i === 0 ? (
-                        <Hl>
-                          <span>{v.name}</span>
-                        </Hl>
-                      ) : (
-                        v.name
-                      )}
-                    </h2>
-                    <DrawRule width={420} />
-                    <p className="nb-stamp" style={{ marginBottom: 22 }} data-enter>
-                      {v.role}
-                    </p>
-                    <Passage paragraphs={v.passage} />
+          {/* ============================ ARQENTIA: its own page ==== */}
+          <View id="arqentia" active={view}>
+            <Spread id="arqentia" tone="soft">
+              <div
+                className="st-era-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1.1fr 0.9fr",
+                  gap: "clamp(28px, 5vw, 62px)",
+                  alignItems: "start",
+                }}
+              >
+                <div>
+                  <EntryStamp
+                    entry={arqentiaVenture.no}
+                    title={arqentiaVenture.name}
+                    note={arqentiaVenture.standfirst}
+                  />
+                  <h2 className="st-h2" style={{ margin: "22px 0 0" }} data-enter>
+                    <Hl>
+                      <span>{arqentiaVenture.name}</span>
+                    </Hl>
+                  </h2>
+                  <DrawRule width={420} />
+                  <p className="nb-stamp" style={{ marginBottom: 22 }} data-enter>
+                    {arqentiaVenture.role}
+                  </p>
+                  <Passage paragraphs={arqentiaVenture.passage} />
 
-                    <div style={{ marginTop: 28 }}>
-                      <p className="nb-stamp" style={{ fontSize: 10, marginBottom: 12 }} data-enter>
-                        What it is
+                  <div style={{ marginTop: 28 }}>
+                    <p className="nb-stamp" style={{ fontSize: 10, marginBottom: 12 }} data-enter>
+                      What it is
+                    </p>
+                    <div data-checks>
+                      {arqentiaVenture.facts.map((f) => (
+                        <CheckRow key={f}>{f}</CheckRow>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: 14,
+                      alignItems: "center",
+                      marginTop: 28,
+                    }}
+                    data-enter
+                  >
+                    <NbCta href={arqentiaVenture.url}>Visit Arqentia</NbCta>
+                    <a
+                      href={arqentiaVenture.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="nb-link-ul"
+                      style={{ fontFamily: "var(--fmono)", fontSize: 11.5, color: "var(--signal)" }}
+                    >
+                      {arqentiaVenture.urlLabel} <span className="nb-nudge">↗</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div style={{ position: "sticky", top: 92 }}>
+                  <Plate
+                    src={arqentiaVenture.image}
+                    alt={arqentiaVenture.imageAlt}
+                    label={arqentiaVenture.plateLabel}
+                    index={arqentiaVenture.role}
+                    ratio="3 / 4"
+                    tilt="r"
+                  />
+                </div>
+              </div>
+            </Spread>
+          </View>
+
+          {/* ================= SIDE VENTURES: the other three ==== */}
+          <View id="ventures" active={view}>
+            <Spread id="ventures">
+              <EntryStamp
+                entry={sideVenturesMeta.no}
+                title={sideVenturesMeta.title}
+                note={sideVenturesMeta.standfirst}
+              />
+              <h2 className="st-h2" style={{ margin: "22px 0 0", maxWidth: "16ch" }} data-enter>
+                {sideVenturesMeta.title}
+              </h2>
+              <DrawRule width={420} />
+              <Passage paragraphs={sideVenturesMeta.passage} />
+
+              <div style={{ marginTop: "clamp(30px, 4vw, 46px)" }} data-stagger>
+                {sideVentures.map((v) => (
+                  <div key={v.id} className="st-venture">
+                    <div className="st-venture-shot">
+                      <img src={v.image} alt={v.imageAlt} loading="lazy" decoding="async" />
+                    </div>
+                    <div>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexWrap: "wrap",
+                          alignItems: "baseline",
+                          gap: 12,
+                        }}
+                      >
+                        <h3
+                          style={{
+                            fontFamily: "var(--fdisp)",
+                            fontWeight: 700,
+                            fontSize: "clamp(21px, 2.2vw, 28px)",
+                            letterSpacing: "-0.02em",
+                          }}
+                        >
+                          {v.name}
+                        </h3>
+                        <span className="nb-date-chip">{v.role}</span>
+                      </div>
+                      <p className="nb-stamp" style={{ fontSize: 9.5, margin: "9px 0 11px" }}>
+                        {v.standfirst}
                       </p>
-                      <div data-checks>
-                        {v.facts.map((f) => (
-                          <CheckRow key={f}>{f}</CheckRow>
+                      <p
+                        style={{
+                          fontSize: 14.5,
+                          lineHeight: 1.65,
+                          color: "var(--mute)",
+                          maxWidth: "58ch",
+                        }}
+                      >
+                        {v.passage[0]}
+                      </p>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, margin: "14px 0 0" }}>
+                        {v.facts.slice(0, 3).map((f) => (
+                          <span
+                            key={f}
+                            style={{
+                              fontFamily: "var(--fmono)",
+                              fontSize: 10,
+                              letterSpacing: "0.04em",
+                              color: "var(--mute)",
+                              border: "1px solid var(--rule)",
+                              padding: "4px 8px",
+                            }}
+                          >
+                            {f}
+                          </span>
                         ))}
                       </div>
-                    </div>
-
-                    <div
-                      style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center", marginTop: 28 }}
-                      data-enter
-                    >
-                      <NbCta href={v.url}>Visit {v.name}</NbCta>
                       <a
                         href={v.url}
                         target="_blank"
                         rel="noreferrer"
                         className="nb-link-ul"
-                        style={{ fontFamily: "var(--fmono)", fontSize: 11.5, color: "var(--signal)" }}
+                        style={{
+                          display: "inline-block",
+                          marginTop: 16,
+                          fontFamily: "var(--fmono)",
+                          fontSize: 11.5,
+                          color: "var(--signal)",
+                        }}
                       >
                         {v.urlLabel} <span className="nb-nudge">↗</span>
                       </a>
                     </div>
                   </div>
-
-                  <div style={{ position: "sticky", top: 92 }}>
-                    <Plate
-                      src={v.image}
-                      alt={v.imageAlt}
-                      label={v.plateLabel}
-                      index={v.role}
-                      ratio="3 / 4"
-                      tilt={i % 2 === 0 ? "r" : "l"}
-                    />
-                  </div>
-                </div>
-              </Spread>
-            </View>
-          ))}
+                ))}
+              </div>
+            </Spread>
+          </View>
 
           {/* ============================================ ENTRY 13 ==== */}
           <View id="contact" active={view}>

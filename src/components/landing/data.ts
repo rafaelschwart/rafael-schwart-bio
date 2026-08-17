@@ -7,7 +7,7 @@
 export const EMAIL = "hi@rafaelschwart.com"
 export const LINKEDIN_URL = "https://www.linkedin.com/in/rafaelschwart/"
 export const RESUME_URL =
-  "https://drive.google.com/file/d/1yhTym6ORlev6c89RBAvwhabD7aFD7R2K/view?usp=drive_link"
+  "https://drive.google.com/file/d/1TO7meFeAIJSItpAEt1zppdKPj5zGhR_N/view?usp=sharing"
 
 export const HEADSHOT_SRC = "/assets/headshot.jpg"
 export const HERO_VIDEO = "/assets/hero-loop.mp4"
@@ -458,6 +458,30 @@ export const certifications: Certification[] = [
     eyebrow: "Professional Development · Certified",
     title: "Agile Foundations",
     org: "Certificate on file",
+  },
+]
+
+/**
+ * Anthropic training completed 2026 — the AI-tooling side of the Arqentia
+ * work. Credential IDs are the ones printed on each certificate.
+ */
+export type AnthropicCert = { title: string; issued: string; credentialId: string }
+
+export const anthropicCerts: AnthropicCert[] = [
+  {
+    title: "Introduction to Claude Cowork",
+    issued: "Jul 2026",
+    credentialId: "yzwdsvxvq5z2",
+  },
+  {
+    title: "Claude Code 101",
+    issued: "Jun 2026",
+    credentialId: "kzz5exrv7oa8",
+  },
+  {
+    title: "Claude 101",
+    issued: "Jun 2026",
+    credentialId: "qwqcujmxogsf",
   },
 ]
 

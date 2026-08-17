@@ -507,6 +507,20 @@ export const ventures: Venture[] = [
   },
 ]
 
+/** Arqentia gets its own category; the other three share one page. */
+export const arqentiaVenture = ventures[0]
+export const sideVentures = ventures.slice(1)
+
+export const sideVenturesMeta = {
+  id: "ventures",
+  no: "13",
+  title: "Side ventures",
+  standfirst: "Three more things I build outside the day job",
+  passage: [
+    "Beyond Arqentia there are three others, each a different kind of hard: a blockchain platform for football, field robotics for environmental monitoring, and a consumer recovery brand.",
+  ],
+}
+
 export const storyNav = [
   { id: "cover", label: "Cover" },
   { id: "forward", label: "Forward deployed" },
@@ -515,6 +529,7 @@ export const storyNav = [
   { id: "method", label: "How I work" },
   { id: "credentials", label: "Credentials" },
   { id: "references", label: "Proof" },
-  ...ventures.map((v) => ({ id: v.id, label: v.name })),
+  { id: "arqentia", label: "Arqentia" },
+  { id: "ventures", label: "Side ventures" },
   { id: "contact", label: "Contact" },
 ]
