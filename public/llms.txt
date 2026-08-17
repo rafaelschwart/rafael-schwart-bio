@@ -12,14 +12,20 @@ This file is a structured summary of Rafael Schwart's professional portfolio for
 - Location: Miami, Florida (born Caracas, Venezuela)
 - Phone: Available upon request
 
-## Section URLs
+## Site structure
 
-- Home (full portfolio: career narrative 2014-present, all 9 roles, method, credentials, references, ventures, contact): https://rafaelschwart.com/
-- Method (stage-gate operating model, capabilities, skills): https://rafaelschwart.com/method
-- Experience (9 companies): https://rafaelschwart.com/experience
-- Work (ventures / side projects): https://rafaelschwart.com/work
-- Credentials (certifications, references, employment verification): https://rafaelschwart.com/credentials
-- Contact: https://rafaelschwart.com/contact
+The site is a single page with nine categories, selected by the top rail and
+addressable by URL fragment:
+
+- Cover (who he is, headline, photograph): https://rafaelschwart.com/
+- Forward deployed (Arqentia; process engineering for small businesses, accelerated by AI): https://rafaelschwart.com/#forward
+- The record (the career in six chapters, 2014 to now, with all nine roles): https://rafaelschwart.com/#record
+- Shipped (the hardware that exists because he worked on it): https://rafaelschwart.com/#shipped
+- Method (how he works; the four principles and the 24-item toolset): https://rafaelschwart.com/#method
+- Credentials (PMP, Six Sigma Green Belt, Agile, Anthropic AI training): https://rafaelschwart.com/#credentials
+- Proof (4 recommendation letters, 3 employment verifications): https://rafaelschwart.com/#references
+- Ventures (Tiento, Earth Robotics, Recovrz): https://rafaelschwart.com/#ventures
+- Contact: https://rafaelschwart.com/#contact
 
 ## Professional Summary
 
