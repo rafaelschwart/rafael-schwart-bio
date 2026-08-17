@@ -53,6 +53,57 @@ export const opening = {
   proof: ["PMP certified", "Six Sigma Green Belt", "9 companies · 6 industries"],
 }
 
+/* ------------------------------------------------- forward deployed ---- */
+
+/**
+ * Sits directly under the cover. This is the "what I'm doing now" answer —
+ * the engineering discipline applied to business operations, and the AI
+ * tooling that makes it ship fast. Placed before the career history because
+ * it is the most current and most actionable thing a reader can engage.
+ */
+export const forwardDeployed = {
+  no: "01",
+  title: "Forward deployed engineering.",
+  standfirst: "Arqentia · process engineering for small businesses, accelerated by AI",
+  url: "https://arqentia.com/",
+  urlLabel: "arqentia.com",
+  passage: [
+    "Most small companies are running an operation nobody ever engineered. The real process lives in one person's head, a spreadsheet three people edit at once, and a hand-off that quietly costs a day every week. Nobody wrote it down, so nobody can fix it.",
+    "That is the same problem I spent twelve years solving on production lines, and the method transfers exactly. At Arqentia I work the way a forward deployed engineer does: sit inside the operation, map what actually happens rather than what the org chart says, find the constraint, and build the thing that removes it.",
+    "What changed is build speed. Process engineering is still how I find the problem — walk the line, map the flow, PFMEA the failure modes, measure the throughput. AI engineering tooling is how the fix ships in days instead of quarters. I am fluent in that stack, and I use it as an engineer rather than as a novelty.",
+  ],
+  /** How the hardware method maps onto an operation */
+  method: [
+    {
+      k: "01",
+      title: "Walk the line",
+      desc: "Sit with the people doing the work and record the real process, including the workarounds. On a factory floor this is a process map. In a business it is the same map, drawn on software.",
+    },
+    {
+      k: "02",
+      title: "Find the constraint",
+      desc: "One step sets the pace for everything downstream. PFMEA and root-cause analysis on an operation surface it the same way they surface a yield problem on a line.",
+    },
+    {
+      k: "03",
+      title: "Build it in place",
+      desc: "Dashboards, workflow automation, AI agents, and integrations into the tools they already run. Deployed inside the operation, not handed over as a spec.",
+    },
+    {
+      k: "04",
+      title: "Instrument it",
+      desc: "A fix you cannot measure is an opinion. Control plans and live metrics, so the improvement survives the person who built it.",
+    },
+  ],
+  /** The working stack — named because fluency here is the differentiator */
+  stack: {
+    label: "The stack I build with",
+    agents: ["Claude Code", "Codex", "Claude Cowork", "Devin", "Windsurf", "Antigravity", "VS Code"],
+    automation: ["n8n", "workflow automation", "AI agents", "custom integrations"],
+  },
+  note: "engineering discipline + AI build speed ↓",
+}
+
 export const prologue = {
   no: "00",
   title: "Where it starts",
@@ -173,6 +224,107 @@ export const eras: Era[] = [
   },
 ]
 
+/* ------------------------------------------------------------- shipped ---- */
+
+/**
+ * Replaces the old counters spread. "10+ years / 9 companies / 3 active
+ * certifications" told a reader nothing — every program manager has a version
+ * of those numbers. This says what physically exists in the world because he
+ * worked on it, which is the engineering claim, not the title claim.
+ */
+export const shipped = {
+  no: "07",
+  title: "Things that exist because I worked on them.",
+  standfirst: "Six industries · the hardware, not the job titles",
+  passage: [
+    "Program management is the current title, not the point. The point is that these are real objects, built at volume, that someone is using right now.",
+  ],
+  items: [
+    {
+      thing: "Mission-critical radios",
+      where: "Motorola Solutions",
+      detail: "The handsets first responders carry. I own the NPI path from pilot build to volume ramp.",
+    },
+    {
+      thing: "AR headset optics",
+      where: "Magic Leap",
+      detail: "Waveguide assemblies with no manufacturing precedent. Built the PFMEA library from nothing.",
+      metric: { value: 15, suffix: "%", label: "production efficiency" },
+    },
+    {
+      thing: "Surgical robotics",
+      where: "Stryker",
+      detail: "Robotic assembly where the failure mode has a face. MAPs redesign, PPAP, NC/CAPA closure.",
+    },
+    {
+      thing: "Boeing avionics test rigs",
+      where: "Gables Engineering",
+      detail: "Automated fixtures for cockpit hardware, and the PDM system behind the change workflow.",
+      metric: { value: 50, suffix: "%+", label: "faster test cycles" },
+    },
+    {
+      thing: "Utility-scale solar structures",
+      where: "TerraSmart",
+      detail: "Steel tracking structures across terrain you cannot see the end of. Casting and welding process work.",
+    },
+    {
+      thing: "High-speed packaging lines",
+      where: "Robotray",
+      detail: "Automation that runs all day untouched. FEA on material usage, SolidWorks PDM for version control.",
+    },
+    {
+      thing: "Aerospace load fixtures",
+      where: "General MRO · Prompt Aero · Piece-makers",
+      detail: "FAA-compliant structural fixtures validated with FEA and CFD. Where the whole thing started.",
+    },
+  ],
+  note: "seven industries, one method ↓",
+}
+
+/* -------------------------------------------------------- how I work ---- */
+
+/**
+ * The old "operating model" spread read like a stage-gate handout anyone
+ * could have written. Reframed as the judgment behind the process — what he
+ * actually believes, with the formal deliverables kept as supporting evidence
+ * rather than the headline.
+ */
+export const howIWork = {
+  no: "10",
+  title: "How I actually work.",
+  standfirst: "The judgment behind the process, not the process itself",
+  passage: [
+    "Every company has a stage-gate deck. Almost none of them survive contact with a real ramp, because a gate is only worth what the person holding it is willing to say no to.",
+    "These are the four things I believe after twelve years of watching programs succeed and fail. The formal artifacts underneath them are real and I use them, but they are the tools, not the thinking.",
+  ],
+  principles: [
+    {
+      k: "01",
+      title: "Find it on paper or pay for it at volume",
+      desc: "A problem caught in a design review costs an afternoon. The same problem caught at ramp costs a quarter and a customer. I front-load the unglamorous work: work breakdown, a live risk register, PFMEA, control plans.",
+      tools: "WBS · Risk register · PFMEA · Control plans",
+    },
+    {
+      k: "02",
+      title: "Trust the measurement before the number",
+      desc: "Most yield arguments are really measurement arguments. Before anyone debates a result I want to know the gauge is capable, because half of the disputes disappear once you can prove what you measured.",
+      tools: "Gauge R&R · MES / MQS · Fixture validation",
+    },
+    {
+      k: "03",
+      title: "Stay through the ramp",
+      desc: "Pilot is the easy part. The interesting failures happen when volume exposes everything nobody wrote down, and that is precisely when the person who understands the design tends to have moved on. I do not.",
+      tools: "PPAP · SICR · CM coordination · Yield tracking",
+    },
+    {
+      k: "04",
+      title: "Write it down so it outlives you",
+      desc: "A control plan is an engineer's judgment, recorded, so it still works after that engineer leaves the room. That is the whole reason quality systems exist, and why I stopped seeing them as paperwork.",
+      tools: "8D root cause · DFM reviews · Documented gates",
+    },
+  ],
+}
+
 /* ------------------------------------------------------------ interlude ---- */
 
 export const parallel = {
@@ -226,16 +378,21 @@ export const coda = {
   cta: "Start a conversation",
 }
 
-/** Positioning line carried in the footer — who he is, in one sentence. */
-export const footerPitch =
-  "Engineer turned program manager. I take hardware from first build to volume production, across communications, AR, medical robotics, aerospace, automation, and solar."
+/** Positioning carried in the footer. */
+export const footerPitch = {
+  lead: "I am a mechanical engineer who learned to run programs, not a manager who learned the vocabulary.",
+  body: "Twelve years turning designs into things you can hold: radios, AR optics, surgical robots, avionics, solar structures. These days I point the same discipline at business operations, where the constraint is usually a process nobody ever wrote down.",
+  based: "Miami, Florida · working globally",
+}
 
 /* ------------------------------------------------------------------ nav ---- */
 
 export const storyNav = [
   { id: "cover", label: "Cover" },
+  { id: "forward", label: "Forward deployed" },
   ...eras.map((e) => ({ id: e.id, label: e.title })),
-  { id: "method", label: "Method" },
+  { id: "shipped", label: "What shipped" },
+  { id: "method", label: "How I work" },
   { id: "credentials", label: "Credentials" },
   { id: "references", label: "Proof" },
   { id: "parallel", label: "Ventures" },

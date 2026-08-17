@@ -24,17 +24,12 @@ import {
   HEADSHOT_SRC,
   LINKEDIN_URL,
   RESUME_URL,
-  capabilities,
   certifications,
   footer as footerData,
-  phases,
-  pipelineStages,
   pmp,
   projects,
   refs,
   skills,
-  stats,
-  statsHeadline,
   verifs,
 } from "@/components/landing/data"
 import {
@@ -51,7 +46,18 @@ import {
   Ul,
 } from "@/components/notebook/NbAtoms"
 import { useCounters } from "@/components/landing/motion"
-import { coda, eras, footerPitch, opening, parallel, prologue, storyNav } from "./chapters"
+import {
+  coda,
+  eras,
+  footerPitch,
+  forwardDeployed,
+  howIWork,
+  opening,
+  parallel,
+  prologue,
+  shipped,
+  storyNav,
+} from "./chapters"
 import { CompanyModal, DrawRule, Metric, Passage, Plate, RoleCard } from "./StoryAtoms"
 import { reduced, useDraw, useEnter, useImageWipe, useParallax, useProgress, useYearRail } from "./motion"
 import { useNavIndicator, useNotebookMotion } from "./notebookMotion"
@@ -351,7 +357,7 @@ export function Story() {
 
               {/* ---- Rafael's photograph, taped to the cover ---- */}
               <div>
-                <NbCard tape tilt="r" lift style={{ padding: 14 }}>
+                <NbCard tape tilt="r" lift className="st-photo" style={{ padding: 14 }}>
                   <img
                     src={HEADSHOT_SRC}
                     alt="Rafael Schwart"
@@ -362,7 +368,6 @@ export function Story() {
                       aspectRatio: "4 / 5",
                       objectFit: "cover",
                       display: "block",
-                      filter: "grayscale(1) contrast(1.04)",
                       borderRadius: 2,
                     }}
                   />
@@ -404,6 +409,115 @@ export function Story() {
           <div style={{ padding: "22px 0 6px" }}>
             <TapeMarquee items={marquee} />
           </div>
+
+          {/* ================================= FORWARD DEPLOYED ==== */}
+          <Spread id="forward" tone="soft">
+            <EntryStamp
+              entry={forwardDeployed.no}
+              title="forward deployed"
+              note={forwardDeployed.standfirst}
+            />
+
+            <div
+              className="st-era-grid"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1.15fr 0.85fr",
+                gap: "clamp(28px, 5vw, 60px)",
+                alignItems: "start",
+                marginTop: 22,
+              }}
+            >
+              <div>
+                <h2 className="st-h2" style={{ margin: 0 }} data-enter>
+                  <Hl>
+                    <span>{forwardDeployed.title}</span>
+                  </Hl>
+                </h2>
+                <DrawRule width={460} />
+                <Passage paragraphs={forwardDeployed.passage} />
+
+                <div
+                  style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center", marginTop: 28 }}
+                  data-enter
+                >
+                  <NbCta href={forwardDeployed.url}>Arqentia</NbCta>
+                  <a
+                    href={forwardDeployed.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="nb-link-ul"
+                    style={{ fontFamily: "var(--fmono)", fontSize: 11.5, color: "var(--signal)" }}
+                  >
+                    {forwardDeployed.urlLabel} <span className="nb-nudge">↗</span>
+                  </a>
+                </div>
+
+                <Scribble tone="signal" size="sm" style={{ marginTop: 20 }}>
+                  {forwardDeployed.note}
+                </Scribble>
+              </div>
+
+              {/* the working stack, as instrument labels */}
+              <div>
+                <NbCard tilt="r" style={{ padding: "22px 22px 24px" }}>
+                  <p className="nb-stamp st-stack-label" style={{ fontSize: 10, marginBottom: 16 }}>
+                    {forwardDeployed.stack.label}
+                  </p>
+                  <p
+                    className="nb-stamp st-stack-label"
+                    style={{ fontSize: 9.5, color: "var(--signal)", marginBottom: 9 }}
+                  >
+                    Agentic engineering
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 18 }}>
+                    {forwardDeployed.stack.agents.map((t) => (
+                      <span key={t} className="st-tool">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <p
+                    className="nb-stamp st-stack-label"
+                    style={{ fontSize: 9.5, color: "var(--signal)", marginBottom: 9 }}
+                  >
+                    Automation &amp; delivery
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+                    {forwardDeployed.stack.automation.map((t) => (
+                      <span key={t} className="st-tool">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </NbCard>
+              </div>
+            </div>
+
+            {/* how the hardware method maps onto an operation */}
+            <div style={{ marginTop: "clamp(36px, 5vw, 64px)" }}>
+              <p className="nb-stamp" style={{ marginBottom: 16 }} data-enter>
+                The method, ported from the factory floor
+              </p>
+              <div
+                className="nb-grid-4"
+                data-stagger
+                style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
+              >
+                {forwardDeployed.method.map((m) => (
+                  <NbCard key={m.k} style={{ padding: "20px 20px" }}>
+                    <p className="st-step-no" style={{ marginBottom: 10 }}>
+                      {m.k}
+                    </p>
+                    <p style={{ fontWeight: 700, fontSize: 15.5, lineHeight: 1.3, marginBottom: 8 }}>
+                      {m.title}
+                    </p>
+                    <p style={{ fontSize: 13, lineHeight: 1.6, color: "var(--mute)" }}>{m.desc}</p>
+                  </NbCard>
+                ))}
+              </div>
+            </div>
+          </Spread>
 
           {/* ============================================ ENTRY 02 ==== */}
           <Spread tone="soft">
@@ -509,105 +623,86 @@ export function Story() {
                   </div>
                 </Spread>
 
-                {/* NIGHT MODE numbers spread, dropped in after "The line" */}
+                {/* NIGHT MODE spread: what physically exists, not counters */}
                 {era.id === "line" ? (
-                  <Spread tone="night" graph>
-                    <EntryStamp entry="06" title="the numbers" note="night mode" />
+                  <Spread id="shipped" tone="night" graph>
+                    <EntryStamp
+                      entry={shipped.no}
+                      title="what shipped"
+                      note={shipped.standfirst}
+                    />
                     <h2
                       className="st-h2"
-                      style={{ margin: "24px 0 40px", maxWidth: 780, color: "var(--paper)" }}
+                      style={{ margin: "24px 0 0", maxWidth: 900, color: "var(--paper)" }}
                       data-enter
                     >
-                      {statsHeadline.lead}{" "}
+                      Things that exist because{" "}
                       <Hl ink>
-                        <span style={{ color: "#fff" }}>{statsHeadline.tail}</span>
+                        <span style={{ color: "#fff" }}>I worked on them.</span>
                       </Hl>
                     </h2>
+                    <DrawRule width={460} />
+                    <Passage paragraphs={shipped.passage} />
 
-                    <div
-                      className="nb-grid-4"
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
-                        gap: 26,
-                      }}
-                    >
-                      {stats.map((s) => (
-                        <div key={s.label} data-enter>
-                          <div
-                            className="tnum"
-                            data-counter
-                            data-value={s.value}
-                            data-suffix={s.suffix}
-                            style={{
-                              fontSize: "clamp(38px, 5vw, 64px)",
-                              fontWeight: 700,
-                              letterSpacing: "-0.03em",
-                              lineHeight: 1,
-                              color: s.accent ? "var(--signal)" : "var(--paper)",
-                            }}
-                          >
-                            {s.value}
-                            {s.suffix}
+                    <div style={{ marginTop: 30 }} data-stagger>
+                      {shipped.items.map((it) => (
+                        <div key={it.thing} className="st-thing">
+                          <div>
+                            <p className="st-thing-name">{it.thing}</p>
+                            <p
+                              style={{
+                                fontSize: 13.5,
+                                lineHeight: 1.6,
+                                color: "rgba(245,243,236,.62)",
+                                marginTop: 7,
+                                maxWidth: "62ch",
+                              }}
+                            >
+                              {it.detail}
+                            </p>
                           </div>
-                          <p
-                            style={{
-                              whiteSpace: "pre-line",
-                              fontSize: 13,
-                              lineHeight: 1.5,
-                              color: "rgba(245,243,236,0.64)",
-                              marginTop: 12,
-                            }}
-                          >
-                            {s.label}
-                          </p>
+                          <div style={{ textAlign: "right", whiteSpace: "nowrap" }}>
+                            <p
+                              className="nb-stamp"
+                              style={{ fontSize: 10, color: "var(--signal)" }}
+                            >
+                              {it.where}
+                            </p>
+                            {it.metric ? (
+                              <p
+                                className="tnum"
+                                data-counter
+                                data-value={it.metric.value}
+                                data-suffix={it.metric.suffix}
+                                style={{
+                                  fontFamily: "var(--fdisp)",
+                                  fontWeight: 700,
+                                  fontSize: 26,
+                                  letterSpacing: "-0.03em",
+                                  color: "var(--paper)",
+                                  marginTop: 6,
+                                }}
+                              >
+                                {it.metric.value}
+                                {it.metric.suffix}
+                              </p>
+                            ) : null}
+                            {it.metric ? (
+                              <p
+                                className="nb-stamp"
+                                style={{ fontSize: 9, color: "var(--fade)" }}
+                              >
+                                {it.metric.label}
+                              </p>
+                            ) : null}
+                          </div>
                         </div>
                       ))}
                     </div>
 
-                    <p className="nb-hand" style={{ marginTop: 26 }} data-enter>
-                      every one of these walked the same path ↓
+                    <p className="nb-hand" style={{ marginTop: 28 }} data-enter>
+                      {shipped.note}
                     </p>
-
-                    <NbCard style={{ padding: "22px 24px", marginTop: 32 }}>
-                      <div
-                        data-pipeline
-                        style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}
-                      >
-                        {pipelineStages.map((st) => (
-                          <div
-                            key={st.label}
-                            style={{ display: "flex", alignItems: "center", gap: 10, flex: 1 }}
-                          >
-                            <span
-                              style={{
-                                flex: 1,
-                                textAlign: "center",
-                                fontFamily: "var(--fmono)",
-                                fontSize: 11.5,
-                                letterSpacing: "0.12em",
-                                padding: "11px 8px",
-                                border: `1px solid ${
-                                  st.active ? "var(--signal)" : "rgba(245,243,236,0.22)"
-                                }`,
-                                background: st.active ? "var(--signal)" : "transparent",
-                                color: st.active ? "#fff" : "rgba(245,243,236,0.8)",
-                                animation: st.active
-                                  ? "rsRamp 2.6s var(--ease-eng) infinite"
-                                  : undefined,
-                              }}
-                            >
-                              {st.label}
-                            </span>
-                            {st.arrow ? (
-                              <span style={{ color: "var(--fade)", fontSize: 13 }} aria-hidden>
-                                →
-                              </span>
-                            ) : null}
-                          </div>
-                        ))}
-                      </div>
-                    </NbCard>
                   </Spread>
                 ) : null}
               </div>
@@ -616,128 +711,56 @@ export function Story() {
 
           {/* ============================================ ENTRY 09 ==== */}
           <Spread id="method">
-            <EntryStamp entry="09" title="the method" note="3 gates" />
-            <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "20ch" }} data-enter>
-              A gate for every phase.
+            <EntryStamp entry={howIWork.no} title="how i work" note={howIWork.standfirst} />
+            <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "16ch" }} data-enter>
+              How I <em style={{ fontStyle: "italic" }}>actually</em> work.
             </h2>
             <DrawRule width={440} />
-            <p className="nb-stamp" style={{ marginBottom: 30 }} data-enter>
-              Three phases · three gates · a fixed set of deliverables
-            </p>
+            <Passage paragraphs={howIWork.passage} />
 
             <div
-              className="nb-grid-3"
-              data-stagger
-              style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}
-            >
-              {phases.map((p, i) => (
-                <NbCard
-                  key={p.no}
-                  lift={i === 1}
-                  tilt={i === 0 ? "l" : i === 2 ? "r" : "none"}
-                  style={{ padding: "22px 22px 24px", display: "flex", flexDirection: "column" }}
-                >
-                  <span
-                    className="nb-stamp"
-                    style={{
-                      position: "absolute",
-                      top: -10,
-                      left: 16,
-                      background: "var(--paper)",
-                      padding: "0 8px",
-                      fontSize: 10,
-                    }}
-                  >
-                    Card {p.no}
-                  </span>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "baseline",
-                      marginTop: 6,
-                    }}
-                  >
-                    <span
-                      className="tnum"
-                      style={{
-                        fontSize: 38,
-                        fontWeight: 700,
-                        letterSpacing: "-0.03em",
-                        color: "var(--signal)",
-                        lineHeight: 1,
-                      }}
-                    >
-                      {p.no}
-                    </span>
-                    <span className="nb-stamp" style={{ fontSize: 10 }}>
-                      {p.phase}
-                    </span>
-                  </div>
-                  <p style={{ fontWeight: 700, fontSize: 17, margin: "16px 0 8px" }}>{p.title}</p>
-                  <p style={{ fontSize: 14, lineHeight: 1.65, color: "var(--mute)", flex: 1 }}>
-                    {p.desc}
-                  </p>
-                  <div className="nb-dashed" style={{ marginTop: 18, paddingTop: 14 }}>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                      {p.deliverables.map((d) => (
-                        <span
-                          key={d}
-                          style={{
-                            fontFamily: "var(--fmono)",
-                            fontSize: 10.5,
-                            padding: "4px 7px",
-                            border: "1px solid var(--rule-strong)",
-                            background: "var(--paper-2)",
-                          }}
-                        >
-                          {d}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <p
-                    style={{
-                      marginTop: 16,
-                      fontFamily: "var(--fmono)",
-                      fontSize: 11,
-                      color: "var(--signal)",
-                      borderTop: "1px solid var(--signal)",
-                      paddingTop: 10,
-                    }}
-                  >
-                    ▸ {p.gateFull}
-                  </p>
-                </NbCard>
-              ))}
-            </div>
-
-            {/* capabilities */}
-            <div
-              className="nb-grid-4"
+              className="nb-grid-2"
               data-stagger
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(4, 1fr)",
-                gap: 16,
-                marginTop: 34,
+                gridTemplateColumns: "1fr 1fr",
+                gap: 18,
+                marginTop: 36,
               }}
             >
-              {capabilities.map((c) => (
-                <NbCard key={c.title} style={{ padding: "18px 18px" }}>
-                  <p className="nb-stamp" style={{ fontSize: 10, marginBottom: 10 }}>
-                    Capability
+              {howIWork.principles.map((pr, i) => (
+                <NbCard
+                  key={pr.k}
+                  lift={i === 0}
+                  tilt={i % 2 === 0 ? "l" : "r"}
+                  style={{ padding: "24px 24px" }}
+                >
+                  <p className="st-step-no" style={{ marginBottom: 12 }}>
+                    {pr.k}
                   </p>
-                  <p style={{ fontWeight: 700, fontSize: 15, lineHeight: 1.3, marginBottom: 8 }}>
-                    {c.title}
+                  <p style={{ fontWeight: 700, fontSize: 18, lineHeight: 1.28, marginBottom: 10 }}>
+                    {pr.title}
                   </p>
-                  <p style={{ fontSize: 13, lineHeight: 1.6, color: "var(--mute)" }}>{c.desc}</p>
+                  <p style={{ fontSize: 14, lineHeight: 1.65, color: "var(--mute)" }}>{pr.desc}</p>
+                  <p
+                    className="nb-dashed"
+                    style={{
+                      marginTop: 16,
+                      paddingTop: 12,
+                      fontFamily: "var(--fmono)",
+                      fontSize: 10.5,
+                      letterSpacing: "0.04em",
+                      color: "var(--signal)",
+                    }}
+                  >
+                    {pr.tools}
+                  </p>
                 </NbCard>
               ))}
             </div>
 
-            {/* skills */}
-            <div style={{ marginTop: 40 }}>
+            {/* the toolset, kept as supporting evidence */}
+            <div style={{ marginTop: 44 }}>
               <p className="nb-stamp" style={{ marginBottom: 10 }} data-enter>
                 Toolset · {skills.length} items, no filler
               </p>
@@ -750,8 +773,8 @@ export function Story() {
                   gap: "2px 26px",
                 }}
               >
-                {skills.map((s) => (
-                  <CheckRow key={s}>{s}</CheckRow>
+                {skills.map((sk) => (
+                  <CheckRow key={sk}>{sk}</CheckRow>
                 ))}
               </div>
             </div>
@@ -1261,13 +1284,31 @@ export function Story() {
 
                 <p
                   style={{
-                    fontSize: 15,
-                    lineHeight: 1.65,
-                    color: "rgba(245,243,236,.72)",
-                    maxWidth: "52ch",
+                    fontSize: 16.5,
+                    lineHeight: 1.55,
+                    color: "var(--paper)",
+                    maxWidth: "44ch",
+                    fontWeight: 500,
                   }}
                 >
-                  {footerPitch}
+                  {footerPitch.lead}
+                </p>
+                <p
+                  style={{
+                    fontSize: 14.5,
+                    lineHeight: 1.7,
+                    color: "rgba(245,243,236,.66)",
+                    maxWidth: "52ch",
+                    marginTop: 12,
+                  }}
+                >
+                  {footerPitch.body}
+                </p>
+                <p
+                  className="nb-stamp"
+                  style={{ fontSize: 10, color: "var(--fade)", marginTop: 14 }}
+                >
+                  {footerPitch.based}
                 </p>
 
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 18 }}>
