@@ -15,7 +15,7 @@
  *     parallax, a year rail) and a scroll-linked word reveal
  */
 
-import { useEffect, useRef, useState } from "react"
+import { Fragment, useEffect, useRef, useState } from "react"
 import {
   ANNOUNCE,
   CONTACT_POSTER,
@@ -73,6 +73,27 @@ const CAVEAT =
  * availability signal — this is a portfolio.
  */
 
+/**
+ * One category = one page. Hidden views stay mounted (hidden, not unmounted)
+ * so the full record remains in the DOM for crawlers and in-page search, and
+ * so switching back is instant.
+ */
+function View({
+  id,
+  active,
+  children,
+}: {
+  id: string
+  active: string
+  children: React.ReactNode
+}) {
+  return (
+    <div className="st-view" data-storyview={id} hidden={active !== id}>
+      {children}
+    </div>
+  )
+}
+
 /** Year marker read by the rail; zero-height, sits at the top of a section. */
 function YearMark({ year }: { year: number }) {
   return <span data-year={year} aria-hidden style={{ display: "block", height: 0 }} />
@@ -83,17 +104,20 @@ export function Story() {
   const yearRef = useRef<HTMLSpanElement>(null)
   const navBarRef = useRef<HTMLDivElement>(null)
   const navIndRef = useRef<HTMLSpanElement>(null)
-  const [activeId, setActiveId] = useState("cover")
+  const [view, setView] = useState<string>(() => {
+    const h = typeof window !== "undefined" ? window.location.hash.replace("#", "") : ""
+    return storyNav.some((n) => n.id === h) ? h : "cover"
+  })
   const [dossier, setDossier] = useState<string | null>(null)
 
-  useEnter(rootRef)
-  useImageWipe(rootRef)
-  useDraw(rootRef)
+  useEnter(rootRef, [view])
+  useImageWipe(rootRef, [view])
+  useDraw(rootRef, [view])
   useParallax(rootRef)
-  useCounters(rootRef, [])
+  useCounters(rootRef, [view])
   useYearRail(rootRef, yearRef, eras.map((e) => e.yearValue))
-  useNotebookMotion(rootRef)
-  useNavIndicator(navBarRef, navIndRef, activeId)
+  useNotebookMotion(rootRef, [view])
+  useNavIndicator(navBarRef, navIndRef, view)
   const progress = useProgress(rootRef)
 
   // Caveat carries the handwritten margin notes; loaded only while mounted so
@@ -130,29 +154,24 @@ export function Story() {
     return () => io.disconnect()
   }, [])
 
+  // Category switching. The hash keeps a view shareable and makes the browser
+  // back button behave the way a reader expects.
   useEffect(() => {
-    const ids = storyNav.map((n) => n.id)
-    const onScroll = () => {
-      const line = window.innerHeight * 0.4
-      let current = ids[0]
-      ids.forEach((id) => {
-        const el = document.getElementById(id)
-        if (el && el.getBoundingClientRect().top <= line) current = id
-      })
-      setActiveId(current)
+    const onHash = () => {
+      const h = window.location.hash.replace("#", "")
+      if (storyNav.some((n) => n.id === h)) setView(h)
+      else if (!h) setView("cover")
     }
-    window.addEventListener("scroll", onScroll, { passive: true })
-    onScroll()
-    return () => window.removeEventListener("scroll", onScroll)
+    window.addEventListener("hashchange", onHash)
+    return () => window.removeEventListener("hashchange", onHash)
   }, [])
 
-  const jump = (id: string) => {
-    const el = document.getElementById(id)
-    if (!el) return
-    window.scrollTo({
-      top: el.getBoundingClientRect().top + window.pageYOffset - 52,
-      behavior: reduced() ? "auto" : "smooth",
-    })
+  const go = (id: string) => {
+    setView(id)
+    if (window.location.hash.replace("#", "") !== id) {
+      window.history.pushState(null, "", id === "cover" ? window.location.pathname : `#${id}`)
+    }
+    window.scrollTo({ top: 0, behavior: reduced() ? "auto" : "smooth" })
   }
 
   const marquee = [
@@ -240,8 +259,8 @@ export function Story() {
                   key={n.id}
                   type="button"
                   data-nav={n.id}
-                  onClick={() => jump(n.id)}
-                  data-active={activeId === n.id ? "1" : undefined}
+                  onClick={() => go(n.id)}
+                  data-active={view === n.id ? "1" : undefined}
                 >
                   {n.label}
                 </button>
@@ -253,6 +272,7 @@ export function Story() {
 
         <main>
           {/* ============================================ ENTRY 01 ==== */}
+          <View id="cover" active={view}>
           <Spread id="cover" style={{ paddingTop: "clamp(38px, 5vw, 68px)" }}>
             <YearMark year={2014} />
             <div
@@ -410,7 +430,22 @@ export function Story() {
             <TapeMarquee items={marquee} />
           </div>
 
+          <Spread tone="soft">
+            <YearMark year={2014} />
+            <EntryStamp entry="02" title="where it starts" note={prologue.standfirst} />
+            <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "18ch" }} data-enter>
+              {prologue.title}
+            </h2>
+            <DrawRule width={380} />
+            <Passage paragraphs={prologue.passage} />
+            <Scribble style={{ marginTop: 28 }}>
+              <Ul>and then it goes, in order</Ul> ↓
+            </Scribble>
+          </Spread>
+          </View>
+
           {/* ================================= FORWARD DEPLOYED ==== */}
+          <View id="forward" active={view}>
           <Spread id="forward" tone="soft">
             <EntryStamp
               entry={forwardDeployed.no}
@@ -494,8 +529,29 @@ export function Story() {
               </div>
             </div>
 
+            {/* The workflow, drawn: production line -> four gates -> software */}
+            <figure
+              className="st-plate"
+              style={{ margin: "clamp(34px, 5vw, 56px) 0 0", background: "var(--paper-soft)" }}
+              data-enter
+            >
+              <div className="st-plate-inner">
+                <img
+                  src="/assets/story/fde-workflow.webp"
+                  alt="A production line on the left, a blue flow line passing through four numbered nodes, resolving into a dashboard and an automation graph on the right."
+                  loading="lazy"
+                  decoding="async"
+                  style={{ width: "100%", height: "auto", filter: "none" }}
+                />
+              </div>
+              <figcaption className="st-plate-cap">
+                <span>The same line, drawn on software</span>
+                <span>Operation → constraint → build → measure</span>
+              </figcaption>
+            </figure>
+
             {/* how the hardware method maps onto an operation */}
-            <div style={{ marginTop: "clamp(36px, 5vw, 64px)" }}>
+            <div style={{ marginTop: "clamp(30px, 4vw, 48px)" }}>
               <p className="nb-stamp" style={{ marginBottom: 16 }} data-enter>
                 The method, ported from the factory floor
               </p>
@@ -518,26 +574,15 @@ export function Story() {
               </div>
             </div>
           </Spread>
+          </View>
 
-          {/* ============================================ ENTRY 02 ==== */}
-          <Spread tone="soft">
-            <YearMark year={2014} />
-            <EntryStamp entry="02" title="where it starts" note={prologue.standfirst} />
-            <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "18ch" }} data-enter>
-              {prologue.title}
-            </h2>
-            <DrawRule width={380} />
-            <Passage paragraphs={prologue.passage} />
-            <Scribble style={{ marginTop: 28 }}>
-              <Ul>and then it goes, in order</Ul> ↓
-            </Scribble>
-          </Spread>
 
           {/* ======================================= ERAS 03 — 08 ==== */}
           {eras.map((era, i) => {
             const entryNo = String(i + 3).padStart(2, "0")
             return (
-              <div key={era.id}>
+            <Fragment key={era.id}>
+              <View id={era.id} active={view}>
                 <Spread id={era.id} tone={i % 2 === 1 ? "soft" : "paper"}>
                   <YearMark year={era.yearValue} />
                   <div className="st-era">
@@ -622,9 +667,11 @@ export function Story() {
                     </div>
                   </div>
                 </Spread>
+              </View>
 
-                {/* NIGHT MODE spread: what physically exists, not counters */}
-                {era.id === "line" ? (
+              {/* "What shipped" is its own category, not a mid-era detour */}
+              {era.id === "line" ? (
+                <View id="shipped" active={view}>
                   <Spread id="shipped" tone="night" graph>
                     <EntryStamp
                       entry={shipped.no}
@@ -704,12 +751,14 @@ export function Story() {
                       {shipped.note}
                     </p>
                   </Spread>
-                ) : null}
-              </div>
+                </View>
+              ) : null}
+            </Fragment>
             )
           })}
 
           {/* ============================================ ENTRY 09 ==== */}
+          <View id="method" active={view}>
           <Spread id="method">
             <EntryStamp entry={howIWork.no} title="how i work" note={howIWork.standfirst} />
             <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "16ch" }} data-enter>
@@ -779,8 +828,10 @@ export function Story() {
               </div>
             </div>
           </Spread>
+          </View>
 
           {/* ============================================ ENTRY 10 ==== */}
+          <View id="credentials" active={view}>
           <Spread id="credentials" tone="soft">
             <EntryStamp entry="10" title="the sheet" note="3 credentials" />
             <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "20ch" }} data-enter>
@@ -937,8 +988,10 @@ export function Story() {
               </NbCard>
             </div>
           </Spread>
+          </View>
 
           {/* ============================================ ENTRY 11 ==== */}
+          <View id="references" active={view}>
           <Spread id="references">
             <EntryStamp entry="11" title="pasted in" note="real proof" />
             <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "22ch" }} data-enter>
@@ -1041,8 +1094,10 @@ export function Story() {
               ))}
             </div>
           </Spread>
+          </View>
 
           {/* ============================================ ENTRY 12 ==== */}
+          <View id="parallel" active={view}>
           <Spread id="parallel" tone="soft">
             <YearMark year={2026} />
             <div
@@ -1121,8 +1176,10 @@ export function Story() {
               ))}
             </div>
           </Spread>
+          </View>
 
           {/* ============================================ ENTRY 13 ==== */}
+          <View id="contact" active={view}>
           <Spread id="contact" tone="night" graph style={{ position: "relative", overflow: "hidden" }}>
             <YearMark year={2026} />
             <video
@@ -1235,6 +1292,7 @@ export function Story() {
               </div>
             </div>
           </Spread>
+          </View>
         </main>
 
         <CompanyModal company={dossier} onClose={() => setDossier(null)} />
@@ -1361,7 +1419,7 @@ export function Story() {
                   </a>
                   <button
                     type="button"
-                    onClick={() => jump("references")}
+                    onClick={() => go("references")}
                     className="st-footlink"
                     style={{
                       background: "none",

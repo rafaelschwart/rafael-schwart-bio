@@ -96,15 +96,63 @@
   white-space: nowrap;
   transition: color 200ms var(--ease-eng);
 }
+/* Categories carry the same blue sticker animation as the primary CTA:
+   the fill sweeps in, the label goes white, the chip lifts off the page. */
 .st-index button {
+  position: relative;
+  z-index: 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  margin: 8px 3px;
+  padding: 8px 12px;
   transform: translateY(0);
-  transition: color 0.2s var(--ease-eng), transform 0.2s var(--ease-eng);
+  transition:
+    color 0.22s var(--ease-eng),
+    transform 0.22s var(--ease-eng),
+    box-shadow 0.22s var(--ease-eng),
+    border-color 0.22s var(--ease-eng);
 }
-.st-index button:hover { color: var(--ink); transform: translateY(-2px); }
-.st-index button[data-active="1"] { color: var(--signal); }
+
+/* the blue fill, swept in from the left like the marker */
+.st-index button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--signal);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.28s var(--ease-eng);
+}
+
+.st-index button:hover {
+  color: #fff;
+  border-color: var(--ink);
+  transform: translate(-1px, -2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.st-index button:hover::before { transform: scaleX(1); }
+
+.st-index button[data-active="1"] {
+  color: #fff;
+  border-color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.st-index button[data-active="1"]::before { transform: scaleX(1); }
+
+/* ---- View switching ------------------------------------------------------ */
+
+/* Each category is its own page. Hidden views stay in the DOM so the whole
+   record is still crawlable and findable with in-page search.
+   NOTE: deliberately `data-storyview`, not `data-viewsection` — index.css
+   carries V2 SPA plumbing that hides every [data-viewsection] on desktop
+   unless a whitelisted [data-view-root] matches, which would blank this page. */
+.st-view { display: block; }
+.st-view[hidden] { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .st-index button { transition: color 0.2s linear; }
+  .st-index button, .st-index button::before { transition: color 0.2s linear; }
   .st-index button:hover { transform: none; }
 }
 

@@ -68,7 +68,7 @@ function animateVar(
   })
 }
 
-export function useNotebookMotion(root: RefObject<HTMLElement>) {
+export function useNotebookMotion(root: RefObject<HTMLElement>, deps: unknown[] = []) {
   useEffect(() => {
     const host = root.current
     if (!host) return
@@ -203,7 +203,8 @@ export function useNotebookMotion(root: RefObject<HTMLElement>) {
     )
 
     return () => cleanups.forEach((fn) => fn())
-  }, [root])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [root, ...deps])
 }
 
 /* ------------------------------------------------------- nav indicator ---- */

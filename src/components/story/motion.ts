@@ -88,7 +88,7 @@ export function useWordReveal(ref: RefObject<HTMLElement>, totalWords: number) {
  * Wires every [data-enter] inside `root`: elements rise and fade as they cross
  * into view, staggered by their [data-enter-group]. Runs once per element.
  */
-export function useEnter(root: RefObject<HTMLElement>) {
+export function useEnter(root: RefObject<HTMLElement>, deps: unknown[] = []) {
   useLayoutEffect(() => {
     const host = root.current
     if (!host) return
@@ -149,7 +149,8 @@ export function useEnter(root: RefObject<HTMLElement>) {
       io.disconnect()
       window.clearTimeout(rescue)
     }
-  }, [root])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [root, ...deps])
 }
 
 /* ----------------------------------------------------------- image wipe ---- */
@@ -159,7 +160,7 @@ export function useEnter(root: RefObject<HTMLElement>) {
  * settles from a slight overscale. [data-wipe] wraps the figure; the curtain
  * is [data-wipe-curtain] and the image [data-wipe-img].
  */
-export function useImageWipe(root: RefObject<HTMLElement>) {
+export function useImageWipe(root: RefObject<HTMLElement>, deps: unknown[] = []) {
   useEffect(() => {
     const host = root.current
     if (!host) return
@@ -208,13 +209,14 @@ export function useImageWipe(root: RefObject<HTMLElement>) {
     )
     figures.forEach((f) => io.observe(f))
     return () => io.disconnect()
-  }, [root])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [root, ...deps])
 }
 
 /* -------------------------------------------------------- hairline draw ---- */
 
 /** Draws every [data-draw] SVG path left-to-right when it enters view. */
-export function useDraw(root: RefObject<HTMLElement>) {
+export function useDraw(root: RefObject<HTMLElement>, deps: unknown[] = []) {
   useEffect(() => {
     const host = root.current
     if (!host) return
@@ -255,7 +257,8 @@ export function useDraw(root: RefObject<HTMLElement>) {
     )
     paths.forEach((p) => io.observe(p))
     return () => io.disconnect()
-  }, [root])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [root, ...deps])
 }
 
 /* ------------------------------------------------------------- year rail --- */
