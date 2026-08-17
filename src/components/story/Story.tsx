@@ -174,6 +174,8 @@ export function Story() {
     window.scrollTo({ top: 0, behavior: reduced() ? "auto" : "smooth" })
   }
 
+  const activeIndex = Math.max(0, storyNav.findIndex((n) => n.id === view))
+
   const marquee = [
     <>Aerospace</>,
     <Strike key="s1">guesswork</Strike>,
@@ -254,15 +256,18 @@ export function Story() {
               className="st-navbar"
               style={{ display: "flex", overflowX: "auto", scrollbarWidth: "none" }}
             >
-              {storyNav.map((n) => (
+              {storyNav.map((n, i) => (
                 <button
                   key={n.id}
                   type="button"
                   data-nav={n.id}
                   onClick={() => go(n.id)}
                   data-active={view === n.id ? "1" : undefined}
+                  /* gates already passed are drawn live, like the NPI pipeline */
+                  data-done={i < activeIndex ? "1" : undefined}
                 >
                   {n.label}
+                  <span className="st-flow-tip" aria-hidden />
                 </button>
               ))}
               <span ref={navIndRef} className="st-navind" aria-hidden />
@@ -493,8 +498,36 @@ export function Story() {
                 </Scribble>
               </div>
 
-              {/* the working stack, as instrument labels */}
-              <div>
+              {/* the diagram sits beside the argument, not under it */}
+              <div style={{ position: "sticky", top: 96 }}>
+                <figure
+                  className="st-plate"
+                  style={{ margin: 0, background: "var(--paper-soft)" }}
+                  data-enter
+                >
+                  <div className="st-plate-inner">
+                    <video
+                      src="/assets/story/fde-workflow.mp4"
+                      poster="/assets/story/fde-workflow.webp"
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label="A production line on the left, a blue flow line passing through four nodes, resolving into a dashboard and an automation graph on the right."
+                      style={{ width: "100%", height: "auto", display: "block", filter: "none" }}
+                    />
+                  </div>
+                  <figcaption className="st-plate-cap">
+                    <span>The same line, drawn on software</span>
+                    <span>Operation → constraint → build → measure</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+
+            {/* the working stack, as instrument labels */}
+            <div style={{ marginTop: "clamp(30px, 4vw, 48px)" }}>
+              <div style={{ maxWidth: 720 }}>
                 <NbCard tilt="r" style={{ padding: "22px 22px 24px" }}>
                   <p className="nb-stamp st-stack-label" style={{ fontSize: 10, marginBottom: 16 }}>
                     {forwardDeployed.stack.label}
@@ -528,27 +561,6 @@ export function Story() {
                 </NbCard>
               </div>
             </div>
-
-            {/* The workflow, drawn: production line -> four gates -> software */}
-            <figure
-              className="st-plate"
-              style={{ margin: "clamp(34px, 5vw, 56px) 0 0", background: "var(--paper-soft)" }}
-              data-enter
-            >
-              <div className="st-plate-inner">
-                <img
-                  src="/assets/story/fde-workflow.webp"
-                  alt="A production line on the left, a blue flow line passing through four numbered nodes, resolving into a dashboard and an automation graph on the right."
-                  loading="lazy"
-                  decoding="async"
-                  style={{ width: "100%", height: "auto", filter: "none" }}
-                />
-              </div>
-              <figcaption className="st-plate-cap">
-                <span>The same line, drawn on software</span>
-                <span>Operation → constraint → build → measure</span>
-              </figcaption>
-            </figure>
 
             {/* how the hardware method maps onto an operation */}
             <div style={{ marginTop: "clamp(30px, 4vw, 48px)" }}>

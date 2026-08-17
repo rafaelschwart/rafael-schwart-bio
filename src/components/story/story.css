@@ -103,7 +103,7 @@
   z-index: 0;
   border: 1px solid transparent;
   border-radius: 3px;
-  margin: 8px 3px;
+  margin: 8px 13px;
   padding: 8px 12px;
   transform: translateY(0);
   transition:
@@ -140,6 +140,52 @@
   box-shadow: 2px 2px 0 var(--ink);
 }
 .st-index button[data-active="1"]::before { transform: scaleX(1); }
+
+/* ---- Process-flow connectors -------------------------------------------- */
+
+/* The category rail reads as a stage-gate diagram: each step is joined to the
+   next by an arrow, and every gate already passed is drawn in signal blue —
+   the same CONCEPT → PILOT → RAMP → VOLUME language used on the pipeline. */
+.st-index button:not(:last-of-type)::after {
+  content: "";
+  position: absolute;
+  right: -21px;
+  top: 50%;
+  width: 13px;
+  height: 1.5px;
+  background: var(--rule-strong);
+  transform: translateY(-50%);
+  transition: background-color 0.28s var(--ease-eng);
+  pointer-events: none;
+}
+
+/* arrowhead */
+.st-index .st-flow-tip {
+  position: absolute;
+  right: -11px;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-top: 1.5px solid var(--rule-strong);
+  border-right: 1.5px solid var(--rule-strong);
+  transform: translateY(-50%) rotate(45deg);
+  transition: border-color 0.28s var(--ease-eng);
+  pointer-events: none;
+}
+.st-index button:last-of-type .st-flow-tip { display: none; }
+
+/* steps already walked are live */
+.st-index button[data-done="1"]::after { background: var(--signal); }
+.st-index button[data-done="1"] .st-flow-tip {
+  border-top-color: var(--signal);
+  border-right-color: var(--signal);
+}
+
+@media (max-width: 900px) {
+  .st-index button { margin: 8px 10px; }
+  .st-index button:not(:last-of-type)::after { width: 9px; right: -16px; }
+  .st-index .st-flow-tip { right: -9px; }
+}
 
 /* ---- View switching ------------------------------------------------------ */
 
