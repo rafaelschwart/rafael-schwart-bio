@@ -7,6 +7,7 @@
  */
 
 import { useEffect, useMemo, useRef, type CSSProperties } from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
 import anime from "animejs"
 import type { Experience } from "@/components/landing/data"
 import { NbCard } from "@/components/notebook/NbAtoms"
@@ -16,7 +17,19 @@ import { reduced, useWordReveal } from "./motion"
 /* ------------------------------------------------------------- passage ---- */
 
 /** Narrative whose words light from faint to ink as the reader scrolls. */
-export function Passage({ paragraphs }: { paragraphs: string[] }) {
+export function Passage({ paragraphs, compact = false }: { paragraphs: string[]; compact?: boolean }) {
+  if (compact) {
+    return (
+      <div className="st-passage">
+        {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+      </div>
+    )
+  }
+
+  return <AnimatedPassage paragraphs={paragraphs} />
+}
+
+function AnimatedPassage({ paragraphs }: { paragraphs: string[] }) {
   const ref = useRef<HTMLDivElement>(null)
   const split = useMemo(() => paragraphs.map((p) => p.split(" ")), [paragraphs])
   const total = useMemo(() => split.reduce((n, w) => n + w.length, 0), [split])
@@ -265,20 +278,10 @@ export function RoleCard({
 export function CompanyModal({ company, onClose }: { company: string | null; onClose: () => void }) {
   const co = company ? companies[company] : undefined
   const cardRef = useRef<HTMLDivElement>(null)
-  const closeRef = useRef<HTMLButtonElement>(null)
   const restoreRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     if (!co) return
-    restoreRef.current = document.activeElement as HTMLElement | null
-    closeRef.current?.focus()
-
-    document.body.style.overflow = "hidden"
-    const onKey = (ev: KeyboardEvent) => {
-      if (ev.key === "Escape") onClose()
-    }
-    window.addEventListener("keydown", onKey)
-
     if (!reduced() && cardRef.current) {
       anime({
         targets: cardRef.current,
@@ -290,42 +293,40 @@ export function CompanyModal({ company, onClose }: { company: string | null; onC
       })
     }
 
-    return () => {
-      document.body.style.overflow = ""
-      window.removeEventListener("keydown", onKey)
-      restoreRef.current?.focus?.()
-    }
-  }, [co, onClose])
-
-  if (!co) return null
+  }, [co])
 
   return (
-    <>
-      <div className="st-modal-backdrop" onClick={onClose} aria-hidden />
-      <div className="st-modal-wrap" onClick={onClose}>
-        <div
+    <DialogPrimitive.Root open={Boolean(co)} onOpenChange={(open) => { if (!open) onClose() }}>
+      {co ? (
+      <DialogPrimitive.Portal>
+        <DialogPrimitive.Overlay className="st-modal-backdrop" />
+        <div className="st-modal-wrap">
+        <DialogPrimitive.Content
           ref={cardRef}
           className="st-modal"
-          role="dialog"
-          aria-modal="true"
           aria-label={`About ${co.name}`}
-          onClick={(ev) => ev.stopPropagation()}
+          aria-describedby={undefined}
+          onOpenAutoFocus={() => {
+            restoreRef.current = document.activeElement as HTMLElement | null
+          }}
+          onCloseAutoFocus={(event) => {
+            event.preventDefault()
+            restoreRef.current?.focus()
+          }}
         >
           <span className="nb-tape" aria-hidden style={{ ["--tape" as string]: 1 }} />
-          <button
-            ref={closeRef}
-            type="button"
-            className="st-modal-close"
-            onClick={onClose}
-            aria-label="Close dossier"
-          >
-            ✕
-          </button>
+          <DialogPrimitive.Close asChild>
+            <button type="button" className="st-modal-close" aria-label="Close dossier">
+              ✕
+            </button>
+          </DialogPrimitive.Close>
 
-          <p className="nb-stamp" style={{ fontSize: 10, marginBottom: 16 }}>
-            <span className="nb-stamp-sq" aria-hidden style={{ marginRight: 8 }} />
-            Dossier · {co.name}
-          </p>
+          <DialogPrimitive.Title asChild>
+            <p className="nb-stamp" style={{ fontSize: 10, marginBottom: 16 }}>
+              <span className="nb-stamp-sq" aria-hidden style={{ marginRight: 8 }} />
+              Dossier · {co.name}
+            </p>
+          </DialogPrimitive.Title>
 
           <div className="st-modal-logo">
             {co.logo ? (
@@ -394,9 +395,11 @@ export function CompanyModal({ company, onClose }: { company: string | null; onC
               </a>
             </div>
           ) : null}
-        </div>
+        </DialogPrimitive.Content>
       </div>
-    </>
+      </DialogPrimitive.Portal>
+      ) : null}
+    </DialogPrimitive.Root>
   )
 }
 

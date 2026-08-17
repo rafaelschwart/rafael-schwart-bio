@@ -374,19 +374,25 @@
   place-items: center;
   width: 100%;
   max-width: 250px;
-  height: 56px;
-  padding: 9px 12px;
+  height: 74px;
+  padding: 11px 14px;
   background: var(--white);
   border: 1px solid var(--rule);
   overflow: hidden;
 }
 
 /* Marks are already monochrome ink — hover just lifts them to full strength.
-   max-* sizing (not 100%/100%): raster marks have intrinsic dimensions, and
-   percentage heights resolve to auto inside the grid, overflowing the plate. */
+   The source files are trimmed to their ink bounds (they used to be a shared
+   900x502 canvas, so a wide wordmark like Motorola's filled only 20% of its
+   own height and rendered ~8px tall inside the plate). Trimmed, each mark can
+   simply fill the plate, and their optical weights land in the same range.
+
+   max-* sizing in px (not 100%/100%): raster marks have intrinsic dimensions,
+   and percentage heights resolve to auto inside the grid, overflowing the
+   plate. 52px = the 74px plate minus its 11px vertical padding. */
 .st-logoplate img {
   max-width: 100%;
-  max-height: 38px;
+  max-height: 52px;
   width: auto;
   height: auto;
   opacity: 0.82;

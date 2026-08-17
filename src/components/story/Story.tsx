@@ -86,12 +86,15 @@ const CAVEAT =
 function View({
   id,
   active,
+  compact,
   children,
 }: {
   id: string
   active: string
+  compact: boolean
   children: React.ReactNode
 }) {
+  if (compact && active !== id) return null
   return (
     <div className="st-view" data-storyview={id} hidden={active !== id}>
       {children}
@@ -123,12 +126,12 @@ export function Story() {
   useEnter(rootRef, [view, era])
   useImageWipe(rootRef, [view, era])
   useDraw(rootRef, [view, era])
-  useParallax(rootRef)
+  useParallax(rootRef, !compactViewport)
   useCounters(rootRef, [view, era])
-  useYearRail(rootRef, yearRef, eras.map((e) => e.yearValue))
+  useYearRail(rootRef, yearRef, eras.map((e) => e.yearValue), !compactViewport)
   useNotebookMotion(rootRef, [view, era])
   useNavIndicator(navBarRef, navIndRef, view)
-  const progress = useProgress(rootRef)
+  const progress = useProgress(rootRef, !compactViewport)
 
   // Caveat carries the handwritten margin notes; loaded only while mounted so
   // index.html keeps its canonical Satoshi + IBM Plex Mono head.
@@ -148,7 +151,7 @@ export function Story() {
 
   useEffect(() => {
     const host = rootRef.current
-    if (!host) return
+    if (!host || compactViewport) return
     const vids = Array.from(host.querySelectorAll("video"))
     if (!vids.length || reduced()) return
     const io = new IntersectionObserver(
@@ -162,7 +165,7 @@ export function Story() {
     )
     vids.forEach((v) => io.observe(v))
     return () => io.disconnect()
-  }, [])
+  }, [compactViewport])
 
   // Category switching. The hash keeps a view shareable and makes the browser
   // back button behave the way a reader expects.
@@ -372,7 +375,7 @@ export function Story() {
 
         <main id="story-main" tabIndex={-1}>
           {/* ============================================ ENTRY 01 ==== */}
-          <View id="cover" active={view}>
+          <View id="cover" active={view} compact={compactViewport}>
           <Spread id="cover" style={{ paddingTop: "clamp(38px, 5vw, 68px)" }}>
             <YearMark year={2014} />
             <div
@@ -550,7 +553,7 @@ export function Story() {
               {prologue.title}
             </h2>
             <DrawRule width={380} />
-            <Passage paragraphs={prologue.passage} />
+            <Passage paragraphs={prologue.passage} compact={compactViewport} />
             <Scribble style={{ marginTop: 28 }}>
               <Ul>and then it goes, in order</Ul> ↓
             </Scribble>
@@ -558,7 +561,7 @@ export function Story() {
           </View>
 
           {/* ================================= FORWARD DEPLOYED ==== */}
-          <View id="forward" active={view}>
+          <View id="forward" active={view} compact={compactViewport}>
           <Spread id="forward" tone="soft">
             <EntryStamp
               entry={forwardDeployed.no}
@@ -583,7 +586,7 @@ export function Story() {
                 </Hl>
               </h2>
               <div>
-                <Passage paragraphs={forwardDeployed.passage} />
+                <Passage paragraphs={forwardDeployed.passage} compact={compactViewport} />
                 <div
                   style={{
                     display: "flex",
@@ -621,7 +624,8 @@ export function Story() {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  controls={compactViewport}
+                  preload={compactViewport ? "none" : "metadata"}
                   aria-label="A production line on the left, a blue flow line passing through four nodes, resolving into a dashboard and an automation graph on the right."
                   style={{ width: "100%", height: "auto", display: "block", filter: "none" }}
                 />
@@ -676,7 +680,7 @@ export function Story() {
 
 
           {/* =========== THE RECORD: six chapters, one category ==== */}
-          <View id="record" active={view}>
+          <View id="record" active={view} compact={compactViewport}>
             <div className="st-subrail-wrap">
               <div className="st-subrail" role="tablist" aria-label="Chapters of the record">
                 {eras.map((e) => (
@@ -739,7 +743,7 @@ export function Story() {
                         <p className="nb-stamp" style={{ marginBottom: 24 }} data-enter>
                           {era.standfirst}
                         </p>
-                        <Passage paragraphs={era.passage} />
+                        <Passage paragraphs={era.passage} compact={compactViewport} />
 
                       </div>
 
@@ -799,7 +803,7 @@ export function Story() {
 
           {/* "What shipped" is its own category */}
           {eras.filter((e) => e.id === "line").map((era) => (
-                <View key="shipped" id="shipped" active={view}>
+                <View key="shipped" id="shipped" active={view} compact={compactViewport}>
                   <Spread id="shipped" tone="night" graph>
                     <EntryStamp
                       entry={shipped.no}
@@ -817,7 +821,7 @@ export function Story() {
                       </Hl>
                     </h2>
                     <DrawRule width={460} />
-                    <Passage paragraphs={shipped.passage} />
+                    <Passage paragraphs={shipped.passage} compact={compactViewport} />
 
                     <div style={{ marginTop: 30 }} data-stagger>
                       {shipped.items.map((it) => (
@@ -888,14 +892,14 @@ export function Story() {
           ))}
 
           {/* ============================================ ENTRY 09 ==== */}
-          <View id="method" active={view}>
+          <View id="method" active={view} compact={compactViewport}>
           <Spread id="method">
             <EntryStamp entry={howIWork.no} title="how i work" note={howIWork.standfirst} />
             <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "16ch" }} data-enter>
               How I <em style={{ fontStyle: "italic" }}>actually</em> work.
             </h2>
             <DrawRule width={440} />
-            <Passage paragraphs={howIWork.passage} />
+            <Passage paragraphs={howIWork.passage} compact={compactViewport} />
 
             <div
               className="nb-grid-2"
@@ -961,7 +965,7 @@ export function Story() {
           </View>
 
           {/* ============================================ ENTRY 10 ==== */}
-          <View id="credentials" active={view}>
+          <View id="credentials" active={view} compact={compactViewport}>
           <Spread id="credentials" tone="soft">
             <EntryStamp entry="10" title="the sheet" note="3 credentials" />
             <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "20ch" }} data-enter>
@@ -1162,7 +1166,7 @@ export function Story() {
           </View>
 
           {/* ============================================ ENTRY 11 ==== */}
-          <View id="references" active={view}>
+          <View id="references" active={view} compact={compactViewport}>
           <Spread id="references">
             <EntryStamp entry="11" title="pasted in" note="real proof" />
             <h2 className="st-h2" style={{ margin: "24px 0 0", maxWidth: "22ch" }} data-enter>
@@ -1269,7 +1273,7 @@ export function Story() {
 
           {/* ============================================ ENTRY 12 ==== */}
           {/* ================= SIDE VENTURES: the other three ==== */}
-          <View id="ventures" active={view}>
+          <View id="ventures" active={view} compact={compactViewport}>
             <Spread id="ventures">
               <EntryStamp
                 entry={sideVenturesMeta.no}
@@ -1280,7 +1284,7 @@ export function Story() {
                 {sideVenturesMeta.title}
               </h2>
               <DrawRule width={420} />
-              <Passage paragraphs={sideVenturesMeta.passage} />
+              <Passage paragraphs={sideVenturesMeta.passage} compact={compactViewport} />
 
               <div style={{ marginTop: "clamp(30px, 4vw, 46px)" }} data-stagger>
                 {sideVentures.map((v) => (
@@ -1362,11 +1366,11 @@ export function Story() {
           </View>
 
           {/* ============================================ ENTRY 13 ==== */}
-          <View id="contact" active={view}>
+          <View id="contact" active={view} compact={compactViewport}>
           <Spread id="contact" tone="night" graph style={{ position: "relative", overflow: "hidden" }}>
             <YearMark year={2026} />
             <video
-              src={CONTACT_VIDEO}
+              src={compactViewport ? undefined : CONTACT_VIDEO}
               poster={CONTACT_POSTER}
               muted
               loop
@@ -1401,7 +1405,7 @@ export function Story() {
 
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <div style={{ textAlign: "left" }}>
-                    <Passage paragraphs={coda.passage} />
+                    <Passage paragraphs={coda.passage} compact={compactViewport} />
                   </div>
                 </div>
               </div>

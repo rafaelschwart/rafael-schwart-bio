@@ -272,10 +272,15 @@ export function useYearRail(
   root: RefObject<HTMLElement>,
   readout: RefObject<HTMLElement>,
   years: number[],
+  enabled = true,
 ) {
   const activeRef = useRef<number>(-1)
 
   useEffect(() => {
+    if (!enabled) {
+      activeRef.current = -1
+      return
+    }
     const host = root.current
     if (!host) return
     const sections = Array.from(host.querySelectorAll<HTMLElement>("[data-year]"))
@@ -320,15 +325,15 @@ export function useYearRail(
     window.addEventListener("scroll", onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener("scroll", onScroll)
-  }, [root, readout, years])
+  }, [root, readout, years, enabled])
 }
 
 /* -------------------------------------------------------------- parallax --- */
 
 /** Slow counter-scroll drift on [data-parallax] (value = px of travel). */
-export function useParallax(root: RefObject<HTMLElement>) {
+export function useParallax(root: RefObject<HTMLElement>, enabled = true) {
   useEffect(() => {
-    if (reduced()) return
+    if (!enabled || reduced()) return
     const host = root.current
     if (!host) return
     const els = Array.from(host.querySelectorAll<HTMLElement>("[data-parallax]"))
@@ -358,15 +363,19 @@ export function useParallax(root: RefObject<HTMLElement>) {
       window.removeEventListener("resize", onScroll)
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [root])
+  }, [root, enabled])
 }
 
 /* ------------------------------------------------------- reading progress -- */
 
 /** 0→1 progress of the whole narrative, for the rail's progress hairline. */
-export function useProgress(root: RefObject<HTMLElement>) {
+export function useProgress(root: RefObject<HTMLElement>, enabled = true) {
   const [p, setP] = useState(0)
   useEffect(() => {
+    if (!enabled) {
+      setP(0)
+      return
+    }
     const host = root.current
     if (!host) return
     let raf: number | null = null
@@ -388,6 +397,6 @@ export function useProgress(root: RefObject<HTMLElement>) {
       window.removeEventListener("resize", onScroll)
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [root])
+  }, [root, enabled])
   return p
 }

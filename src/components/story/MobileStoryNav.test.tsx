@@ -1,8 +1,10 @@
 import { cleanup, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
+import { useState } from "react"
 import { afterEach, describe, expect, it, vi } from "vitest"
 import { MobileStoryNav } from "./MobileStoryNav"
 import { Story } from "./Story"
+import { CompanyModal } from "./StoryAtoms"
 
 const items = [
   { id: "cover", label: "Cover", index: "01" },
@@ -93,7 +95,7 @@ describe("MobileStoryNav", () => {
 })
 
 describe("Story mobile cover", () => {
-  it("serves compact recruiter details and portrait sources while retaining an identifiable desktop rail", () => {
+  it("serves compact recruiter details and both portrait sources while retaining an identifiable desktop rail", () => {
     setViewport(true)
 
     const { unmount } = render(<Story />)
@@ -107,11 +109,73 @@ describe("Story mobile cover", () => {
         .closest("picture")
         ?.querySelector('source[type="image/webp"][srcset*="headshot-mobile-480.webp"]'),
     ).toBeInTheDocument()
+    expect(
+      portrait
+        .closest("picture")
+        ?.querySelector('source[type="image/webp"][srcset*="headshot-mobile-720.webp"]'),
+    ).toBeInTheDocument()
+
+    expect(document.querySelector(".st-word")).not.toBeInTheDocument()
+    expect(screen.getByText(/I was born in Caracas/i)).toBeVisible()
+    expect(document.querySelector('video[src="/assets/story/fde-workflow.mp4"]')).not.toBeInTheDocument()
 
     unmount()
     setViewport(false)
     render(<Story />)
 
     expect(document.querySelector(".st-desktop-index")).toBeInTheDocument()
+    expect(document.querySelector(".st-word")).toBeInTheDocument()
+  })
+
+  it("makes meaningful mobile video user-initiated and decorative mobile video poster-only", () => {
+    setViewport(true)
+    window.history.replaceState(null, "", "/#forward")
+
+    const { unmount } = render(<Story />)
+
+    const workflow = screen.getByLabelText(/production line on the left/i)
+    expect(workflow).toHaveAttribute("controls")
+    expect(workflow).toHaveAttribute("preload", "none")
+
+    unmount()
+    window.history.replaceState(null, "", "/#contact")
+    render(<Story />)
+
+    const decorative = document.querySelector('video[poster="/assets/contact-loop-poster.jpg"]')
+    expect(decorative).toBeInTheDocument()
+    expect(decorative).not.toHaveAttribute("src")
+  })
+})
+
+function DossierHarness() {
+  const [company, setCompany] = useState<string | null>(null)
+  return (
+    <>
+      <button type="button" onClick={() => setCompany("Motorola Solutions")}>Open dossier</button>
+      <CompanyModal company={company} onClose={() => setCompany(null)} />
+      <button type="button">Outside action</button>
+    </>
+  )
+}
+
+describe("Company dossier dialog", () => {
+  it("contains keyboard focus and returns it to the trigger after Escape closes", async () => {
+    const user = userEvent.setup()
+    render(<DossierHarness />)
+
+    const trigger = screen.getByRole("button", { name: "Open dossier" })
+    await user.click(trigger)
+
+    const dialog = screen.getByRole("dialog", { name: "Dossier · Motorola Solutions" })
+    expect(dialog).toBeInTheDocument()
+
+    const visit = screen.getByRole("link", { name: /Visit motorolasolutions.com/i })
+    visit.focus()
+    await user.tab()
+    expect(screen.getByRole("button", { name: "Close dossier" })).toHaveFocus()
+
+    await user.keyboard("{Escape}")
+    expect(screen.queryByRole("dialog", { name: "Dossier · Motorola Solutions" })).not.toBeInTheDocument()
+    expect(trigger).toHaveFocus()
   })
 })
