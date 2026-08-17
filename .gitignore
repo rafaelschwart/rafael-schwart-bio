@@ -47,3 +47,6 @@ Certifications/
 
 # Firecrawl scrape output (local research artifacts)
 .scrape/
+
+# Font fetched on demand by scripts/build_favicon.py
+scripts/IBMPlexMono-Bold.ttf

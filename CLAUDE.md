@@ -146,6 +146,7 @@ for the whole site. If Lovable regenerates `index.html`, re-apply:
 - **`og:image` / `twitter:image`:** `https://rafaelschwart.com/lovable-uploads/30a69a7f-53f1-4c7a-9897-49a90d14df19.png`.
 - **`twitter:site`:** **omit** — no X handle on file. Do not restore `@lovable_dev`.
 - **`og:url`:** `https://rafaelschwart.com/`.
+- **Favicon:** `public/favicon.ico` is the **`rs` monogram** — paper letters in IBM Plex Mono Bold on an ink plate, under the signal-blue rule. It is a multi-frame ICO (16/24/32/48/64/128/256) with **per-size artwork**: 16 and 24 drop the rule and set the letters larger. Paired with `public/apple-touch-icon.png` (180) and `public/icon-512.png`, declared via `<link rel="icon">` + `<link rel="apple-touch-icon">`. If Lovable restores its **gradient heart**, rebuild from `scripts/build_favicon.py`.
 - **Fonts:** **Satoshi** (Fontshare `api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900`) + **IBM Plex Mono** (Google `family=IBM+Plex+Mono:wght@400;500;600`). If Lovable swaps these for Fraunces/Inter/Manrope, **restore Satoshi + IBM Plex Mono** — the V2 design depends on them.
 - **Noscript fallback contact email:** `hi@rafaelschwart.com` — the canonical public contact address. Matches the rendered Contact view, `llms.txt`'s "preferred" field, and the PDF résumé. It's the Google Workspace address; its MX records live at IONOS and must never be touched when changing DNS. **Never** restore `rrgschwart@hotmail.com` or `rafaelschwart@gmail.com` (invented by Lovable).
 
