@@ -68,31 +68,30 @@ export const forwardDeployed = {
   url: "https://arqentia.com/",
   urlLabel: "arqentia.com",
   passage: [
-    "Most small companies are running an operation nobody ever engineered. The real process lives in one person's head, a spreadsheet three people edit at once, and a hand-off that quietly costs a day every week. Nobody wrote it down, so nobody can fix it.",
-    "That is the same problem I spent twelve years solving on production lines, and the method transfers exactly. At Arqentia I work the way a forward deployed engineer does: sit inside the operation, map what actually happens rather than what the org chart says, find the constraint, and build the thing that removes it.",
-    "What changed is build speed. Process engineering is still how I find the problem — walk the line, map the flow, PFMEA the failure modes, measure the throughput. AI engineering tooling is how the fix ships in days instead of quarters. I am fluent in that stack, and I use it as an engineer rather than as a novelty.",
+    "Most small companies run an operation nobody ever engineered. The real process lives in one person's head, and the hand-off between them quietly costs a day every week.",
+    "That is the same problem I spent twelve years solving on production lines. The method transfers exactly — only the build speed changed.",
   ],
   /** How the hardware method maps onto an operation */
   method: [
     {
       k: "01",
       title: "Walk the line",
-      desc: "Sit with the people doing the work and record the real process, including the workarounds. On a factory floor this is a process map. In a business it is the same map, drawn on software.",
+      desc: "Record the real process, workarounds included — not the org chart version.",
     },
     {
       k: "02",
       title: "Find the constraint",
-      desc: "One step sets the pace for everything downstream. PFMEA and root-cause analysis on an operation surface it the same way they surface a yield problem on a line.",
+      desc: "One step sets the pace for everything downstream. PFMEA and root cause find it.",
     },
     {
       k: "03",
       title: "Build it in place",
-      desc: "Dashboards, workflow automation, AI agents, and integrations into the tools they already run. Deployed inside the operation, not handed over as a spec.",
+      desc: "Dashboards, automation and agents deployed inside the operation, not handed over as a spec.",
     },
     {
       k: "04",
       title: "Instrument it",
-      desc: "A fix you cannot measure is an opinion. Control plans and live metrics, so the improvement survives the person who built it.",
+      desc: "A fix you cannot measure is an opinion. Control plans and live metrics.",
     },
   ],
   /** The working stack — named because fluency here is the differentiator */
@@ -242,38 +241,45 @@ export const shipped = {
   items: [
     {
       thing: "Mission-critical radios",
+      img: "/assets/companies/motorola-product.webp",
       where: "Motorola Solutions",
       detail: "The handsets first responders carry. I own the NPI path from pilot build to volume ramp.",
     },
     {
       thing: "AR headset optics",
+      img: "/assets/companies/magicleap-product.webp",
       where: "Magic Leap",
       detail: "Waveguide assemblies with no manufacturing precedent. Built the PFMEA library from nothing.",
       metric: { value: 15, suffix: "%", label: "production efficiency" },
     },
     {
       thing: "Surgical robotics",
+      img: "/assets/companies/stryker-product.webp",
       where: "Stryker",
       detail: "Robotic assembly where the failure mode has a face. MAPs redesign, PPAP, NC/CAPA closure.",
     },
     {
       thing: "Boeing avionics test rigs",
+      img: "/assets/companies/gables-product.webp",
       where: "Gables Engineering",
       detail: "Automated fixtures for cockpit hardware, and the PDM system behind the change workflow.",
       metric: { value: 50, suffix: "%+", label: "faster test cycles" },
     },
     {
       thing: "Utility-scale solar structures",
+      img: "/assets/companies/terrasmart-product.webp",
       where: "TerraSmart",
       detail: "Steel tracking structures across terrain you cannot see the end of. Casting and welding process work.",
     },
     {
       thing: "High-speed packaging lines",
+      img: "/assets/companies/robotray-product.webp",
       where: "Robotray",
       detail: "Automation that runs all day untouched. FEA on material usage, SolidWorks PDM for version control.",
     },
     {
       thing: "Aerospace load fixtures",
+      img: "/assets/companies/generalmro-product.webp",
       where: "General MRO · Prompt Aero · Piece-makers",
       detail: "FAA-compliant structural fixtures validated with FEA and CFD. Where the whole thing started.",
     },

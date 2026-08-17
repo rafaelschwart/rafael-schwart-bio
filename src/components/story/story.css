@@ -507,14 +507,36 @@
 /* "Things that exist" row */
 .st-thing {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 18px;
-  align-items: baseline;
-  padding: 16px 0;
+  grid-template-columns: 132px 1fr auto;
+  gap: 22px;
+  align-items: center;
+  padding: 18px 0;
   border-bottom: 1px solid rgba(245, 243, 236, 0.12);
   transition: padding-left 0.25s var(--ease-eng);
 }
 .st-thing:hover { padding-left: 8px; }
+
+/* A photograph of the product category, so the page reads as a body of work
+   rather than a list. Desaturated on the dark surface, full colour on hover. */
+.st-thing-shot {
+  width: 132px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(245, 243, 236, 0.18);
+  background: rgba(245, 243, 236, 0.04);
+}
+.st-thing-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.05) brightness(0.85);
+  transition: filter 0.4s var(--ease-eng), transform 0.5s var(--ease-eng);
+}
+.st-thing:hover .st-thing-shot img {
+  filter: grayscale(0) contrast(1) brightness(1);
+  transform: scale(1.05);
+}
 .st-thing:last-child { border-bottom: 0; }
 
 .st-thing-name {
@@ -525,8 +547,63 @@
   color: var(--paper);
 }
 
-@media (max-width: 760px) {
-  .st-thing { grid-template-columns: 1fr; gap: 8px; }
+@media (max-width: 860px) {
+  .st-thing { grid-template-columns: 92px 1fr; gap: 14px; align-items: start; }
+  .st-thing-shot { width: 92px; }
+  .st-thing > div:last-child { grid-column: 2; text-align: left !important; }
+}
+
+/* ---- Process flow: the method as a diagram, not paragraphs --------------- */
+
+.st-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 34px;
+  align-items: stretch;
+}
+
+.st-flow-step { position: relative; }
+
+/* connector between steps, matching the category rail's flow language */
+.st-flow-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  width: 16px;
+  height: 1.5px;
+  background: var(--signal);
+  transform: translateY(-50%);
+}
+.st-flow-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -13px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid var(--signal);
+  border-right: 1.5px solid var(--signal);
+  transform: translateY(-50%) rotate(45deg);
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .st-flow { grid-template-columns: 1fr; gap: 30px; }
+  /* the flow turns vertical: connectors point down */
+  .st-flow-step:not(:last-child)::after {
+    top: auto; bottom: -23px; right: auto; left: 50%;
+    width: 1.5px; height: 15px; transform: translateX(-50%);
+  }
+  .st-flow-step:not(:last-child)::before {
+    top: auto; bottom: -12px; right: auto; left: 50%;
+    transform: translateX(-50%) rotate(135deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-thing-shot img { transition: none; }
+  .st-thing:hover .st-thing-shot img { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

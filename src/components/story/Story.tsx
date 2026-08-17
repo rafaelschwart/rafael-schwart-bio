@@ -458,27 +458,32 @@ export function Story() {
               note={forwardDeployed.standfirst}
             />
 
+            {/* Headline + a two-sentence lede. The diagram does the explaining. */}
             <div
-              className="st-era-grid"
+              className="st-two"
               style={{
                 display: "grid",
-                gridTemplateColumns: "1.15fr 0.85fr",
-                gap: "clamp(28px, 5vw, 60px)",
-                alignItems: "start",
+                gridTemplateColumns: "1.05fr 0.95fr",
+                gap: "clamp(24px, 4vw, 56px)",
+                alignItems: "end",
                 marginTop: 22,
               }}
             >
+              <h2 className="st-h2" style={{ margin: 0 }} data-enter>
+                <Hl>
+                  <span>{forwardDeployed.title}</span>
+                </Hl>
+              </h2>
               <div>
-                <h2 className="st-h2" style={{ margin: 0 }} data-enter>
-                  <Hl>
-                    <span>{forwardDeployed.title}</span>
-                  </Hl>
-                </h2>
-                <DrawRule width={460} />
                 <Passage paragraphs={forwardDeployed.passage} />
-
                 <div
-                  style={{ display: "flex", flexWrap: "wrap", gap: 14, alignItems: "center", marginTop: 28 }}
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: 14,
+                    alignItems: "center",
+                    marginTop: 22,
+                  }}
                   data-enter
                 >
                   <NbCta href={forwardDeployed.url}>Arqentia</NbCta>
@@ -492,98 +497,71 @@ export function Story() {
                     {forwardDeployed.urlLabel} <span className="nb-nudge">↗</span>
                   </a>
                 </div>
-
-                <Scribble tone="signal" size="sm" style={{ marginTop: 20 }}>
-                  {forwardDeployed.note}
-                </Scribble>
-              </div>
-
-              {/* the diagram sits beside the argument, not under it */}
-              <div style={{ position: "sticky", top: 96 }}>
-                <figure
-                  className="st-plate"
-                  style={{ margin: 0, background: "var(--paper-soft)" }}
-                  data-enter
-                >
-                  <div className="st-plate-inner">
-                    <video
-                      src="/assets/story/fde-workflow.mp4"
-                      poster="/assets/story/fde-workflow.webp"
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      aria-label="A production line on the left, a blue flow line passing through four nodes, resolving into a dashboard and an automation graph on the right."
-                      style={{ width: "100%", height: "auto", display: "block", filter: "none" }}
-                    />
-                  </div>
-                  <figcaption className="st-plate-cap">
-                    <span>The same line, drawn on software</span>
-                    <span>Operation → constraint → build → measure</span>
-                  </figcaption>
-                </figure>
               </div>
             </div>
 
-            {/* the working stack, as instrument labels */}
-            <div style={{ marginTop: "clamp(30px, 4vw, 48px)" }}>
-              <div style={{ maxWidth: 720 }}>
-                <NbCard tilt="r" style={{ padding: "22px 22px 24px" }}>
-                  <p className="nb-stamp st-stack-label" style={{ fontSize: 10, marginBottom: 16 }}>
-                    {forwardDeployed.stack.label}
-                  </p>
-                  <p
-                    className="nb-stamp st-stack-label"
-                    style={{ fontSize: 9.5, color: "var(--signal)", marginBottom: 9 }}
-                  >
-                    Agentic engineering
-                  </p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: 18 }}>
-                    {forwardDeployed.stack.agents.map((t) => (
-                      <span key={t} className="st-tool">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <p
-                    className="nb-stamp st-stack-label"
-                    style={{ fontSize: 9.5, color: "var(--signal)", marginBottom: 9 }}
-                  >
-                    Automation &amp; delivery
-                  </p>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
-                    {forwardDeployed.stack.automation.map((t) => (
-                      <span key={t} className="st-tool">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </NbCard>
+            {/* The diagram is the hero of this page, not a sidebar. */}
+            <figure
+              className="st-plate"
+              style={{ margin: "clamp(28px, 4vw, 44px) 0 0", background: "var(--paper-soft)" }}
+              data-enter
+            >
+              <div className="st-plate-inner">
+                <video
+                  src="/assets/story/fde-workflow.mp4"
+                  poster="/assets/story/fde-workflow.webp"
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="A production line on the left, a blue flow line passing through four nodes, resolving into a dashboard and an automation graph on the right."
+                  style={{ width: "100%", height: "auto", display: "block", filter: "none" }}
+                />
               </div>
-            </div>
+              <figcaption className="st-plate-cap">
+                <span>The same line, drawn on software</span>
+                <span>Arqentia · forward deployed</span>
+              </figcaption>
+            </figure>
 
-            {/* how the hardware method maps onto an operation */}
+            {/* The method as a process flow, not four paragraphs */}
             <div style={{ marginTop: "clamp(30px, 4vw, 48px)" }}>
               <p className="nb-stamp" style={{ marginBottom: 16 }} data-enter>
                 The method, ported from the factory floor
               </p>
-              <div
-                className="nb-grid-4"
-                data-stagger
-                style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}
-              >
+              <div className="st-flow" data-stagger>
                 {forwardDeployed.method.map((m) => (
-                  <NbCard key={m.k} style={{ padding: "20px 20px" }}>
-                    <p className="st-step-no" style={{ marginBottom: 10 }}>
-                      {m.k}
-                    </p>
-                    <p style={{ fontWeight: 700, fontSize: 15.5, lineHeight: 1.3, marginBottom: 8 }}>
-                      {m.title}
-                    </p>
-                    <p style={{ fontSize: 13, lineHeight: 1.6, color: "var(--mute)" }}>{m.desc}</p>
-                  </NbCard>
+                  <div key={m.k} className="st-flow-step">
+                    <NbCard style={{ padding: "18px 18px", height: "100%" }}>
+                      <p className="st-step-no" style={{ marginBottom: 9 }}>
+                        {m.k}
+                      </p>
+                      <p style={{ fontWeight: 700, fontSize: 15, lineHeight: 1.28, marginBottom: 7 }}>
+                        {m.title}
+                      </p>
+                      <p style={{ fontSize: 12.5, lineHeight: 1.55, color: "var(--mute)" }}>
+                        {m.desc}
+                      </p>
+                    </NbCard>
+                  </div>
                 ))}
               </div>
+            </div>
+
+            {/* the working stack */}
+            <div style={{ marginTop: "clamp(28px, 4vw, 44px)" }}>
+              <NbCard style={{ padding: "20px 22px 22px" }}>
+                <p className="nb-stamp st-stack-label" style={{ fontSize: 10, marginBottom: 14 }}>
+                  {forwardDeployed.stack.label}
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+                  {[...forwardDeployed.stack.agents, ...forwardDeployed.stack.automation].map((t) => (
+                    <span key={t} className="st-tool">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </NbCard>
             </div>
           </Spread>
           </View>
@@ -706,6 +684,11 @@ export function Story() {
                     <div style={{ marginTop: 30 }} data-stagger>
                       {shipped.items.map((it) => (
                         <div key={it.thing} className="st-thing">
+                          {it.img ? (
+                            <div className="st-thing-shot">
+                              <img src={it.img} alt="" loading="lazy" decoding="async" />
+                            </div>
+                          ) : null}
                           <div>
                             <p className="st-thing-name">{it.thing}</p>
                             <p
