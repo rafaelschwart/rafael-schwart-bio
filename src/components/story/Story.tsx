@@ -64,6 +64,7 @@ import {
 import { CompanyModal, DrawRule, Metric, Passage, Plate, RoleCard } from "./StoryAtoms"
 import { reduced, useDraw, useEnter, useImageWipe, useParallax, useProgress, useYearRail, useRowEnds } from "./motion"
 import { useNavIndicator, useNotebookMotion } from "./notebookMotion"
+import { LinkedInMark } from "./icons"
 import { MobileStoryNav } from "./MobileStoryNav"
 import { useCompactViewport } from "./mobile"
 import "@/components/notebook/notebook.css"
@@ -329,6 +330,18 @@ export function Story() {
                 <a href={RESUME_URL} target="_blank" rel="noreferrer" className="nb-cta nb-cta--paper" style={{ minHeight: 44, display: "inline-flex", alignItems: "center" }}>
                   Resume
                 </a>
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="nb-cta nb-cta--signal"
+                  style={{ minHeight: 44, display: "inline-flex", alignItems: "center" }}
+                >
+                  <span className="nb-cta-icon" aria-hidden>
+                    <LinkedInMark />
+                  </span>
+                  LinkedIn
+                </a>
               </div>
             </div>
           </>
@@ -478,6 +491,9 @@ export function Story() {
                   data-enter
                 >
                   <NbCta href={`mailto:${EMAIL}`}>Start a conversation</NbCta>
+                  <NbCta href={LINKEDIN_URL} icon={<LinkedInMark />} arrow={false}>
+                    LinkedIn
+                  </NbCta>
                   <a
                     href={RESUME_URL}
                     target="_blank"
@@ -1627,7 +1643,6 @@ export function Story() {
                       background: "none",
                       border: 0,
                       padding: 0,
-                      cursor: "pointer",
                       color: "rgba(245,243,236,.78)",
                       fontSize: 14,
                       fontFamily: "var(--fdisp)",

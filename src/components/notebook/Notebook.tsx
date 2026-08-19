@@ -150,7 +150,6 @@ export function Notebook() {
                   style={{
                     background: "transparent",
                     border: 0,
-                    cursor: "pointer",
                     padding: "8px 10px",
                     fontFamily: "var(--fmono)",
                     fontSize: 11,

@@ -286,3 +286,77 @@
   [data-pmp-card] { grid-template-columns: minmax(0, 1fr) !important; }
   [data-pmp-card] > div:first-child { border-right: none !important; border-bottom: 1px solid var(--rule); }
 }
+
+/* ==========================================================================
+   Pencil cursor
+   ==========================================================================
+   You write in a notebook, so anything you can act on gets a pencil instead of
+   the hand pointer. White body with an ink outline so it reads on paper, on the
+   inverted night spreads, and over photographs alike; the eraser is the signal
+   blue. The tip sits at (3,3) in a 32x32 canvas, which is the hotspot below —
+   the point lands exactly where the arrow's would.
+
+   Deliberately global and unscoped, and living in index.css rather than
+   notebook.css. Two reasons:
+     - notebook.css only ships in the Story/Notebook route chunks, so a lazily
+       loaded page like 404 never saw the token at all.
+     - Radix portals its overlays to <body>, outside any page wrapper, so
+       anything scoped to a root class missed dialogs, popovers and menus.
+   ========================================================================== */
+
+:root {
+  --nb-pencil: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M3 3 11.1 6.2 26 21 21 26 6.2 11.1Z' fill='%23ffffff' stroke='%230a0a0a' stroke-width='1.7' stroke-linejoin='round'/%3E%3Cpath d='M23.15 18.21 26 21 21 26 18.21 23.15Z' fill='%233664ff' stroke='%230a0a0a' stroke-width='1.7' stroke-linejoin='round'/%3E%3Cpath d='M11.1 6.2 6.2 11.1' stroke='%230a0a0a' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M21.03 16.09 16.09 21.03' stroke='%230a0a0a' stroke-width='1.3' stroke-linecap='round'/%3E%3Cpath d='M3 3 6.55 4.39 4.39 6.55Z' fill='%230a0a0a'/%3E%3C/svg%3E");
+}
+
+/* Every affordance on the site, including the ones taking the UA default
+   pointer. Keyword fallback stays `pointer` for anything refusing the SVG. */
+:is(
+  a[href],
+  button,
+  summary,
+  label[for],
+  select,
+  [role="button"],
+  [role="tab"],
+  [role="link"],
+  [role="menuitem"],
+  [role="option"],
+  [role="switch"],
+  [role="checkbox"],
+  [role="radio"]
+) {
+  cursor: var(--nb-pencil) 3 3, pointer;
+}
+
+/* A pencil implies "you can act here" — don't show it where you can't. */
+:is(button, [role="button"], select):disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+/* Text entry keeps its caret; a pencil would misdescribe the interaction. */
+:is(input, textarea, [contenteditable="true"]) {
+  cursor: text;
+}
+
+/* Coarse pointers have no cursor to style, and the image would only cost a
+   decode. */
+@media (pointer: coarse) {
+  :is(
+    a[href],
+    button,
+    summary,
+    label[for],
+    select,
+    [role="button"],
+    [role="tab"],
+    [role="link"],
+    [role="menuitem"],
+    [role="option"],
+    [role="switch"],
+    [role="checkbox"],
+    [role="radio"]
+  ) {
+    cursor: pointer;
+  }
+}

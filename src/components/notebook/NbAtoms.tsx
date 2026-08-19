@@ -198,17 +198,36 @@ export function NbCta({
   href,
   variant = "signal",
   onClick,
+  icon,
+  arrow: showArrow = true,
+  label,
 }: {
   children: ReactNode
   href?: string
   variant?: "signal" | "ink" | "paper"
   onClick?: () => void
+  /** Mark rendered before the label, inheriting the button's colour */
+  icon?: ReactNode
+  /** Brand-mark buttons read better without the trailing arrow */
+  arrow?: boolean
+  /** Accessible name, when the visible label alone is not descriptive */
+  label?: string
 }) {
   const cls = `nb-cta nb-cta--${variant}`
-  const arrow = (
-    <span className="nb-cta-arrow" aria-hidden>
-      →
-    </span>
+  const inner = (
+    <>
+      {icon ? (
+        <span className="nb-cta-icon" aria-hidden>
+          {icon}
+        </span>
+      ) : null}
+      {children}
+      {showArrow ? (
+        <span className="nb-cta-arrow" aria-hidden>
+          →
+        </span>
+      ) : null}
+    </>
   )
 
   if (href) {
@@ -217,18 +236,17 @@ export function NbCta({
       <a
         href={href}
         className={cls}
+        aria-label={label}
         target={external ? "_blank" : undefined}
         rel={external ? "noreferrer" : undefined}
       >
-        {children}
-        {arrow}
+        {inner}
       </a>
     )
   }
   return (
-    <button type="button" className={cls} onClick={onClick}>
-      {children}
-      {arrow}
+    <button type="button" className={cls} aria-label={label} onClick={onClick}>
+      {inner}
     </button>
   )
 }
